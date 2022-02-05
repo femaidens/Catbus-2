@@ -21,7 +21,7 @@ public class Limelight extends Subsystem {
   public static NetworkTableEntry tx = table.getEntry("tx"); // horizontal offset from crosshair to target (-27 to 27 degrees)
   public static NetworkTableEntry ta = table.getEntry("ta"); // target area (0% to 100%)
   public static NetworkTableEntry ts = table.getEntry("ts"); // skew or rotation (-90 to 0 degrees)*/
-  public static NetworkTableEntry ty = table.getEntry("ty"); // y angle of the limelight to the target
+  public static NetworkTableEntry ty = table.getEntry("ty"); // y angle of the limelight to the target (vertical offset)
 
   public Limelight() {
     setLiveStream(0);
@@ -32,11 +32,18 @@ public class Limelight extends Subsystem {
       return true;
     }
       return false;
-  }  
+  }
   
-  public static double getTx(){
+  public static double getTX(){
     if(objectSighted()){
       return tx.getDouble(0.0);
+    }
+    return 0;
+  }
+
+  public static double getTY() {
+    if(objectSighted()) {
+      return ty.getDouble(0.0);
     }
     return 0;
   }

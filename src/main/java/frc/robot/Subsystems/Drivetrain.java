@@ -48,6 +48,8 @@ public class Drivetrain extends Subsystem {
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
   }
+
+  //auto align method
   
   @Override
   public void initDefaultCommand() {
