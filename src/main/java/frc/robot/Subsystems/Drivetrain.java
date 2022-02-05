@@ -37,9 +37,9 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-    double xSpeed = OI.driveJoy.getRawAxis(0);
-    double ySpeed = OI.driveJoy.getRawAxis(1);
-    double zRotation = OI.driveJoy.getRawAxis(4);
+    double xSpeed = OI.driveJoy1.getX();
+    double ySpeed = OI.driveJoy1.getY();
+    double zRotation = OI.driveJoy2.getX();
     
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
   }
