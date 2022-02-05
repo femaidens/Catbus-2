@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveTeleop;
 //import frc.robot.command.DriveTeleop;
 import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
 
   public static Drivetrain drivetrain;
   public static OI m_OI;
+  public static Intake intake;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     drivetrain = new Drivetrain();
+    intake = new Intake();
     m_OI = new OI();
     m_OI.bindButtons();
 

@@ -5,14 +5,29 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.IntakeCargo;
+import frc.robot.Commands.ExtendIntake;
+import frc.robot.Commands.RetractIntake;
+
+
 
 /** Add your docs here. */
 public class OI {
 
     public static Joystick driveJoy1 = new Joystick(RobotMap.driveJoy1Port);
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
+    public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
+
+    public static Button intakeMotorButton = new JoystickButton(operJoy, 1);
+    public static Button intakeExtendButton = new JoystickButton(operJoy, 2);
+    public static Button intakeRetractButton = new JoystickButton(operJoy, 3);
 
     public void bindButtons() {
-        
+        intakeMotorButton.whileHeld(new IntakeCargo());
+        intakeExtendButton.whenPressed(new ExtendIntake());
+        intakeRetractButton.whenPressed(new RetractIntake());
     }
+
 }
