@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.*;
 
 
 /** Add your docs here. */
@@ -16,15 +17,16 @@ public class OI {
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
-    public static Button intakeMotorButton = new JoystickButton(operJoy, 1);
-    public static Button intakeExtendButton = new JoystickButton(operJoy, 2);
-    public static Button intakeRetractButton = new JoystickButton(operJoy, 3);
-
-    public static Button shooterButtonWind = new JoystickButton(operJoy, 4);
-    public static Button shooterButtonShoot = new JoystickButton(operJoy, 5);
+    public static Button climbButtonExtend = new JoystickButton(operJoy, 4);
+    public static Button climbButtonRetract = new JoystickButton(operJoy, 5);
+    public static Button climbButtonOpenAngle = new JoystickButton(operJoy, 4);
+    public static Button climbButtonCloseAngle = new JoystickButton(operJoy, 5);
 
     public void bindButtons() {
-        
+        climbButtonExtend.whileHeld(new climbExtend());
+        climbButtonRetract.whileHeld(new climbRetract());
+        climbButtonOpenAngle.whenPressed(new climbOpenAngle());
+        climbButtonCloseAngle.whenPressed(new climbCloseAngle());
     }
 
 }

@@ -10,4 +10,21 @@ public class RobotMap {
     public static int driveJoy2Port = 0;
     public static int operJoyPort = 0;
 
+    //drivetrain
+    public static int frontRightPort = 0;
+    public static int frontLeftPort = 1;
+    public static int rearRightPort = 2;
+    public static int rearLeftPort = 3;
+    public static int gyroPort = 4;
+
+    //climb
+    public static int rightClimbPort = 0;
+    public static int leftClimbPort = 0;
+    public static int climbRightPistonForwardPort = 0;
+    public static int climbRightPistonBackwardPort = 0;
+    public static int climbLeftPistonForwardPort = 0;
+    public static int climbLeftPistonBackwardPort = 0;
+
+    public static int climbLeftUltrasonicPort = 0;
+    public static int climbRightUltrasonicPort = 0;
 }
