@@ -8,11 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.robot.Commands.DriveTeleop;
 //import frc.robot.command.DriveTeleop;
-import frc.robot.Subsystems.Drivetrain;
-import frc.robot.Subsystems.Intake;
-import frc.robot.Subsystems.Shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,10 +22,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  public static Drivetrain drivetrain;
   public static OI m_OI;
-  public static Intake intake;
-  public static Shooter shooter;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -41,13 +34,8 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    drivetrain = new Drivetrain();
-    intake = new Intake();
-    shooter = new Shooter();
     m_OI = new OI();
     m_OI.bindButtons();
-
-    drivetrain.setDefaultCommand(new DriveTeleop());
   }
 
   /**
