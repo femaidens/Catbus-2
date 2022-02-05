@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveTeleop;
 //import frc.robot.command.DriveTeleop;
 import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   public static Drivetrain drivetrain;
+  public static Limelight limelight;
   public static OI m_OI;
 
   /**
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     drivetrain = new Drivetrain();
+    limelight = new Limelight();
     m_OI = new OI();
     m_OI.bindButtons();
 
