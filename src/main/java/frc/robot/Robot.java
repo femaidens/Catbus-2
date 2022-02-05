@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveTeleop;
+import frc.robot.Commands.LimelightValues;
 //import frc.robot.command.DriveTeleop;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Limelight;
@@ -44,7 +45,8 @@ public class Robot extends TimedRobot {
     m_OI = new OI();
     m_OI.bindButtons();
 
-    drivetrain.setDefaultCommand(new DriveTeleop());
+    //drivetrain.setDefaultCommand(new DriveTeleop());
+    limelight.setDefaultCommand(new LimelightValues()); 
   }
 
   /**

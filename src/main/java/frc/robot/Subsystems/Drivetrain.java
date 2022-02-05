@@ -23,7 +23,7 @@ public class Drivetrain extends Subsystem {
   //fields
 
 	//mecanum motor controllers
-  private static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+ /* private static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
   private static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
   private static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   private static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
@@ -31,11 +31,11 @@ public class Drivetrain extends Subsystem {
   private static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
   private static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
-
+*/
   public Drivetrain(){
     
   }
-
+/*
   public static void driveTeleop() {
     double xSpeed = OI.driveJoy1.getX();
     double ySpeed = OI.driveJoy1.getY();
@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem {
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
   }
-
+*/
   //auto align method
   
   @Override

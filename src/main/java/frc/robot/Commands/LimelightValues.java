@@ -16,12 +16,13 @@ public class LimelightValues extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    System.out.println("Starting");
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Starting");
     System.out.println("tx: " + Robot.limelight.getTX() + ", ty: " + Robot.limelight.getTY());
   }
 
