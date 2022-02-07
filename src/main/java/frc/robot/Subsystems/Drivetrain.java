@@ -1,60 +1,114 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 
 package frc.robot.Subsystems;
 
+//import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.Commands.DriveTeleop;
 
-/** Add your docs here. */
+///import frc.robot.commands.DriveTeleop;
+
+/**
+ * Add your docs here.
+ */
 public class Drivetrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
+	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+	public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
+	public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
+	public static CANSparkMax middleLeft = new CANSparkMax(RobotMap.middleLeftPort, MotorType.kBrushless);
+	public static CANSparkMax middleRight = new CANSparkMax(RobotMap.middleRightPort, MotorType.kBrushless);
+	
+	//public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+	//public static DoubleSolenoid gearShift = new DoubleSolenoid(RobotMap.solChannel1, RobotMap.solChannel2);
 
-  //fields
+	public static RelativeEncoder rightEncoder = frontRight.getEncoder();
+	public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
 
-	//mecanum motor controllers
- /* private static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
-  private static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
-  private static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
-  private static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
-
-  private static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
-
-  private static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
-*/
-  public Drivetrain(){
-    
-  }
-/*
-  public static void driveTeleop() {
-    double xSpeed = OI.driveJoy1.getX();
-    double ySpeed = OI.driveJoy1.getY();
-    double zRotation = OI.driveJoy2.getX();
-    
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
-  }
-
-  
-  public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
-  }
-*/
-  //auto align method
-  
+  	public Drivetrain(){
+	  //frontLeft.setSmartCurrentLimit(currentLimit);
+	  //frontRight.setSmartCurrentLimit(currentLimit);
+	  //rearLeft.setSmartCurrentLimit(currentLimit);
+	  //rearRight.setSmartCurrentLimit(currentLimit);
+	  //middleLeft.setSmartCurrentLimit(currentLimit);
+	  //middleRight.setSmartCurrentLimit(currentLimit);
+	  
+  	}
+	//public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveTeleop());
+   		//setDefaultCommand(new DriveTeleop());
+  }
+
+
+	public static void driveAuton(final double rightSpeed, final double leftSpeed) {
+		frontRight.set(rightSpeed);
+		rearRight.set(rightSpeed);
+		frontLeft.set(leftSpeed);
+		rearLeft.set(leftSpeed);
+		middleLeft.set(leftSpeed);
+		middleRight.set(rightSpeed);	
+		//SmartDashboard.putNumber("Left motor speed", leftEncoder.getPosition());
+		//SmartDashboard.putNumber("Right motor speed", rightEncoder.getPosition());
+	}
+
+	public static void driveStraightDistance(double distance) { //enter number of rotations as distance
+    /*while(rightEncoder.getPosition() < distance && leftEncoder.getPosition() < distance) {
+      if(rightEncoder.getPosition() < leftEncoder.getPosition()) {
+        driveAuton(0.2, -0.1);
+      } else if(rightEncoder.getPosition() > leftEncoder.getPosition()) {
+        driveAuton(0.1, -0.2);
+      } else {
+        driveAuton(0.1, -0.1);
+      }*/
+
+      driveAuton(-0.1, 0.1);
+      //System.out.println("Right: " + rightEncoder.getPosition() + ", Left: " + leftEncoder.getPosition());
+      System.out.println("Right: " + frontRight.get() + ", Left: " + frontLeft.get());
+
+    //}
+
+	}
+
+	public static void turnDegrees(double angle) {
+ /*   if (angle > 180) {
+      angle = -(360 - angle);
+      }
+    
+      while (Drivetrain.gyro.getAngle() != angle) {
+        if (angle < 0) {
+          Drivetrain.frontRight.set(1.0);
+          Drivetrain.rearRight.set(1.0);
+          Drivetrain.frontLeft.set(-1.0);
+          Drivetrain.rearLeft.set(-1.0);
+        } else {
+          Drivetrain.frontRight.set(-1.0);
+          Drivetrain.rearRight.set(-1.0);
+          Drivetrain.frontLeft.set(1.0);
+          Drivetrain.rearRight.set(1.0);
+        }
+      }
+
+      Drivetrain.frontRight.set(0.0);
+      Drivetrain.rearRight.set(0.0);
+      Drivetrain.frontLeft.set(0.0);
+      Drivetrain.rearRight.set(0.0);*/
   }
 }
