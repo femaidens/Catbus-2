@@ -78,6 +78,8 @@ public class Drivetrain extends Subsystem {
       } else {
         driveAuton(0.1, -0.1);
       }*/
+      
+      //only tested uncommented code, there might be something wrong with driveStraightDistance?
 
       driveAuton(-0.1, 0.1);
       //System.out.println("Right: " + rightEncoder.getPosition() + ", Left: " + leftEncoder.getPosition());
