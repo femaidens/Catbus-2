@@ -75,6 +75,31 @@ public class Drivetrain extends Subsystem {
     }
   }
 
+  public static void turnDegrees(double angle){
+    if(angle > 180){
+      angle = -(360 - angle);
+    }
+
+    while(gyro.getAngle() != angle){
+      if(angle < 0){
+        frontLeft.set(0.3);
+        rearLeft.set(0.3);
+        frontRight.set(-0.3);
+        rearRight.set(-0.3);
+      }
+      else if(angle > 0){
+        frontLeft.set(-0.3);
+        rearLeft.set(-0.3);
+        frontRight.set(0.3);
+        rearRight.set(0.3);
+      }
+    }
+    frontLeft.set(0.0);
+    rearLeft.set(0.0);
+    frontRight.set(0.0);
+    rearRight.set(0.0);
+  }
+
   public static void driveStop(){
     frontLeft.set(0.0);
     rearLeft.set(0.0);
