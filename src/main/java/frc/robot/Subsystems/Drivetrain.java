@@ -5,6 +5,7 @@
 package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -23,13 +24,15 @@ public class Drivetrain extends Subsystem {
   //fields
 
 	//mecanum motor controllers
-  private static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
-  private static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
-  private static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
-  private static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
+  public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+  public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
+  public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
+  public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 
   private static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
+  public static RelativeEncoder rightEncoder = frontRight.getEncoder();
+  public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
   private static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
   public Drivetrain(){
@@ -47,6 +50,36 @@ public class Drivetrain extends Subsystem {
   
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+  }
+
+  public static void driveStraightDistance(double distance){
+    double rightDistance = rightEncoder.getPosition();
+    double leftDistance = leftEncoder.getPosition();
+    while(distance < rightDistance && distance < leftDistance){
+      frontLeft.set(0.3);
+      rearLeft.set(0.3);
+      frontRight.set(0.3);
+      rearRight.set(0.3);
+      if(leftDistance < rightDistance){
+        frontLeft.set(0.3);
+        rearLeft.set(0.3);
+        frontRight.set(0.0);
+        rearRight.set(0.0);
+      }
+      else if(leftDistance > rightDistance){
+        frontLeft.set(0.0);
+        rearLeft.set(0.0);
+        frontRight.set(0.3);
+        rearRight.set(0.3);
+      }
+    }
+  }
+
+  public static void driveStop(){
+    frontLeft.set(0.0);
+    rearLeft.set(0.0);
+    frontRight.set(0.0);
+    rearRight.set(0.0);
   }
   
   @Override
