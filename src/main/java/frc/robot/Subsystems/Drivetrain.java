@@ -47,32 +47,19 @@ public class Drivetrain extends Subsystem {
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
   }
 
-  
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
   }
 
-  public static void driveStraightDistance(double distance){
+  public static void driveStraightDistance(double distance, double angle){
     double rightDistance = rightEncoder.getPosition();
     double leftDistance = leftEncoder.getPosition();
+
+
     while(distance < rightDistance && distance < leftDistance){
-      frontLeft.set(0.3);
-      rearLeft.set(0.3);
-      frontRight.set(0.3);
-      rearRight.set(0.3);
-      if(leftDistance < rightDistance){
-        frontLeft.set(0.3);
-        rearLeft.set(0.3);
-        frontRight.set(0.0);
-        rearRight.set(0.0);
-      }
-      else if(leftDistance > rightDistance){
-        frontLeft.set(0.0);
-        rearLeft.set(0.0);
-        frontRight.set(0.3);
-        rearRight.set(0.3);
-      }
+      mecanum.driveCartesian(0.3, 0.3, angle, gyro.getAngle());      
     }
+    driveStop();
   }
 
   public static void turnDegrees(double angle){
