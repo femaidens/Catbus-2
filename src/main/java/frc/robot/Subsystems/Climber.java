@@ -24,8 +24,32 @@ public class Climber extends Subsystem {
   public static Ultrasonic ultrasonicLeft = new Ultrasonic(0, 0);
   public static Ultrasonic ultrasonicRight = new Ultrasonic(0, 0);
 
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+  public static double distance; //distance from the wall
+
+  //drivetrain motors
+  public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+  public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
+  public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
+  public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
+
+  //PID
+  public final static double Kp = 0.01;
+  public final static double Ki = 0.0;
+  public final static double Kd = 0.0;
+  //public double distance, left_speed, right_speed;
+  public double left_speed, right_speed;
+  static double min_error = 0.1; //sets an error deadband/ minimum value
+  static double min_command = 0.0;
+  static double current_error = 0; 
+  static double previous_error = 0;
+  static double integral = 0;
+  static double derivative = 0;
+  static double adjust = 0;
+  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+
+  public Climber(){
+
+  }
 
   public void extendClimb(){
     rightClimber.set(0.7);
@@ -50,6 +74,27 @@ public class Climber extends Subsystem {
   public void stopClimb(){
     rightClimber.set(0);
     leftClimber.set(0);
+  }
+
+  public void alignClimb(){
+    double leftUltrasonicDistance = ultrasonicLeft.getRangeInches();
+    double rightUltrasonicDistance = ultrasonicRight.getRangeInches();
+
+    //not done
+    while(leftUltrasonicDistance != distance){
+      previous_error = current_error;
+      current_error = distance - leftUltrasonicDistance;
+      integral = (current_error+previous_error)/2*(time);
+      derivative = (current_error-previous_error)/time;
+      adjust = Kp*current_error + Ki*integral + Kd*derivative;
+
+      if (current_error > min_error){
+        adjust += min_command;
+      }
+      else if (current_error < -min_error){
+        adjust -= min_command;
+      }
+    }
   }
 
   @Override
