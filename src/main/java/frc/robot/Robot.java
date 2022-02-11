@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Commands.PIDTestCommand;
+import frc.robot.Subsystems.PIDTest;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -21,6 +23,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  public static PIDTest pidTest;
   public static OI m_OI;
 
   /**
@@ -29,13 +32,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    System.out.println("RobotInit");
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
+    pidTest = new PIDTest();
     m_OI = new OI();
     m_OI.bindButtons();
 
+    System.out.println("init");
+    pidTest.setDefaultCommand(new PIDTestCommand());
   }
 
   /**
