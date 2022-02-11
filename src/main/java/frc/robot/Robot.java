@@ -5,9 +5,17 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.Commands.DriveStraight;
+//import frc.robot.Commands.DriveTeleop;
+//import frc.robot.Commands.LimelightValues;
+//import frc.robot.command.DriveTeleop;
+import frc.robot.Subsystems.Drivetrain;
+//import frc.robot.Subsystems.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,7 +29,11 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  public static Drivetrain drivetrain;
+  public static Command autonomousCommand;
+  //public static Limelight limelight;
   public static OI m_OI;
+  public static Timer timer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,11 +43,23 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
+    //SmartDashboard.putData(Scheduler.getInstance());
     SmartDashboard.putData("Auto choices", m_chooser);
+    SmartDashboard.putString("Print statements", "initialized robot");   
+                                                                                                            
 
+    drivetrain = new Drivetrain();
+    //limelight = new Limelight();
     m_OI = new OI();
     m_OI.bindButtons();
 
+    timer = new Timer();
+    timer.reset();
+    SmartDashboard.putNumber("Test", drivetrain.getTest()); 
+    autonomousCommand = new DriveStraight(100);
+
+    //drivetrain.setDefaultCommand(new DriveTeleop());
+    //limelight.setDefaultCommand(new LimelightValues()); 
   }
 
   /**
@@ -63,12 +87,18 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    
+    //timer.start();
+
+    /*if(autonomousCommand != null) {
+      autonomousCommand.start();
+    }*/
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
+    /*switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
         break;
@@ -76,12 +106,21 @@ public class Robot extends TimedRobot {
       default:
         // Put default auto code here
         break;
-    }
+    }*/
+
+    /*Scheduler.getInstance().run();
+    if(timer.get() >= 15.0) {
+      autonomousCommand.cancel();
+    }*/
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    if(autonomousCommand != null) {
+      autonomousCommand.cancel();
+    }
+  }
 
   /** This function is called periodically during operator control. */
   @Override
@@ -95,7 +134,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically when disabled. */
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    Scheduler.getInstance().run();
+  }
 
   /** This function is called once when test mode is enabled. */
   @Override
