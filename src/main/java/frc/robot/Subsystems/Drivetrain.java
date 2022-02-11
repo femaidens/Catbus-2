@@ -35,6 +35,21 @@ public class Drivetrain extends Subsystem {
   public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
   private static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
+  //PID fields
+  public final static double Kp = 0.01;
+  public final static double Ki = 0.0;
+  public final static double Kd = 0.0;
+  //public double distance, left_speed, right_speed;
+  public double left_speed, right_speed;
+  static double min_error = 0.1; //sets an error deadband/ minimum value
+  static double min_command = 0.0;
+  static double current_error = 0; 
+  static double previous_error = 0;
+  static double integral = 0;
+  static double derivative = 0;
+  static double adjust = 0;
+  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+
   public Drivetrain(){
     
   }
@@ -55,11 +70,37 @@ public class Drivetrain extends Subsystem {
     double rightDistance = rightEncoder.getPosition();
     double leftDistance = leftEncoder.getPosition();
 
+    mecanum.driveCartesian(0.3, 0.3, angle, gyro.getAngle());
 
     while(distance < rightDistance && distance < leftDistance){
-      mecanum.driveCartesian(0.3, 0.3, angle, gyro.getAngle());      
+      driveStraight(angle);
     }
     driveStop();
+  }
+
+  public static void driveStraight(double angle){
+    while(gyro.getAngle() != angle){
+      previous_error = current_error;
+      current_error = angle - gyro.getAngle();
+      integral = (current_error+previous_error)/2*(time);
+      derivative = (current_error-previous_error)/time;
+      adjust = Kp*current_error + Ki*integral + Kd*derivative;
+
+      if (current_error > min_error){
+        adjust += min_command;
+      }
+      else if (current_error < -min_error){
+        adjust -= min_command;
+      }
+
+      if(gyro.getAngle() > angle){
+        mecanum.driveCartesian(0.3, 0.3, angle - adjust, gyro.getAngle());
+      }
+      else if(gyro.getAngle() < angle){
+        mecanum.driveCartesian(0.3, 0.3, angle + adjust, gyro.getAngle());
+      }
+    }  
+
   }
 
   public static void turnDegrees(double angle){
