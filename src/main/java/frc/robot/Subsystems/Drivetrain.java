@@ -115,4 +115,7 @@ public class Drivetrain extends Subsystem {
       Drivetrain.frontLeft.set(0.0);
       Drivetrain.rearRight.set(0.0);*/
   }
+  public static void turnDegreesTest(){
+    driveAuton(0.1,0.1);
+  }
 }

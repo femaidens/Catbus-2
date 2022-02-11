@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveStraight;
 //import frc.robot.Commands.DriveTeleop;
@@ -34,7 +35,7 @@ public class Robot extends TimedRobot {
   //public static Limelight limelight;
   public static OI m_OI;
   public static Timer timer;
-
+  
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -56,7 +57,7 @@ public class Robot extends TimedRobot {
     timer = new Timer();
     timer.reset();
     SmartDashboard.putNumber("Test", drivetrain.getTest()); 
-    autonomousCommand = new DriveStraight(100);
+    autonomousCommand = new MiddleAuton();
 
     //drivetrain.setDefaultCommand(new DriveTeleop());
     //limelight.setDefaultCommand(new LimelightValues()); 
@@ -88,11 +89,11 @@ public class Robot extends TimedRobot {
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
     
-    //timer.start();
+    timer.start();
 
-    /*if(autonomousCommand != null) {
+    if(autonomousCommand != null) {
       autonomousCommand.start();
-    }*/
+    }
   }
 
   /** This function is called periodically during autonomous. */
@@ -108,10 +109,10 @@ public class Robot extends TimedRobot {
         break;
     }*/
 
-    /*Scheduler.getInstance().run();
+    Scheduler.getInstance().run();
     if(timer.get() >= 15.0) {
       autonomousCommand.cancel();
-    }*/
+    }
   }
 
   /** This function is called once when teleop is enabled. */

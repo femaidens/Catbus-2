@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Commands.DriveStraight;
 import frc.robot.Commands.TurnDegrees;
+import frc.robot.Commands.TurnDegreesTest;
 
 public class MiddleAuton extends CommandGroup {
   /** Add your docs here. */
@@ -29,7 +30,7 @@ public class MiddleAuton extends CommandGroup {
     // arm.
 
     addSequential(new DriveStraight(100));
-    addSequential(new TurnDegrees(90));
-    addSequential(new DriveStraight(100));
+    //addSequential(new TurnDegrees(90));
+    addSequential(new TurnDegreesTest());
   }
 }
