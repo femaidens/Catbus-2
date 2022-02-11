@@ -57,7 +57,9 @@ public class Drivetrain extends Subsystem {
    		//setDefaultCommand(new DriveTeleop());
   }
 
-
+  public double getTest(){
+    return 2.0;
+  }
 	public static void driveAuton(final double rightSpeed, final double leftSpeed) {
 		frontRight.set(rightSpeed);
 		rearRight.set(rightSpeed);
