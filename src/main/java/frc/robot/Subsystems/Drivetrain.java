@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.Commands.DriveTeleop;
 
 ///import frc.robot.commands.DriveTeleop;
 
@@ -54,7 +55,7 @@ public class Drivetrain extends Subsystem {
 	//public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
   @Override
   public void initDefaultCommand() {
-   		//setDefaultCommand(new DriveTeleop());
+   		setDefaultCommand(new DriveTeleop());
   }
 
   public double getTest(){
@@ -70,7 +71,17 @@ public class Drivetrain extends Subsystem {
 		//SmartDashboard.putNumber("Left motor speed", leftEncoder.getPosition());
 		//SmartDashboard.putNumber("Right motor speed", rightEncoder.getPosition());
 	}
-
+  
+  public static void driveTeleop(){
+    double leftSpeed = OI.driveJoy1.getRawAxis(1);
+    double rightSpeed = -OI.driveJoy1.getRawAxis(5);
+    frontRight.set(rightSpeed);
+    middleRight.set(rightSpeed);
+    rearRight.set(rightSpeed);
+    frontLeft.set(leftSpeed);
+    middleLeft.set(leftSpeed);
+    rearLeft.set(leftSpeed);
+  }
 	public static void driveStraightDistance(double distance) { //enter number of rotations as distance
     /*while(rightEncoder.getPosition() < distance && leftEncoder.getPosition() < distance) {
       if(rightEncoder.getPosition() < leftEncoder.getPosition()) {
@@ -83,7 +94,7 @@ public class Drivetrain extends Subsystem {
       
       //only tested uncommented code, there might be something wrong with driveStraightDistance?
 
-      driveAuton(-0.1, 0.1);
+      driveAuton(0.1, -0.1);
       //System.out.println("Right: " + rightEncoder.getPosition() + ", Left: " + leftEncoder.getPosition());
       System.out.println("Right: " + frontRight.get() + ", Left: " + frontLeft.get());
 

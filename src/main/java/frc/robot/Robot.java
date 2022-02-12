@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveStraight;
+import frc.robot.Commands.DriveTeleop;
 //import frc.robot.Commands.DriveTeleop;
 //import frc.robot.Commands.LimelightValues;
 //import frc.robot.command.DriveTeleop;
@@ -56,10 +57,10 @@ public class Robot extends TimedRobot {
 
     timer = new Timer();
     timer.reset();
-    SmartDashboard.putNumber("Test", drivetrain.getTest()); 
+    //SmartDashboard.putNumber("Test", drivetrain.getTest()); 
     autonomousCommand = new MiddleAuton();
 
-    //drivetrain.setDefaultCommand(new DriveTeleop());
+    drivetrain.setDefaultCommand(new DriveTeleop());
     //limelight.setDefaultCommand(new LimelightValues()); 
   }
 
@@ -112,6 +113,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     if(timer.get() >= 15.0) {
       autonomousCommand.cancel();
+      System.out.println("auton cancelled");
     }
   }
 
@@ -121,6 +123,7 @@ public class Robot extends TimedRobot {
     if(autonomousCommand != null) {
       autonomousCommand.cancel();
     }
+    System.out.println("teleop enabled");
   }
 
   /** This function is called periodically during operator control. */

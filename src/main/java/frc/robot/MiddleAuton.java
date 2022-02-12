@@ -29,8 +29,8 @@ public class MiddleAuton extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addSequential(new DriveStraight(100));
+    addSequential(new DriveStraight(50));
     //addSequential(new TurnDegrees(90));
-    addSequential(new TurnDegreesTest());
+    //addSequential(new TurnDegreesTest());
   }
 }
