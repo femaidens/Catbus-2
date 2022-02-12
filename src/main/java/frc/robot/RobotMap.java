@@ -6,6 +6,8 @@ package frc.robot;
 
 /** Add your docs here. */
 public class RobotMap {
-    public static int motorPort = 1;
+    //public static int motorPort = 17;
+
+    public static int driveJoyPort = 0;
 
 }
