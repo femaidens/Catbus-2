@@ -30,13 +30,13 @@ public class DriveStraight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.driveStraightDistance(rotations); //parameter is rotations
+    Robot.drivetrain.driveAuton(0.5, -0.5); //parameter is rotations
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return (Robot.drivetrain.rightEncoder.getPosition() > rotations || Robot.drivetrain.leftEncoder.getPosition() > rotations);
   }
 
   // Called once after isFinished returns true
