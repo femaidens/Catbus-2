@@ -20,10 +20,10 @@ public class Shooter extends Subsystem {
   public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
 	public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.dcEncoder);
 	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
-	public static double windDistance;
+	public static double windDistance; // distance to wind string
 
-  public Shooter(){
-    
+  	public Shooter(){
+		
 	}
 
 	public void windString(){
