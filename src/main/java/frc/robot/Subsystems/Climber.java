@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -31,7 +32,7 @@ public class Climber extends Subsystem {
   public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
-
+  public static MecanumDrive mecanum = new MecanumDrive(frontLeft, frontLeft, frontLeft, frontLeft);
   //PID
   public final static double Kp = 0.01;
   public final static double Ki = 0.0;
@@ -94,6 +95,22 @@ public class Climber extends Subsystem {
       else if (current_error < -min_error){
         adjust -= min_command;
       }
+
+      if(current_error > 0){
+        frontRight.set(0.3 + adjust);
+        frontLeft.set(0.3 + adjust);
+        rearRight.set(0.3 + adjust);
+        rearLeft.set(0.3 + adjust);
+      }
+
+      else if(current_error < 0){
+        frontRight.set(0.3 - adjust);
+        frontLeft.set(0.3 - adjust);
+        rearRight.set(0.3 - adjust);
+        rearLeft.set(0.3 - adjust);
+      }
+
+
     }
   }
 
