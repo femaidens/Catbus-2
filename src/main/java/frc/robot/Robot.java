@@ -7,7 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Scheduler;
+
 import frc.robot.Commands.LimelightValues;
 import frc.robot.Subsystems.Limelight;
 
@@ -24,7 +26,10 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   public static Limelight limelight;
+
   public static OI m_OI;
+  public static Climber climber;
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,11 +42,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     limelight = new Limelight();
+    limelight.setDefaultCommand(new LimelightValues()); 
+
     m_OI = new OI();
     m_OI.bindButtons();
 
-    //drivetrain.setDefaultCommand(new DriveTeleop());
-    limelight.setDefaultCommand(new LimelightValues()); 
+    climber = new Climber();
   }
 
   /**
