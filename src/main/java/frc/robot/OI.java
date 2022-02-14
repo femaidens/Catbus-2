@@ -23,10 +23,6 @@ public class OI {
     public static Button climbButtonCloseAngle = new JoystickButton(operJoy, 5);
 
     public void bindButtons() {
-        climbButtonExtend.whileHeld(new climbExtend());
-        climbButtonRetract.whileHeld(new climbRetract());
-        climbButtonOpenAngle.whenPressed(new climbOpenAngle());
-        climbButtonCloseAngle.whenPressed(new climbCloseAngle());
     }
 
 }
