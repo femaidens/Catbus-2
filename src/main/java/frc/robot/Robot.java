@@ -9,9 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
-import frc.robot.Commands.LimelightValues;
-import frc.robot.Subsystems.Limelight;
+//import frc.robot.command.DriveTeleop;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -24,8 +22,6 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
-  public static Limelight limelight;
 
   public static OI m_OI;
   public static Climber climber;
@@ -40,9 +36,6 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
-    limelight = new Limelight();
-    limelight.setDefaultCommand(new LimelightValues()); 
 
     m_OI = new OI();
     m_OI.bindButtons();
