@@ -17,4 +17,11 @@ public class RobotMap {
     public static int shooterEncoderPort = 3;
     public static int dcEncoder = 4;
 
+    //drivetrain
+    public static int frontRightPort = 5;
+    public static int frontLeftPort = 6;
+    public static int rearRightPort = 7;
+    public static int rearLeftPort = 8;
+    public static int gyroPort = 9;
+
 }

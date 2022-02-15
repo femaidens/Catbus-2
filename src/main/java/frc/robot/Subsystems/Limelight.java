@@ -54,6 +54,10 @@ public class Limelight extends Subsystem {
     return (h2 - h1) / Math.tan(Math.toRadians(a1 + a2));
   }
 
+  public static void shooterAlign(){
+
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
