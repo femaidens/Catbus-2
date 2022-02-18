@@ -36,7 +36,6 @@ public class PIDTestCommand extends Command {
   @Override
   protected void execute() {
     System.out.println("spinning ");
-    //PIDTest.motor.set(-0.25);
   
     PIDTest.spinMotor(speed);
     PIDTest.motorPIDController.setP(SmartDashboard.getNumber("P", 1e-9));
@@ -45,7 +44,7 @@ public class PIDTestCommand extends Command {
     PIDTest.motorPIDController.setIZone(SmartDashboard.getNumber("I", 0));
     PIDTest.motorPIDController.setFF(SmartDashboard.getNumber("I", 0));
     PIDTest.motorPIDController.setOutputRange(SmartDashboard.getNumber("OutputRangeL", -0.2), SmartDashboard.getNumber("OuputRangeH", 0.2));
-    PIDTest.motorPIDController.setReference(SmartDashboard.getNumber("ShooterSpeed", 0.0), ControlType.kVelocity); 
+    PIDTest.motorPIDController.setReference(SmartDashboard.getNumber("ShooterSpeed", 0.0), ControlType.kVelocity);
     System.out.println(PIDTest.motorEncoder.getVelocity());
 
     //PIDTest.getAngle();
@@ -70,8 +69,8 @@ public class PIDTestCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    //System.out.println("stop");
-    //PIDTest.spinMotor(0);
+    System.out.println("stop");
+    PIDTest.spinMotor(0);
   
   }
 }

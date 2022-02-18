@@ -24,30 +24,21 @@ public class PIDTest extends Subsystem {
   public static CANSparkMax motor = new CANSparkMax(RobotMap.motorPort, MotorType.kBrushless);
   public static SparkMaxPIDController motorPIDController = motor.getPIDController();
   public static RelativeEncoder motorEncoder = motor.getEncoder();
-  public static double speed;
-
-  //public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
   public PIDTest() {
-   /*motorPIDController.setP(1e-4);
+    motorPIDController.setP(1e-4);
     motorPIDController.setI(1e-6);
     motorPIDController.setD(1e-2);
     motorPIDController.setIZone(0);
     motorPIDController.setFF(0);
-    motorPIDController.setOutputRange(-0.2,0.2);
-  */
-  
+    motorPIDController.setOutputRange(-0.2, 0.2);
   }
 
   public static void spinMotor(double s) {
-    motor.set(speed);
+    motor.set(s);
     motorPIDController.setReference(s, ControlType.kVelocity);
   }
 
-  public static void getAngle() {
-    //System.out.println(gyro.getAngle());
-  }
-  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
