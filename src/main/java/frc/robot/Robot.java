@@ -5,8 +5,11 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.CommandGroups.AutonCommandGroup;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -20,8 +23,9 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
-
+  public static Command autonomousCommand;
   public static OI m_OI;
+  public static Timer timer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -35,6 +39,10 @@ public class Robot extends TimedRobot {
 
     m_OI = new OI();
     m_OI.bindButtons();
+
+    timer = new Timer();
+    timer.reset();
+    autonomousCommand = new AutonCommandGroup();
 
   }
 
@@ -63,11 +71,16 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+    timer.start();
+    if(autonomousCommand != null){
+      autonomousCommand.start();
+    }
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
+    /*
     switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
@@ -77,11 +90,23 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
+    */
+    Scheduler.getInstance().run();
+    if(timer.get() >= 15.0){
+      autonomousCommand.cancel();
+      System.out.println("auton cancelled");
+    }
+  
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    if(autonomousCommand != null){
+      autonomousCommand.cancel();
+    }
+    System.out.println("teleop enabled");
+  }
 
   /** This function is called periodically during operator control. */
   @Override
@@ -95,7 +120,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically when disabled. */
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    Scheduler.getInstance().run();
+   }
 
   /** This function is called once when test mode is enabled. */
   @Override
