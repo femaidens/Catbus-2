@@ -16,7 +16,7 @@ public class PIDTestCommand extends Command {
   public PIDTestCommand(double s) {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.pidTest);
-    //speed = s;  
+    speed = s;  
     /*SmartDashboard.putNumber("P", 0.000700);
     SmartDashboard.putNumber("I", 0.000001);
     SmartDashboard.putNumber("D", 0.01);
@@ -38,8 +38,7 @@ public class PIDTestCommand extends Command {
     System.out.println("spinning ");
     //PIDTest.motor.set(-0.25);
   
-    //PIDTest.spinMotor(speed);
-    PIDTest.motor.set(0.05);
+    PIDTest.spinMotor(speed);
     PIDTest.motorPIDController.setP(SmartDashboard.getNumber("P", 1e-9));
     PIDTest.motorPIDController.setI(SmartDashboard.getNumber("I", 1e-6));
     PIDTest.motorPIDController.setD(SmartDashboard.getNumber("D", 1e-2));
@@ -63,9 +62,8 @@ public class PIDTestCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //PIDTest.motor.set(0.0);
     System.out.println("stop");
-    //PIDTest.spinMotor(0);
+    PIDTest.spinMotor(0);
   }
 
   // Called when another command which requires one or more of the same

@@ -10,13 +10,12 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.Commands.PIDTestCommand;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+
 /** Add your docs here. */
 public class PIDTest extends Subsystem {
   // Put methods for controlling this subsystem
@@ -43,7 +42,6 @@ public class PIDTest extends Subsystem {
   public static void spinMotor(double s) {
     motor.set(speed);
     motorPIDController.setReference(s, ControlType.kVelocity);
-    System.out.println(motorEncoder.getVelocity());
   }
 
   public static void getAngle() {
