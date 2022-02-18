@@ -7,5 +7,7 @@ package frc.robot;
 /** Add your docs here. */
 public class RobotMap {
 
+    public static int gyroPort = 1;
+    public static int driveJoyPort = 0;
 
 }

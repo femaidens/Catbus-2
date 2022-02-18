@@ -4,9 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /** Add your docs here. */
 public class OI {
+
+    public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
+    
     public void bindButtons() {
         
     }

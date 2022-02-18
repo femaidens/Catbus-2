@@ -21,6 +21,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
+  public static GyroTest gyroTest;
   public static OI m_OI;
 
   /**
@@ -33,8 +34,12 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
+    gyroTest = new GyroTest();
     m_OI = new OI();
     m_OI.bindButtons();
+
+    System.out.println("init");
+    gyroTest.setDefaultCommand(new GyroTestCommand());
 
   }
 
