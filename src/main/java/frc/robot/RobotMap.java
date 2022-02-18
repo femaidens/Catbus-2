@@ -4,10 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.SPI;
+
 /** Add your docs here. */
 public class RobotMap {
 
-    public static int gyroPort = 1;
+    //public static int gyroPort = 1;
+
+    //public static SPI.Port kGyroPort = SPI.Port.kOnboardCS0;
     public static int driveJoyPort = 0;
 
 }
