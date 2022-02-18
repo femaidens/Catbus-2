@@ -10,6 +10,9 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
+
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.Commands.PIDTestCommand;
@@ -19,19 +22,21 @@ public class PIDTest extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  /*public static CANSparkMax motor = new CANSparkMax(RobotMap.motorPort, MotorType.kBrushless);
+  public static CANSparkMax motor = new CANSparkMax(RobotMap.motorPort, MotorType.kBrushless);
   public static SparkMaxPIDController motorPIDController = motor.getPIDController();
   public static RelativeEncoder motorEncoder = motor.getEncoder();
   public static double speed;
 
+  //public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+
   public PIDTest() {
-    motorPIDController.setP(1e-4);
+   /*motorPIDController.setP(1e-4);
     motorPIDController.setI(1e-6);
     motorPIDController.setD(1e-2);
     motorPIDController.setIZone(0);
     motorPIDController.setFF(0);
     motorPIDController.setOutputRange(-0.2,0.2);
-
+  */
   
   }
 
@@ -39,7 +44,11 @@ public class PIDTest extends Subsystem {
     motor.set(speed);
     motorPIDController.setReference(s, ControlType.kVelocity);
     System.out.println(motorEncoder.getVelocity());
-  }*/
+  }
+
+  public static void getAngle() {
+    //System.out.println(gyro.getAngle());
+  }
   
   @Override
   public void initDefaultCommand() {

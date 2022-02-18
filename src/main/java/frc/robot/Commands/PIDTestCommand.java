@@ -15,7 +15,7 @@ public class PIDTestCommand extends Command {
   public double speed; 
   public PIDTestCommand(double s) {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.pidTest);
+    requires(Robot.pidTest);
     //speed = s;  
     /*SmartDashboard.putNumber("P", 0.000700);
     SmartDashboard.putNumber("I", 0.000001);
@@ -35,11 +35,11 @@ public class PIDTestCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("spinning");
+    System.out.println("spinning ");
     //PIDTest.motor.set(-0.25);
   
-   // PIDTest.spinMotor(speed);
-   /* PIDTest.motor.set(0.2);
+    //PIDTest.spinMotor(speed);
+    PIDTest.motor.set(0.05);
     PIDTest.motorPIDController.setP(SmartDashboard.getNumber("P", 1e-9));
     PIDTest.motorPIDController.setI(SmartDashboard.getNumber("I", 1e-6));
     PIDTest.motorPIDController.setD(SmartDashboard.getNumber("D", 1e-2));
@@ -47,8 +47,11 @@ public class PIDTestCommand extends Command {
     PIDTest.motorPIDController.setFF(SmartDashboard.getNumber("I", 0));
     PIDTest.motorPIDController.setOutputRange(SmartDashboard.getNumber("OutputRangeL", -0.2), SmartDashboard.getNumber("OuputRangeH", 0.2));
     PIDTest.motorPIDController.setReference(SmartDashboard.getNumber("ShooterSpeed", 0.0), ControlType.kVelocity); 
-    System.out.println(PIDTest.getSpeed());
-    */
+    System.out.println(PIDTest.motorEncoder.getVelocity());
+
+    //PIDTest.getAngle();
+    
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -61,7 +64,7 @@ public class PIDTestCommand extends Command {
   @Override
   protected void end() {
     //PIDTest.motor.set(0.0);
-    //System.out.println("stop");
+    System.out.println("stop");
     //PIDTest.spinMotor(0);
   }
 

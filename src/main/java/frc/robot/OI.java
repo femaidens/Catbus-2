@@ -14,9 +14,9 @@ import frc.robot.Commands.PIDTestCommand;
 public class OI {
 
     public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
-    //public static Button pid = new JoystickButton(driveJoy, 3); //X
+    public static Button pid = new JoystickButton(driveJoy, 3); //X
 
     public void bindButtons() {
-        //pid.whileHeld(new PIDTestCommand(0.25));
+        pid.whileHeld(new PIDTestCommand(0.25));
     }
 }

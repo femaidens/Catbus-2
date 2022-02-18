@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  //public static PIDTest pidTest;
+  public static PIDTest pidTest;
   public static OI m_OI;
 
   /**
@@ -39,14 +39,15 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    //pidTest = new PIDTest();
+    pidTest = new PIDTest();
     m_OI = new OI();
     m_OI.bindButtons();
 
     //camera code
-    UsbCamera camera = CameraServer.startAutomaticCapture();
+   /* UsbCamera camera = CameraServer.startAutomaticCapture();
     camera.setResolution(320, 240);
     camera.setBrightness(30);
+    */
 
     System.out.println("init");
     //pidTest.setDefaultCommand(new PIDTestCommand());
