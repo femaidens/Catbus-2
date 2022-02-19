@@ -36,7 +36,7 @@ public class Drivetrain extends Subsystem {
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
   //PID fields
-  public final static double Kp = 0.01;
+  /*public final static double Kp = 0.01;
   public final static double Ki = 0.0;
   public final static double Kd = 0.0;
   //public double distance, left_speed, right_speed;
@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem {
   static double integral = 0;
   static double derivative = 0;
   static double adjust = 0;
-  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+  static double time = 0.1; // 0.1 seconds = 100 milliseconds */
 
   public Drivetrain(){
     
@@ -67,7 +67,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveStraightDistance(double distance, double angle){
-    double rightDistance = rightEncoder.getPosition();
+    /*double rightDistance = rightEncoder.getPosition();
     double leftDistance = leftEncoder.getPosition();
 
     mecanum.driveCartesian(0.3, 0.3, angle, gyro.getAngle());
@@ -75,11 +75,11 @@ public class Drivetrain extends Subsystem {
     while(distance < rightDistance && distance < leftDistance){
       driveStraight(angle);
     }
-    driveStop();
+    //driveStop();*/
   }
 
   public static void driveStraight(double angle){
-    while(gyro.getAngle() != angle){
+    /*while(gyro.getAngle() != angle){
       previous_error = current_error;
       current_error = angle - gyro.getAngle();
       integral = (current_error+previous_error)/2*(time);
@@ -99,12 +99,11 @@ public class Drivetrain extends Subsystem {
       else if(gyro.getAngle() < angle){
         mecanum.driveCartesian(0.3, 0.3, angle + adjust, gyro.getAngle());
       }
-    }  
-
+    }  */
   }
 
-  public static void turnDegrees(double angle){
-    if(angle > 180){
+  public static void turnDegrees(double angle){ //fix this! - use driveCartesian
+    /*if(angle > 180){
       angle = -(360 - angle);
     }
 
@@ -138,7 +137,7 @@ public class Drivetrain extends Subsystem {
     frontLeft.set(0.0);
     rearLeft.set(0.0);
     frontRight.set(0.0);
-    rearRight.set(0.0);
+    rearRight.set(0.0);*/
   }
   
   @Override
