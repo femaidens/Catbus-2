@@ -29,11 +29,11 @@ public class Drivetrain extends Subsystem {
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 
-  private static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
   public static RelativeEncoder rightEncoder = frontRight.getEncoder();
   public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
-  private static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
+  public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
   //PID fields
   public final static double Kp = 0.01;
