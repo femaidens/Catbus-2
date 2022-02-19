@@ -110,16 +110,22 @@ public class Drivetrain extends Subsystem {
 
     while(gyro.getAngle() != angle){
       if(angle < 0){
+        mecanum.driveCartesian(0, 0, -0.3, gyro.getAngle());
+        /*
         frontLeft.set(0.3);
         rearLeft.set(0.3);
         frontRight.set(-0.3);
         rearRight.set(-0.3);
+        */
       }
       else if(angle > 0){
+        mecanum.driveCartesian(0, 0, 0.3, gyro.getAngle());
+        /*
         frontLeft.set(-0.3);
         rearLeft.set(-0.3);
         frontRight.set(0.3);
         rearRight.set(0.3);
+        */
       }
     }
     frontLeft.set(0.0);
