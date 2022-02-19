@@ -5,6 +5,7 @@
 package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -33,6 +34,8 @@ public class Climber extends Subsystem {
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, frontLeft, frontLeft, frontLeft);
+  public static RelativeEncoder rightEncoder = frontRight.getEncoder();
+  public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
   //PID
   public final static double KpLeft = 0.01;
   public final static double KiLeft = 0.0;
@@ -62,29 +65,38 @@ public class Climber extends Subsystem {
 
   }
 
-  public void extendClimb(){
-    rightClimber.set(0.7);
-    leftClimber.set(0.7);
+  public boolean extendClimb(double distance){
+    while(rightEncoder.getPosition() != distance){
+      rightClimber.set(0.7);
+      leftClimber.set(0.7);
+    }
+    return true;
   }
 
-  public void retractClimb(){
-    rightClimber.set(-0.7);
-    leftClimber.set(-0.7);
+  public boolean retractClimb(double distance){
+    while(rightEncoder.getPosition() != distance){
+      rightClimber.set(-0.7);
+      leftClimber.set(-0.7);
+    }
+    return true;
   }
 
-  public void openAngle(){
+  public boolean openAngle(){
     climbLeftPiston.set(DoubleSolenoid.Value.kForward);
     climbRightPiston.set(DoubleSolenoid.Value.kForward);
+    return true;
   }
 
-  public void closeAngle(){
+  public boolean closeAngle(){
     climbLeftPiston.set(DoubleSolenoid.Value.kReverse);
     climbRightPiston.set(DoubleSolenoid.Value.kReverse);
+    return true;
   }
 
-  public void stopClimb(){
+  public boolean stopClimb(){
     rightClimber.set(0);
     leftClimber.set(0);
+    return true;
   }
 
   public void alignClimb(){

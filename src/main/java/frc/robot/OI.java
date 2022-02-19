@@ -17,16 +17,12 @@ public class OI {
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
-    public static Button climbButtonExtend = new JoystickButton(operJoy, 4);
-    public static Button climbButtonRetract = new JoystickButton(operJoy, 5);
-    public static Button climbButtonOpenAngle = new JoystickButton(operJoy, 4);
-    public static Button climbButtonCloseAngle = new JoystickButton(operJoy, 5);
+    public static Button climbMidButton = new JoystickButton(operJoy, 4);
+    public static Button climbHighButton = new JoystickButton(operJoy, 5);
 
     public void bindButtons() {
-        climbButtonExtend.whileHeld(new climbExtend());
-        climbButtonRetract.whileHeld(new climbRetract());
-        climbButtonOpenAngle.whenPressed(new climbOpenAngle());
-        climbButtonCloseAngle.whenPressed(new climbCloseAngle());
+        climbMidButton.whenPressed(new ClimbMid());
+        climbHighButton.whenPressed(new ClimbHigh());
     }
 
 }
