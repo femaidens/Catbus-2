@@ -26,17 +26,17 @@ public class PIDTest extends Subsystem {
   public static RelativeEncoder motorEncoder = motor.getEncoder();
 
   public PIDTest() {
-    motorPIDController.setP(1e-4);
+    /*motorPIDController.setP(1e-4);
     motorPIDController.setI(1e-6);
     motorPIDController.setD(1e-2);
     motorPIDController.setIZone(0);
     motorPIDController.setFF(0);
-    motorPIDController.setOutputRange(-0.2, 0.2);
+    motorPIDController.setOutputRange(-0.2, 0.2);*/
   }
 
   public static void spinMotor(double s) {
     motor.set(s);
-    motorPIDController.setReference(s, ControlType.kVelocity);
+    //motorPIDController.setReference(s, ControlType.kVelocity);
   }
 
   @Override

@@ -38,13 +38,13 @@ public class PIDTestCommand extends Command {
     System.out.println("spinning ");
   
     PIDTest.spinMotor(speed);
-    PIDTest.motorPIDController.setP(SmartDashboard.getNumber("P", 1e-9));
+    /*(PIDTest.motorPIDController.setP(SmartDashboard.getNumber("P", 1e-9));
     PIDTest.motorPIDController.setI(SmartDashboard.getNumber("I", 1e-6));
     PIDTest.motorPIDController.setD(SmartDashboard.getNumber("D", 1e-2));
     PIDTest.motorPIDController.setIZone(SmartDashboard.getNumber("I", 0));
     PIDTest.motorPIDController.setFF(SmartDashboard.getNumber("I", 0));
     PIDTest.motorPIDController.setOutputRange(SmartDashboard.getNumber("OutputRangeL", -0.2), SmartDashboard.getNumber("OuputRangeH", 0.2));
-    PIDTest.motorPIDController.setReference(SmartDashboard.getNumber("ShooterSpeed", 0.0), ControlType.kVelocity);
+    PIDTest.motorPIDController.setReference(SmartDashboard.getNumber("ShooterSpeed", 0.0), ControlType.kVelocity);*/
     System.out.println(PIDTest.motorEncoder.getVelocity());
 
     //PIDTest.getAngle();

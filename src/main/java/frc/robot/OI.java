@@ -17,6 +17,6 @@ public class OI {
     public static Button pid = new JoystickButton(driveJoy, 3); //X
 
     public void bindButtons() {
-        pid.whileHeld(new PIDTestCommand(0.25));
+        pid.whileHeld(new PIDTestCommand(0.4));
     }
 }
