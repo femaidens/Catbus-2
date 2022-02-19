@@ -34,19 +34,29 @@ public class Climber extends Subsystem {
   public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, frontLeft, frontLeft, frontLeft);
   //PID
-  public final static double Kp = 0.01;
-  public final static double Ki = 0.0;
-  public final static double Kd = 0.0;
-  //public double distance, left_speed, right_speed;
-  public double left_speed, right_speed;
-  static double min_error = 0.1; //sets an error deadband/ minimum value
-  static double min_command = 0.0;
-  static double current_error = 0; 
-  static double previous_error = 0;
-  static double integral = 0;
-  static double derivative = 0;
-  static double adjust = 0;
-  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+  public final static double KpLeft = 0.01;
+  public final static double KiLeft = 0.0;
+  public final static double KdLeft = 0.0;
+  static double min_errorLeft = 0.1; //sets an error deadband/ minimum value
+  static double min_commandLeft = 0.0;
+  static double current_errorLeft = 0; 
+  static double previous_errorLeft = 0;
+  static double integralLeft = 0;
+  static double derivativeLeft = 0;
+  static double adjustLeft = 0;
+  static double timeLeft = 0.1; // 0.1 seconds = 100 milliseconds 
+
+  public final static double KpRight = 0.01;
+  public final static double KiRight = 0.0;
+  public final static double KdRight = 0.0;
+  static double min_errorRight = 0.1; //sets an error deadband/ minimum value
+  static double min_commandRight = 0.0;
+  static double current_errorRight = 0; 
+  static double previous_errorRight = 0;
+  static double integralRight = 0;
+  static double derivativeRight = 0;
+  static double adjustRight = 0;
+  static double timeRight = 0.1; // 0.1 seconds = 100 milliseconds 
 
   public Climber(){
 
@@ -82,32 +92,53 @@ public class Climber extends Subsystem {
     double rightUltrasonicDistance = ultrasonicRight.getRangeInches();
 
     //not done
-    while(leftUltrasonicDistance != distance){
-      previous_error = current_error;
-      current_error = distance - leftUltrasonicDistance;
-      integral = (current_error+previous_error)/2*(time);
-      derivative = (current_error-previous_error)/time;
-      adjust = Kp*current_error + Ki*integral + Kd*derivative;
+    while(leftUltrasonicDistance != distance || rightUltrasonicDistance != distance){
+      previous_errorLeft = current_errorLeft;
+      current_errorLeft = distance - leftUltrasonicDistance;
+      integralLeft = (current_errorLeft+previous_errorLeft)/2*(timeLeft);
+      derivativeLeft = (current_errorLeft-previous_errorLeft)/timeLeft;
+      adjustLeft = KpLeft*current_errorLeft + KiLeft*integralLeft + KdLeft*derivativeLeft;
 
-      if (current_error > min_error){
-        adjust += min_command;
+      if (current_errorLeft > min_errorLeft){
+        adjustLeft += min_commandLeft;
       }
-      else if (current_error < -min_error){
-        adjust -= min_command;
-      }
-
-      if(current_error > 0){
-        frontRight.set(0.3 + adjust);
-        frontLeft.set(0.3 + adjust);
-        rearRight.set(0.3 + adjust);
-        rearLeft.set(0.3 + adjust);
+      else if (current_errorLeft < -min_errorLeft){
+        adjustLeft -= min_commandLeft;
       }
 
-      else if(current_error < 0){
-        frontRight.set(0.3 - adjust);
-        frontLeft.set(0.3 - adjust);
-        rearRight.set(0.3 - adjust);
-        rearLeft.set(0.3 - adjust);
+      if(current_errorLeft > 0){
+        frontLeft.set(0.3 + adjustLeft);
+        rearLeft.set(0.3 + adjustLeft);
+      }
+
+      else if(current_errorLeft < 0){
+        frontLeft.set(0.3 - adjustLeft);
+        rearLeft.set(0.3 - adjustLeft);
+      }
+
+
+      //Right
+      previous_errorRight = current_errorRight;
+      current_errorRight = distance - rightUltrasonicDistance;
+      integralRight = (current_errorRight+previous_errorRight)/2*(timeRight);
+      derivativeRight = (current_errorRight-previous_errorRight)/timeRight;
+      adjustRight = KpRight*current_errorRight + KiRight*integralRight + KdRight*derivativeRight;
+
+      if (current_errorRight > min_errorRight){
+        adjustRight += min_commandRight;
+      }
+      else if (current_errorRight < -min_errorRight){
+        adjustRight -= min_commandRight;
+      }
+
+      if(current_errorRight > 0){
+        frontRight.set(0.3 + adjustRight);
+        rearRight.set(0.3 + adjustRight);
+      }
+
+      else if(current_errorRight < 0){
+        frontRight.set(0.3 - adjustRight);
+        rearRight.set(0.3 - adjustRight);
       }
 
 
