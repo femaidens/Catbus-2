@@ -55,15 +55,17 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-    double xSpeed = OI.driveJoy1.getX();
-    double ySpeed = OI.driveJoy1.getY();
-    double zRotation = OI.driveJoy2.getX();
-    
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    double xSpeed = OI.driveJoy1.getRawAxis(0); //strafe left and right
+    double ySpeed = OI.driveJoy1.getRawAxis(1); //forward and backward
+    double zRotation = OI.driveJoy2.getRawAxis(0); //rotation
+
+    //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    mecanum.driveCartesian(zRotation, xSpeed, ySpeed);
+    //mecanum.driveCartesian(zRotation, xSpeed, ySpeed, 0);
   }
 
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle()); //probably needs to be fixed
   }
 
   public static void driveStraightDistance(double distance, double angle){
