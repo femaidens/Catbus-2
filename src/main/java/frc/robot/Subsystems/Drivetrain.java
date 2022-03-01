@@ -55,15 +55,86 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-    double xSpeed = OI.driveJoy1.getX();
-    double ySpeed = OI.driveJoy1.getY();
-    double zRotation = OI.driveJoy2.getX();
-    
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    double xSpeed = OI.driveJoy1.getRawAxis(0); //strafe left and right
+    double ySpeed = OI.driveJoy1.getRawAxis(1); //forward and backward
+    double zRotation = OI.driveJoy2.getRawAxis(0); //rotation
+
+    //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    mecanum.driveCartesian(zRotation, xSpeed, ySpeed);
+    //mecanum.driveCartesian(zRotation, xSpeed, ySpeed, 0);
   }
 
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle()); //probably needs to be fixed
+  }
+
+  public static void driveStraightDistance(double distance, double angle){
+    /*double rightDistance = rightEncoder.getPosition();
+    double leftDistance = leftEncoder.getPosition();
+
+    mecanum.driveCartesian(0.3, 0.3, angle, gyro.getAngle());
+
+    while(distance < rightDistance && distance < leftDistance){
+      driveStraight(angle);
+    }
+    //driveStop();*/
+  }
+
+  public static void driveStraight(double angle){
+    /*while(gyro.getAngle() != angle){
+      previous_error = current_error;
+      current_error = angle - gyro.getAngle();
+      integral = (current_error+previous_error)/2*(time);
+      derivative = (current_error-previous_error)/time;
+      adjust = Kp*current_error + Ki*integral + Kd*derivative;
+
+      if (current_error > min_error){
+        adjust += min_command;
+      }
+      else if (current_error < -min_error){
+        adjust -= min_command;
+      }
+
+      if(gyro.getAngle() > angle){
+        mecanum.driveCartesian(0.3, 0.3, angle - adjust, gyro.getAngle());
+      }
+      else if(gyro.getAngle() < angle){
+        mecanum.driveCartesian(0.3, 0.3, angle + adjust, gyro.getAngle());
+      }
+    }  */
+  }
+
+  public static void turnDegrees(double angle){ //fix this! - use driveCartesian
+    /*if(angle > 180){
+      angle = -(360 - angle);
+    }
+
+    while(gyro.getAngle() != angle){
+      if(angle < 0){
+        mecanum.driveCartesian(0, 0, -0.3, gyro.getAngle());
+        frontLeft.set(0.3);
+        rearLeft.set(0.3);
+        frontRight.set(-0.3);
+        rearRight.set(-0.3);
+      }
+      else if(angle > 0){
+        mecanum.driveCartesian(0, 0, 0.3, gyro.getAngle());
+        frontLeft.set(-0.3);
+        rearLeft.set(-0.3);
+        frontRight.set(0.3);
+        rearRight.set(0.3);
+
+      }
+    }
+    driveStop();
+    */
+  }
+
+  public static void driveStop(){
+    frontLeft.set(0.0);
+    rearLeft.set(0.0);
+    frontRight.set(0.0);
+    rearRight.set(0.0);
   }
 
   public static void driveStraightDistance(double distance, double angle){

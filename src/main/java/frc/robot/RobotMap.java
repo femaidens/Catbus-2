@@ -9,7 +9,7 @@ public class RobotMap {
     public static int driveJoy1Port = 1; //controls lateral
     public static int driveJoy2Port = 0; //controls turning
 
-    //drivetrain
+    //drivetrain - might need to fix
     public static int frontRightPort = 9;
     public static int frontLeftPort = 10;
     public static int rearRightPort = 3;
