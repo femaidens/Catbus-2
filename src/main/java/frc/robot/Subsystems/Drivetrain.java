@@ -56,7 +56,7 @@ public class Drivetrain extends Subsystem {
 
   public static void driveTeleop() {
     double xSpeed = OI.driveJoy1.getRawAxis(0); //strafe left and right
-    double ySpeed = OI.driveJoy1.getRawAxis(1); //forward and backward
+    double ySpeed = -OI.driveJoy1.getRawAxis(1); //forward and backward
     double zRotation = OI.driveJoy2.getRawAxis(0); //rotation
 
     //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
@@ -137,7 +137,7 @@ public class Drivetrain extends Subsystem {
     rearRight.set(0.0);
   }
 
-  public static void driveStraightDistance(double distance, double angle){
+  //public static void driveStraightDistance(double distance, double angle){
     /*double rightDistance = rightEncoder.getPosition();
     double leftDistance = leftEncoder.getPosition();
 
@@ -147,9 +147,9 @@ public class Drivetrain extends Subsystem {
       driveStraight(angle);
     }
     //driveStop();*/
-  }
+//  }
 
-  public static void driveStraight(double angle){
+  //public static void driveStraight(double angle){
     /*while(gyro.getAngle() != angle){
       previous_error = current_error;
       current_error = angle - gyro.getAngle();
@@ -171,9 +171,9 @@ public class Drivetrain extends Subsystem {
         mecanum.driveCartesian(0.3, 0.3, angle + adjust, gyro.getAngle());
       }
     }  */
-  }
+ //}
 
-  public static void turnDegrees(double angle){ //fix this! - use driveCartesian
+  //public static void turnDegrees(double angle){ //fix this! - use driveCartesian
     /*if(angle > 180){
       angle = -(360 - angle);
     }
@@ -203,7 +203,7 @@ public class Drivetrain extends Subsystem {
     rearLeft.set(0.0);
     frontRight.set(0.0);
     rearRight.set(0.0);*/
-  }
+  //}
   
   @Override
   public void initDefaultCommand() {
