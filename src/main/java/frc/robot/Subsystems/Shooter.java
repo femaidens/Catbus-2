@@ -75,6 +75,7 @@ public class Shooter extends Subsystem {
 		while(currentDistance < windDistance){
 			shooterMotor.set(-0.7);
 		}
+		shooterMotor.set(0);
 	}
 
 	public void extend(){
