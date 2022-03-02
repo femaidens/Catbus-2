@@ -18,11 +18,6 @@ import frc.robot.Commands.DriveTeleop;
 
 /** Add your docs here. */
 public class Drivetrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
-  //fields
-
 	//mecanum motor controllers
   public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
   public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
@@ -33,6 +28,7 @@ public class Drivetrain extends Subsystem {
 
   public static RelativeEncoder rightEncoder = frontRight.getEncoder();
   public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
+  
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
   //PID fields
@@ -50,8 +46,13 @@ public class Drivetrain extends Subsystem {
   static double adjust = 0;
   static double time = 0.1; // 0.1 seconds = 100 milliseconds */
 
+  public static int currentLimit;
+
   public Drivetrain(){
-    
+    frontRight.setSmartCurrentLimit(currentLimit);
+    rearRight.setSmartCurrentLimit(currentLimit);
+    frontLeft.setSmartCurrentLimit(currentLimit);
+    rearLeft.setSmartCurrentLimit(currentLimit);
   }
 
   public static void driveTeleop() {
@@ -112,18 +113,9 @@ public class Drivetrain extends Subsystem {
     while(gyro.getAngle() != angle){
       if(angle < 0){
         mecanum.driveCartesian(0, 0, -0.3, gyro.getAngle());
-        frontLeft.set(0.3);
-        rearLeft.set(0.3);
-        frontRight.set(-0.3);
-        rearRight.set(-0.3);
       }
       else if(angle > 0){
         mecanum.driveCartesian(0, 0, 0.3, gyro.getAngle());
-        frontLeft.set(-0.3);
-        rearLeft.set(-0.3);
-        frontRight.set(0.3);
-        rearRight.set(0.3);
-
       }
     }
     driveStop();
@@ -131,10 +123,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveStop(){
-    frontLeft.set(0.0);
-    rearLeft.set(0.0);
-    frontRight.set(0.0);
-    rearRight.set(0.0);
+    mecanum.driveCartesian(0,0,0,0);
   }
   
   @Override
