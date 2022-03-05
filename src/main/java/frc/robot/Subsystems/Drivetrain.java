@@ -49,10 +49,10 @@ public class Drivetrain extends Subsystem {
   public static int currentLimit;
 
   public Drivetrain(){
-    frontRight.setSmartCurrentLimit(currentLimit);
+    /*frontRight.setSmartCurrentLimit(currentLimit);
     rearRight.setSmartCurrentLimit(currentLimit);
     frontLeft.setSmartCurrentLimit(currentLimit);
-    rearLeft.setSmartCurrentLimit(currentLimit);
+    rearLeft.setSmartCurrentLimit(currentLimit);*/
   }
 
   public static void driveTeleop() {
