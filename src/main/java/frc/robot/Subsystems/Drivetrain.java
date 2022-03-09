@@ -35,6 +35,8 @@ public class Drivetrain extends Subsystem {
   public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
+  public static double deadzone = 0.1;
+
   //PID fields
   /*public final static double Kp = 0.01;
   public final static double Ki = 0.0;
@@ -55,9 +57,33 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-    double xSpeed = OI.driveJoy1.getX();
-    double ySpeed = OI.driveJoy1.getY();
-    double zRotation = OI.driveJoy2.getX();
+    double xSpeed;
+    double ySpeed;
+    double zRotation;
+    if (OI.driveJoy1.getX() < deadzone){
+      xSpeed = 0.0;
+    }
+    else{
+      xSpeed = OI.driveJoy1.getX();
+    }
+
+    if(OI.driveJoy1.getY() < deadzone){
+      ySpeed = 0.0;
+    }
+    else{
+      ySpeed = OI.driveJoy1.getY();
+    }
+
+    if(OI.driveJoy2.getX() < deadzone){
+      zRotation = 0.0;
+    }
+    else{
+      zRotation = OI.driveJoy2.getX();
+    }
+
+    xSpeed = OI.driveJoy1.getX() - deadzone;
+    ySpeed = OI.driveJoy1.getY() - deadzone;
+    zRotation = OI.driveJoy2.getX()- deadzone;
     
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
   }
