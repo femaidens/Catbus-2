@@ -56,9 +56,9 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-    //double xSpeed = OI.driveJoy1.getRawAxis(0); //strafe left and right
-    //double ySpeed = -OI.driveJoy1.getRawAxis(1); //forward and backward
-    //double zRotation = OI.driveJoy2.getRawAxis(0); //rotation
+    double xSpeed = OI.driveJoy1.getRawAxis(0); //strafe left and right
+    double ySpeed = -OI.driveJoy1.getRawAxis(1); //forward and backward
+    double zRotation = OI.driveJoy2.getRawAxis(0); //rotation
 
     //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
     //mecanum.driveCartesian(zRotation, xSpeed, ySpeed);
@@ -66,7 +66,8 @@ public class Drivetrain extends Subsystem {
 
     frontRight.setInverted(true);
     rearRight.setInverted(true);
-    mecanum.driveCartesian(-OI.driveJoy1.getY(), OI.driveJoy1.getX(), OI.driveJoy2.getX(), gyro.getAngle());
+    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
+    //mecanum.driveCartesian(-OI.driveJoy1.getY(), OI.driveJoy1.getX(), OI.driveJoy2.getX(), gyro.getAngle());
   }
 
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
