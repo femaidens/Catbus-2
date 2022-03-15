@@ -34,7 +34,7 @@ public class Drivetrain extends Subsystem {
   public static double deadzone = 0.1;
 
   //PID fields
-  /*public final static double Kp = 0.01;
+  public final static double Kp = 0.01;
   public final static double Ki = 0.0;
   public final static double Kd = 0.0;
   //public double distance, left_speed, right_speed;
@@ -46,7 +46,9 @@ public class Drivetrain extends Subsystem {
   static double integral = 0;
   static double derivative = 0;
   static double adjust = 0;
-  static double time = 0.1; // 0.1 seconds = 100 milliseconds */
+  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+
+  public static Limelight limelight = new Limelight();
 
   public static int currentLimit;
 
@@ -143,9 +145,9 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveStraight(double angle){
-    /*while(gyro.getAngle() != angle){
+    while(Limelight.getTX() != 0){
       previous_error = current_error;
-      current_error = angle - gyro.getAngle();
+      current_error = Limelight.getTX();
       integral = (current_error+previous_error)/2*(time);
       derivative = (current_error-previous_error)/time;
       adjust = Kp*current_error + Ki*integral + Kd*derivative;
@@ -157,13 +159,13 @@ public class Drivetrain extends Subsystem {
         adjust -= min_command;
       }
 
-      if(gyro.getAngle() > angle){
-        mecanum.driveCartesian(0.3, 0.3, angle - adjust, gyro.getAngle());
+      if(Limelight.getTX() < 0){
+        mecanum.driveCartesian(0.3, 0.3, adjust);
       }
-      else if(gyro.getAngle() < angle){
-        mecanum.driveCartesian(0.3, 0.3, angle + adjust, gyro.getAngle());
+      else if(Limelight.getTX() > 0){
+        mecanum.driveCartesian(0.3, 0.3, -adjust);
       }
-    }  */
+    }  
   }
 
   public static void turnDegrees(double angle){ //fix this! - use driveCartesian
