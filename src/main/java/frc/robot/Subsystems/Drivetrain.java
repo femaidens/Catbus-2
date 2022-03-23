@@ -31,10 +31,10 @@ public class Drivetrain extends Subsystem {
   
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 
-  public static double deadzone = 0.1;
+  public static double deadzone = 0.05;
 
   //PID fields
-  public final static double Kp = 0.01;
+  /*public final static double Kp = 0.01;
   public final static double Ki = 0.0;
   public final static double Kd = 0.0;
   //public double distance, left_speed, right_speed;
@@ -46,7 +46,7 @@ public class Drivetrain extends Subsystem {
   static double integral = 0;
   static double derivative = 0;
   static double adjust = 0;
-  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+  static double time = 0.1;*/ // 0.1 seconds = 100 milliseconds 
 
   public static Limelight limelight = new Limelight();
 
@@ -60,10 +60,10 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-   // double xSpeed;
-    //double ySpeed;
-    //double zRotation;
-    /*if (OI.driveJoy1.getRawAxis(0) <= 0){ //strafe left and right
+    /*double xSpeed;
+    double ySpeed;
+    double zRotation;
+    if (OI.driveJoy1.getRawAxis(0) <= 0){ //strafe left and right
       if(Math.abs(OI.driveJoy1.getRawAxis(0)) < deadzone){
         xSpeed = 0.0;
       }
@@ -112,16 +112,16 @@ public class Drivetrain extends Subsystem {
       else{
         zRotation = OI.driveJoy2.getRawAxis(0) - deadzone;
       }
-    }
-*/
+    }*/
     //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
     //mecanum.driveCartesian(zRotation, xSpeed, ySpeed);
     //mecanum.driveCartesian(zRotation, xSpeed, ySpeed, 0);
 
     frontRight.setInverted(true);
     rearRight.setInverted(true);
-   // mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
-    mecanum.driveCartesian(-OI.driveJoy1.getY(), OI.driveJoy1.getX(), OI.driveJoy2.getX(), gyro.getAngle());
+    //mecanum.driveCartesian(-ySpeed, xSpeed, zRotation);
+    //mecanum.driveCartesian(-OI.driveJoy1.getY(), OI.driveJoy1.getX(), OI.driveJoy2.getX(), gyro.getAngle());
+    mecanum.driveCartesian(-OI.driveJoy1.getY(), OI.driveJoy1.getX(), OI.driveJoy2.getX(),0);
   }
 
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
@@ -145,7 +145,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveStraight(double angle){
-    while(Limelight.getTX() != 0){
+    /*while(Limelight.getTX() != 0){
       previous_error = current_error;
       current_error = Limelight.getTX();
       integral = (current_error+previous_error)/2*(time);
@@ -165,7 +165,7 @@ public class Drivetrain extends Subsystem {
       else if(Limelight.getTX() > 0){
         mecanum.driveCartesian(0.3, 0.3, -adjust);
       }
-    }  
+    } */ 
   }
 
   public static void turnDegrees(double angle){ //fix this! - use driveCartesian
