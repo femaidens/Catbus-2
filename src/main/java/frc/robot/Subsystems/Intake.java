@@ -6,9 +6,9 @@ package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.ColorSensorV3.MainControl;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -17,20 +17,67 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakeMotorPort, MotorType.kBrushless);
-	public static DoubleSolenoid intakePiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.intakePistonBackwardPort, RobotMap.intakePistonBackwardPort);
+  public static CANSparkMax intakeExtendMotor = new CANSparkMax(RobotMap.intakeExtendPort, MotorType.kBrushless);
+  public static Encoder intakeEncoder = new Encoder(RobotMap.encoderPort1, RobotMap.encoderPort2);
+  public static double intakeDistance;
+
+  //PID fields
+  public final static double Kp = 0.01;
+  public final static double Ki = 0.0;
+  public final static double Kd = 0.0;
+  //public double distance, left_speed, right_speed;
+  public double left_speed, right_speed;
+  static double min_error = 0.1; //sets an error deadband/ minimum value
+  static double min_command = 0.0;
+  static double current_error = 0; 
+  static double previous_error = 0;
+  static double integral = 0;
+  static double derivative = 0;
+  static double adjust = 0;
+  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
 
 	//extend piston
 	public void extend(){
-		intakePiston.set(DoubleSolenoid.Value.kForward);
+    
 	}
 
 	//retract piston
 	public void retract(){
-	  intakePiston.set(DoubleSolenoid.Value.kReverse);
+    double currentDistance = intakeEncoder.getDistance();
+    while(intakeEncoder.getDistance() - currentDistance == intakeDistance){
+      intakeExtendMotor.set(-0.3);
+    }
+    intakeExtendMotor.set(0.0);
+  }
+
+  public void stopExtendMotor(){
+    intakeExtendMotor.set(0.0);
   }
 
 	//intake
 	public void startIntake(){
+    //wait few milliseconds
+    stopExtendMotor();
+    intakeMotor.set(0.3);
+    while(Limelight.getTX() != 0){
+      previous_error = current_error;
+      current_error = Limelight.getTX();
+      integral = (current_error+previous_error)/2*(time);
+      derivative = (current_error-previous_error)/time;
+      adjust = Kp*current_error + Ki*integral + Kd*derivative;
+      if (current_error > min_error){
+        adjust += min_command;
+      }
+      else if (current_error < -min_error){
+        adjust -= min_command;
+      }
+      if(Limelight.getTX() < 0){
+        mecanum.driveCartesian(0.3, 0.3, adjust);
+      }
+      else if(Limelight.getTX() > 0){
+        mecanum.driveCartesian(0.3, 0.3, -adjust);
+      }
+    } 
 		intakeMotor.set(0.7);
   }
 
