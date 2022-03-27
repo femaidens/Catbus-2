@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import javax.naming.InitialContext;
-
 /** Add your docs here. */
 public class RobotMap {
     public static int driveJoy1Port = 0;
