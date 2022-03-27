@@ -43,8 +43,8 @@ public class Intake extends Subsystem {
 
 	//retract piston
 	public void retract(){
-    double currentDistance = intakeEncoder.getDistance();
-    while(intakeEncoder.getDistance() - currentDistance == intakeDistance){
+    double extendedDistance = intakeEncoder.getDistance();
+    while(intakeEncoder.getDistance() - extendedDistance < intakeDistance){
       intakeExtendMotor.set(-0.3);
     }
     intakeExtendMotor.set(0.0);
@@ -59,26 +59,24 @@ public class Intake extends Subsystem {
     //wait few milliseconds
     stopExtendMotor();
     intakeMotor.set(0.3);
-    while(Limelight.getTX() != 0){
+    while(intakeEncoder.getDistance() < intakeDistance){
       previous_error = current_error;
-      current_error = Limelight.getTX();
+      current_error = intakeDistance - intakeEncoder.getDistance();
       integral = (current_error+previous_error)/2*(time);
       derivative = (current_error-previous_error)/time;
       adjust = Kp*current_error + Ki*integral + Kd*derivative;
+
       if (current_error > min_error){
         adjust += min_command;
       }
       else if (current_error < -min_error){
         adjust -= min_command;
       }
-      if(Limelight.getTX() < 0){
-        mecanum.driveCartesian(0.3, 0.3, adjust);
-      }
-      else if(Limelight.getTX() > 0){
-        mecanum.driveCartesian(0.3, 0.3, -adjust);
-      }
+      
+      intakeExtendMotor.set(adjust);
+
     } 
-		intakeMotor.set(0.7);
+		intakeMotor.set(0.0);
   }
 
   public void stopIntake(){
