@@ -12,8 +12,9 @@ public class RobotMap {
 
     //intake
     public static int intakeMotorPort = 1;
-	public static int intakePistonForwardPort = 2;
-    public static int intakePistonBackwardPort = 2;
+    public static int intakeExtendPort = 2;
+    public static int encoderPort1 = 3;
+    public static int encoderPort2 = 4;
 
 
 
