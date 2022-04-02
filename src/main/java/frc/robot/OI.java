@@ -4,11 +4,13 @@
 
 package frc.robot;
 
+import javax.print.attribute.standard.DialogOwner;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Commands.IntakeCargo;
-import frc.robot.Commands.ExtendIntake;
+import frc.robot.Commands.IntakeDown;
 import frc.robot.Commands.RetractIntake;
 
 
@@ -26,7 +28,7 @@ public class OI {
 
     public void bindButtons() {
         intakeMotorButton.whileHeld(new IntakeCargo());
-        intakeExtendButton.whenPressed(new ExtendIntake());
+        intakeExtendButton.whenPressed(new IntakeDown());
         intakeRetractButton.whenPressed(new RetractIntake());
     }
 

@@ -19,26 +19,37 @@ public class Intake extends Subsystem {
   public static CANSparkMax intakeExtendMotor = new CANSparkMax(RobotMap.intakeExtendPort, MotorType.kBrushless);
   public static Encoder intakeEncoder = new Encoder(RobotMap.encoderPort1, RobotMap.encoderPort2);
   public static double intakeDistance;
+  public static double intakeDownDistance;
 
   //PID fields
-  public final static double Kp = 0.01;
-  public final static double Ki = 0.0;
-  public final static double Kd = 0.0;
+  public final static double Kp1 = 0.01;
+  public final static double Ki1 = 0.0;
+  public final static double Kd1 = 0.0;
   //public double distance, left_speed, right_speed;
-  public double left_speed, right_speed;
-  static double min_error = 0.1; //sets an error deadband/ minimum value
-  static double min_command = 0.0;
-  static double current_error = 0; 
-  static double previous_error = 0;
-  static double integral = 0;
-  static double derivative = 0;
-  static double adjust = 0;
-  static double time = 0.1; // 0.1 seconds = 100 milliseconds 
+  public double left_speed1, right_speed1;
+  static double min_error1 = 0.1; //sets an error deadband/ minimum value
+  static double min_command1 = 0.0;
+  static double current_error1 = 0; 
+  static double previous_error1 = 0;
+  static double integral1 = 0;
+  static double derivative1 = 0;
+  static double adjust1 = 0;
+  static double time1 = 0.1; // 0.1 seconds = 100 milliseconds 
 
-	//extend piston
-	public void extend(){
-    
-	}
+  //PID fields
+  public final static double Kp2 = 0.01;
+  public final static double Ki2 = 0.0;
+  public final static double Kd2 = 0.0;
+  //public double distance, left_speed, right_speed;
+  public double left_speed2, right_speed2;
+  static double min_error2 = 0.1; //sets an error deadband/ minimum value
+  static double min_command2 = 0.0;
+  static double current_error2 = 0; 
+  static double previous_error2 = 0;
+  static double integral2 = 0;
+  static double derivative2 = 0;
+  static double adjust2 = 0;
+  static double time2 = 0.1; // 0.1 seconds = 100 milliseconds
 
 	//retract piston
 	public void retract(){
@@ -53,26 +64,47 @@ public class Intake extends Subsystem {
     intakeExtendMotor.set(0.0);
   }
 
+  public void downIntake(){
+    stopIntake();
+    while(intakeEncoder.getDistance() < intakeDownDistance){
+      previous_error2 = current_error2;
+      current_error2 = intakeDownDistance - intakeEncoder.getDistance();
+      integral2 = (current_error2+previous_error2)/2*(time2);
+      derivative2 = (current_error2-previous_error2)/time2;
+      adjust2 = Kp2*current_error2 + Ki2*integral2 + Kd2*derivative2;
+
+      if (current_error2 > min_error2){
+        adjust2 += min_command2;
+      }
+      else if (current_error2 < -min_error2){
+        adjust2 -= min_command2;
+      }
+      
+      intakeExtendMotor.set(adjust2);
+
+    } 
+  }
+
 	//intake
 	public void startIntake(){
     //wait few milliseconds
     stopExtendMotor();
     intakeMotor.set(0.3);
     while(intakeEncoder.getDistance() < intakeDistance){
-      previous_error = current_error;
-      current_error = intakeDistance - intakeEncoder.getDistance();
-      integral = (current_error+previous_error)/2*(time);
-      derivative = (current_error-previous_error)/time;
-      adjust = Kp*current_error + Ki*integral + Kd*derivative;
+      previous_error1 = current_error1;
+      current_error1 = intakeDistance - intakeEncoder.getDistance();
+      integral1 = (current_error1+previous_error1)/2*(time1);
+      derivative1 = (current_error1-previous_error1)/time1;
+      adjust1 = Kp1*current_error1 + Ki1*integral1 + Kd1*derivative1;
 
-      if (current_error > min_error){
-        adjust += min_command;
+      if (current_error1 > min_error1){
+        adjust1 += min_command1;
       }
-      else if (current_error < -min_error){
-        adjust -= min_command;
+      else if (current_error1 < -min_error1){
+        adjust1 -= min_command1;
       }
       
-      intakeExtendMotor.set(adjust);
+      intakeExtendMotor.set(adjust1);
 
     } 
 		intakeMotor.set(0.0);
