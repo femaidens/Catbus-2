@@ -14,7 +14,7 @@ public class OI {
     public static Joystick driveJoy1 = new Joystick(RobotMap.driveJoy1Port);
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
 
-    public static Button gyroReset = new JoystickButton(driveJoy1, 1);
+    public static Button gyroReset = new JoystickButton(driveJoy2, 1);
 
     public void bindButtons() {
         gyroReset.whenPressed(new ResetGyro());
