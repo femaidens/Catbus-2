@@ -24,13 +24,13 @@ public class ClimbHigh extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    boolean opened = Robot.climber.openAngle();
-    if(opened){
-      boolean extended = Robot.climber.extendClimb(d);
-      if(extended){
-        boolean closed = Robot.climber.closeAngle();
-      }
-    }
+    // boolean opened = Robot.climber.openAngle();
+    // if(opened){
+    //   boolean extended = Robot.climber.extendClimb(d);
+    //   if(extended){
+    //     boolean closed = Robot.climber.closeAngle();
+    //   }
+    // }
 
   }
 
@@ -43,7 +43,7 @@ public class ClimbHigh extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.climber.retractClimb(d);
+    //Robot.climber.retractClimb(d);
   }
 
   // Called when another command which requires one or more of the same

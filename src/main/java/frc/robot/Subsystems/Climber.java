@@ -27,6 +27,7 @@ public class Climber extends Subsystem {
   public static Ultrasonic ultrasonicRight = new Ultrasonic(0, 0);
 
   public static double distance; //distance from the wall
+  public static double climbDistance;
 
   //drivetrain motors
   public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
@@ -65,38 +66,37 @@ public class Climber extends Subsystem {
 
   }
 
-  public boolean extendClimb(double distance){
-    while(rightEncoder.getPosition() != distance){
-      rightClimber.set(0.7);
-      leftClimber.set(0.7);
+  public void extendClimb(){
+    if(rightEncoder.getPosition() >= climbDistance){
+      rightClimber.set(0.0);
+      leftClimber.set(0.0);
     }
-    return true;
+    rightClimber.set(0.7);
+    leftClimber.set(0.7);
   }
 
-  public boolean retractClimb(double distance){
-    while(rightEncoder.getPosition() != distance){
-      rightClimber.set(-0.7);
-      leftClimber.set(-0.7);
+  public void retractClimb(){
+    if(rightEncoder.getPosition() >= climbDistance){
+      rightClimber.set(0.0);
+      leftClimber.set(0.0);
     }
-    return true;
+    rightClimber.set(0.7);
+    leftClimber.set(0.7);
   }
 
-  public boolean openAngle(){
+  public void openAngle(){
     climbLeftPiston.set(DoubleSolenoid.Value.kForward);
     climbRightPiston.set(DoubleSolenoid.Value.kForward);
-    return true;
   }
 
-  public boolean closeAngle(){
+  public void closeAngle(){
     climbLeftPiston.set(DoubleSolenoid.Value.kReverse);
     climbRightPiston.set(DoubleSolenoid.Value.kReverse);
-    return true;
   }
 
-  public boolean stopClimb(){
+  public void stopClimb(){
     rightClimber.set(0);
     leftClimber.set(0);
-    return true;
   }
 
   public void alignClimb(){
