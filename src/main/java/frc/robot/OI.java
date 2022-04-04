@@ -22,7 +22,7 @@ public class OI {
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
-    public static Button intakeMotorButton = new JoystickButton(driveJoy1, 3);
+    public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1);
     public static Button intakeExtendButton = new JoystickButton(operJoy, 9);
     public static Button intakeRetractButton = new JoystickButton(operJoy, 5);
 
