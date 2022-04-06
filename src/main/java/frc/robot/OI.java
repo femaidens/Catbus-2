@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.AlignShooter;
 import frc.robot.Commands.ReleaseShooter;
 import frc.robot.Commands.WindShooter;
 
@@ -22,12 +23,14 @@ public class OI {
     public static Button intakeExtendButton = new JoystickButton(operJoy, 2);
     public static Button intakeRetractButton = new JoystickButton(operJoy, 3);
 
-    public static Button shooterButtonWind = new JoystickButton(operJoy, 4);
-    public static Button shooterButtonShoot = new JoystickButton(operJoy, 5);
+    public static Button shooterButtonWind = new JoystickButton(operJoy, 7);
+    public static Button shooterButtonShoot = new JoystickButton(operJoy, 10);
+    public static Button shooterButtonAlign = new JoystickButton(operJoy, 6);
 
     public void bindButtons() {
         shooterButtonWind.whenPressed(new WindShooter());
         shooterButtonShoot.whenPressed(new ReleaseShooter());
+        shooterButtonShoot.whenPressed(new AlignShooter());
     }
 
 }
