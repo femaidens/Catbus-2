@@ -114,6 +114,10 @@ public class Intake extends Subsystem {
 	  intakeMotor.set(0.0);
   }
 
+  public void reverseIntake(){
+    intakeMotor.set(-0.3);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
