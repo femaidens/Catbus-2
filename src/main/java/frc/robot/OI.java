@@ -20,7 +20,7 @@ public class OI {
     public static Button pistonInButton = new JoystickButton(operJoy, 3);
     public static Button pistonOutButton = new JoystickButton(operJoy, 4);
 
-    public static Button climbExtendButton = new JoystickButton(operJoy, 2);
+    public static Button climbExtendButton = new JoystickButton(operJoy, 7);
     public static Button climbRetractButton = new JoystickButton(operJoy, 1);
 
     public void bindButtons() {
