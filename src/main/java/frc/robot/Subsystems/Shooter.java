@@ -4,7 +4,7 @@
 
 package frc.robot.Subsystems;
 
-import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+//import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -23,6 +23,7 @@ public class Shooter extends Subsystem {
   public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
 	public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.dcEncoder);
 	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
+	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterGBPistonForwardPort, RobotMap.shooterGBPistonBackwardPort);
 	public static double windDistance; // distance to wind string
 	public static double distance;
 	public static double lowerBound;
@@ -35,8 +36,9 @@ public class Shooter extends Subsystem {
 	public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
 	public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 	public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
-	public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort); 
+	public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
+	/*
 	 //PID fields
 	 public final static double Kp1 = 0.01;
 	 public final static double Ki1 = 0.0;
@@ -65,12 +67,12 @@ public class Shooter extends Subsystem {
 	 static double derivative2 = 0;
 	 static double adjust2 = 0;
 	 static double time2 = 0.1; // 0.1 seconds = 100 milliseconds
-
+*/
   	public Shooter(){
 		
 	}
 
-	public void windString(){
+	public void windString(){ //for reload
 		double currentDistance = shooterEncoder.get();
 		while(currentDistance < windDistance){
 			shooterMotor.set(-0.7);
@@ -78,18 +80,26 @@ public class Shooter extends Subsystem {
 		shooterMotor.set(0);
 	}
 
-	public void extend(){
+	public void extend(){  //keeping string in place --> for reload
 		shooterPiston.set(DoubleSolenoid.Value.kForward);
 	}
 
-	public void retract(){
+	public void retract(){ //releases string --> shoots ball
 		shooterPiston.set(DoubleSolenoid.Value.kReverse);
 	}
 
-	public void stopShooterMotor(){
+	public void stopShooterMotor(){ //dc encoder motor
 		shooterMotor.set(0.0);
 	}
 
+	public void extendGBPiston(){
+		shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
+	}
+	
+	public void retractGBPiston(){
+		shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
+	}
+/*
 	public void alignShooter(){
 		while(Limelight.getDistance() != distance){
 			previous_error1 = current_error1;
@@ -136,7 +146,7 @@ public class Shooter extends Subsystem {
 			}
 		}
 	}
-
+*/
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
