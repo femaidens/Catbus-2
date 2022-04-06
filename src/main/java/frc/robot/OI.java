@@ -25,7 +25,7 @@ public class OI {
     public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1);
     public static Button intakeExtendButton = new JoystickButton(operJoy, 9);
     public static Button intakeRetractButton = new JoystickButton(operJoy, 5);
-    public static Button intakeReverseButton = new JoystickButton(operJoy, 7);
+    public static Button intakeReverseButton = new JoystickButton(operJoy, 6);
 
     public void bindButtons() {
         intakeMotorButton.whileHeld(new IntakeCargo());
