@@ -27,6 +27,8 @@ public class OI {
     public static Button shooterButtonShoot = new JoystickButton(operJoy, 10);
     public static Button shooterButtonAlign = new JoystickButton(operJoy, 6);
 
+    public static Button pistonReloadButton = new JoystickButton(operJoy, 1);
+
     public void bindButtons() {
         shooterButtonWind.whenPressed(new WindShooter());
         shooterButtonShoot.whenPressed(new ReleaseShooter());
