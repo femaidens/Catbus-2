@@ -70,7 +70,7 @@ public class Climber extends Subsystem {
     if(rightEncoder.getPosition() >= climbDistance){
       rightClimber.set(0.0);
       leftClimber.set(0.0);
-    }
+    } //must spin in opp directions
     rightClimber.set(0.7);
     leftClimber.set(0.7);
   }
@@ -79,7 +79,7 @@ public class Climber extends Subsystem {
     if(rightEncoder.getPosition() >= climbDistance){
       rightClimber.set(0.0);
       leftClimber.set(0.0);
-    }
+    } //must spin in opp directions
     rightClimber.set(0.7);
     leftClimber.set(0.7);
   }
