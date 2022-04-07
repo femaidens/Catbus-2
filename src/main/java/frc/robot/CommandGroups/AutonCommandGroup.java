@@ -20,11 +20,11 @@ public class AutonCommandGroup extends CommandGroup {
     // addSequential(new Command2());
     // Command1 and Command2 will run in parallel.
 
-    addSequential(new ExtendIntake());
-    addParallel(new IntakeCargo());
+    addSequential(new IntakeDown());
+    addSequential(new IntakeCargo());
     addSequential(new DriveStraightDistance());
     addSequential(new AlignShooter());
-    addSequential(new WindShooter());
+    addParallel(new WindShooter());
     addSequential(new ReleaseShooter());
 
     // A command group will require all of the subsystems that each member
