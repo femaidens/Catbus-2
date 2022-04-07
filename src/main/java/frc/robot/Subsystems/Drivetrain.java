@@ -24,7 +24,7 @@ public class Drivetrain extends Subsystem {
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 
-  public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
+  //public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
 
   public static RelativeEncoder rightEncoder = frontRight.getEncoder();
   public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
@@ -125,11 +125,11 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
-    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle()); //probably needs to be fixed
+    //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle()); //probably needs to be fixed
   }
 
   public static void resetGyro(){
-    gyro.reset();
+    //gyro.reset();
   }
 
   public static void driveStraightDistance(double distance, double angle){ 
