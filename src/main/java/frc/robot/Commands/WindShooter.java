@@ -16,7 +16,9 @@ public class WindShooter extends Command { //reload shooter
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Robot.shooter.extendGBPiston();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override

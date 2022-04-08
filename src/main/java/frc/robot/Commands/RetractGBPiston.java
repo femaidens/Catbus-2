@@ -7,8 +7,8 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ReleaseShooter extends Command { //shooting ball
-  public ReleaseShooter() {
+public class RetractGBPiston extends Command {
+  public RetractGBPiston() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.shooter);
@@ -21,7 +21,7 @@ public class ReleaseShooter extends Command { //shooting ball
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter.retract(); //releases latch piston to shoot - piston1
+    Robot.shooter.retractGBPiston();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -33,8 +33,7 @@ public class ReleaseShooter extends Command { //shooting ball
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Robot.shooter.stopShooterMotor();
-    Robot.shooter.extendGBPiston(); //piston2 
+    Robot.shooter.extendGBPiston();
   }
 
   // Called when another command which requires one or more of the same
