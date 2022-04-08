@@ -24,7 +24,7 @@ public class Intake extends Subsystem {
   public static double intakeDownDistance;
 
   //PID fields
-  public final static double Kp1 = 0.01;
+  /*public final static double Kp1 = 0.01;
   public final static double Ki1 = 0.0;
   public final static double Kd1 = 0.0;
   //public double distance, left_speed, right_speed;
@@ -51,7 +51,7 @@ public class Intake extends Subsystem {
   static double integral2 = 0;
   static double derivative2 = 0;
   static double adjust2 = 0;
-  static double time2 = 0.1; // 0.1 seconds = 100 milliseconds
+  static double time2 = 0.1; // 0.1 seconds = 100 milliseconds*/
 
 	//retract piston
 	public void retract(){
@@ -67,8 +67,9 @@ public class Intake extends Subsystem {
   }
 
   public void downIntake(){
-    stopIntake();
-    while(intakeEncoder.getDistance() < intakeDownDistance){
+    intakeExtendMotor.set(0.5);
+    //stopIntake();
+    /*while(intakeEncoder.getDistance() < intakeDownDistance){
       previous_error2 = current_error2;
       current_error2 = intakeDownDistance - intakeEncoder.getDistance();
       integral2 = (current_error2+previous_error2)/2*(time2);
@@ -84,15 +85,15 @@ public class Intake extends Subsystem {
       
       intakeExtendMotor.set(adjust2);
 
-    } 
+    } */
   }
 
 	//intake
 	public void startIntake(){
     //wait few milliseconds
-    stopExtendMotor();
+    //stopExtendMotor();
     intakeMotor.set(0.3);
-    while(intakeEncoder.getDistance() < intakeDistance){
+    /*while(intakeEncoder.getDistance() < intakeDistance){
       previous_error1 = current_error1;
       current_error1 = intakeDistance - intakeEncoder.getDistance();
       integral1 = (current_error1+previous_error1)/2*(time1);
@@ -108,8 +109,8 @@ public class Intake extends Subsystem {
       
       intakeExtendMotor.set(adjust1);
 
-    } 
-		intakeMotor.set(0.0);
+    } */
+		//intakeMotor.set(0.0);
   }
 
   public void stopIntake(){

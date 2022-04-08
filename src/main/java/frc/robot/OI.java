@@ -24,13 +24,13 @@ public class OI {
 
     public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1); 
     public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
-    public static Button intakeExtendButton = new JoystickButton(operJoy, 9); //LT
-    public static Button intakeRetractButton = new JoystickButton(operJoy, 5); //LB
+    public static Button intakeExtendButton = new JoystickButton(operJoy, 5); //LB
+    //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); //LB
 
     public void bindButtons() {
         intakeMotorButton.whileHeld(new IntakeCargo());
-        intakeExtendButton.whenPressed(new IntakeDown());
-        intakeRetractButton.whenPressed(new RetractIntake());
+        intakeExtendButton.whileHeld(new IntakeDown());
+        //intakeRetractButton.whenPressed(new RetractIntake());
     }
 
 }
