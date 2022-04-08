@@ -20,7 +20,10 @@ public class ReleaseShooter extends Command { //shooting ball
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute() { // retract to shoot -- do these need to be completed in a certain order?
+    Robot.shooter.retract();
+    Robot.shooter.retractGBPiston();
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
