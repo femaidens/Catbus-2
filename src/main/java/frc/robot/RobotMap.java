@@ -8,16 +8,17 @@ import edu.wpi.first.wpilibj.DutyCycle;
 
 /** Add your docs here. */
 public class RobotMap {
-    public static int driveJoy1Port = 0;
-    public static int driveJoy2Port = 0;
-    public static int operJoyPort = 0;
 
-    //drivetrain
-    public static int frontRightPort = 0;
-    public static int frontLeftPort = 1;
-    public static int rearRightPort = 2;
-    public static int rearLeftPort = 3;
-    public static int gyroPort = 4;
+    public static int driveJoy1Port = 2; //controls lateral
+    public static int driveJoy2Port = 1; //controls turning
+    public static int operJoyPort;
+
+    //drivetrain - might need to fix
+    public static int frontRightPort = 9; //10
+    public static int frontLeftPort = 1; //9
+    public static int rearRightPort = 8; //11
+    public static int rearLeftPort = 7; //3
+    public static int gyroPort = 2; //0
 
     //climb
     public static int rightClimbPort = 0;

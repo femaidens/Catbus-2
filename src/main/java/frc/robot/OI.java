@@ -23,12 +23,16 @@ public class OI {
     public static Button climbExtendButton = new JoystickButton(operJoy, 8); //8
     public static Button climbRetractButton = new JoystickButton(operJoy, 1); //A
 
+    public static Button gyroReset = new JoystickButton(driveJoy2, 1);
+
     public void bindButtons() {
         pistonInButton.whenPressed(new climbOpenAngle());
         pistonOutButton.whenPressed(new climbCloseAngle());
 
         climbExtendButton.whileHeld(new climbExtend());
         climbRetractButton.whileHeld(new climbRetract());
+
+        gyroReset.whenPressed(new ResetGyro());
     }
 
 }
