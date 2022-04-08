@@ -24,8 +24,8 @@ public class Climber extends Subsystem {
   //public static DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbLeftPistonForwardPort, RobotMap.climbLeftPistonBackwardPort);
   public static DoubleSolenoid climbPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonForwardPort, RobotMap.climbPistonBackwardPort);
 
-  public static Ultrasonic ultrasonicLeft = new Ultrasonic(0, 0);
-  public static Ultrasonic ultrasonicRight = new Ultrasonic(0, 0);
+  //public static Ultrasonic ultrasonicLeft = new Ultrasonic(0, 0);
+  //public static Ultrasonic ultrasonicRight = new Ultrasonic(0, 0);
 
   public static double distance; //distance from the wall
   public static double climbDistance;
@@ -101,7 +101,7 @@ public class Climber extends Subsystem {
   }
 
   public void alignClimb(){
-    double leftUltrasonicDistance = ultrasonicLeft.getRangeInches();
+    /*double leftUltrasonicDistance = ultrasonicLeft.getRangeInches();
     double rightUltrasonicDistance = ultrasonicRight.getRangeInches();
 
     //not done
@@ -155,7 +155,7 @@ public class Climber extends Subsystem {
       }
 
 
-    }
+    }*/
   }
 
   @Override

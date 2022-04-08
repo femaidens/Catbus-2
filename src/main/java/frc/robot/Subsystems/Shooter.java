@@ -21,10 +21,10 @@ import frc.robot.RobotMap;
 public class Shooter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
+  //public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
 	//public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.dcEncoder);
 	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
-	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonBackwardPort, RobotMap.shooterGBPistonBackwardPort);
+	//public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonBackwardPort, RobotMap.shooterGBPistonBackwardPort);
 	public static double windDistance; // distance to wind string
 	public static double distance;
 	public static double lowerBound;
@@ -90,15 +90,15 @@ public class Shooter extends Subsystem {
 	}
 
 	public void stopShooterMotor(){ //dc encoder motor
-		shooterMotor.set(0.0);
+		//shooterMotor.set(0.0);
 	}
 
 	public void extendGBPiston(){
-		shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
+		//shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
 	}
 	
 	public void retractGBPiston(){
-		shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
+		//shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
 	}
 /*
 	public void alignShooter(){

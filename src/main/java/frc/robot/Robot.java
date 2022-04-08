@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -34,6 +36,7 @@ public class Robot extends TimedRobot {
   public static OI m_OI;
   public static Climber climber;
   public static Shooter shooter;
+  public static Compressor compressor;
 
 
   /**
@@ -52,6 +55,7 @@ public class Robot extends TimedRobot {
 
     climber = new Climber();
     shooter = new Shooter();
+    compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     drivetrain.setDefaultCommand(new DriveTeleop());
   }
 
