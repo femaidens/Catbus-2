@@ -22,9 +22,9 @@ public class Shooter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
-	public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.dcEncoder);
+	//public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.dcEncoder);
 	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
-	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbRightPistonBackwardPort, RobotMap.shooterGBPistonBackwardPort);
+	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonBackwardPort, RobotMap.shooterGBPistonBackwardPort);
 	public static double windDistance; // distance to wind string
 	public static double distance;
 	public static double lowerBound;
@@ -74,11 +74,11 @@ public class Shooter extends Subsystem {
 	}
 
 	public void windString(){ //for reload
-		double currentDistance = shooterEncoder.get();
+		/*double currentDistance = shooterEncoder.get();
 		while(currentDistance < windDistance){
 			shooterMotor.set(-0.7);
 		}
-		shooterMotor.set(0);
+		shooterMotor.set(0);*/
 	}
 
 	public void extend(){  //keeping string in place --> for reload

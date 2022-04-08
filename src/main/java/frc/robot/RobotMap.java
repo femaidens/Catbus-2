@@ -23,18 +23,15 @@ public class RobotMap {
     //climb
     public static int rightClimbPort = 0;
     public static int leftClimbPort = 0;
-    public static int climbRightPistonForwardPort = 0;
-    public static int climbRightPistonBackwardPort = 0;
-    public static int climbLeftPistonForwardPort = 0;
-    public static int climbLeftPistonBackwardPort = 0;
+    public static int climbPistonForwardPort = 0;
+    public static int climbPistonBackwardPort = 0;
 
     public static int climbLeftUltrasonicPort = 0;
     public static int climbRightUltrasonicPort = 0;
 
     //shooter
-    public static int shooterMotorPort;
-    public static int dcEncoder;
-    public static int shooterPistonForwardPort;
-    public static int shooterPistonBackwardPort;
-    public static int shooterGBPistonBackwardPort;
+    public static int shooterMotorPort = 0;
+    public static int shooterPistonForwardPort = 0;
+    public static int shooterPistonBackwardPort = 0;
+    public static int shooterGBPistonBackwardPort = 0;
 }

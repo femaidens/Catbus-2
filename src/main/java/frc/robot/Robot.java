@@ -11,6 +11,7 @@ import frc.robot.Subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Scheduler;
 //import frc.robot.command.DriveTeleop;
 import frc.robot.Subsystems.Drivetrain;
+import frc.robot.Subsystems.Shooter;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveTeleop;
 import frc.robot.Subsystems.Drivetrain;
@@ -21,6 +22,8 @@ import frc.robot.Subsystems.Drivetrain;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
+
+ //compressor
 public class Robot extends TimedRobot {
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
@@ -30,6 +33,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static OI m_OI;
   public static Climber climber;
+  public static Shooter shooter;
 
 
   /**
@@ -47,6 +51,7 @@ public class Robot extends TimedRobot {
     m_OI.bindButtons();
 
     climber = new Climber();
+    shooter = new Shooter();
     drivetrain.setDefaultCommand(new DriveTeleop());
   }
 

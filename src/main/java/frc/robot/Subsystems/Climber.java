@@ -20,8 +20,9 @@ import frc.robot.RobotMap;
 public class Climber extends Subsystem {
   public static CANSparkMax rightClimber = new CANSparkMax(RobotMap.rightClimbPort, MotorType.kBrushless);
   public static CANSparkMax leftClimber = new CANSparkMax(RobotMap.leftClimbPort, MotorType.kBrushless);
-  public static DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbRightPistonForwardPort, RobotMap.climbRightPistonBackwardPort);
-  public static DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbLeftPistonForwardPort, RobotMap.climbLeftPistonBackwardPort);
+  //public static DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbRightPistonForwardPort, RobotMap.climbRightPistonBackwardPort);
+  //public static DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbLeftPistonForwardPort, RobotMap.climbLeftPistonBackwardPort);
+  public static DoubleSolenoid climbPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonForwardPort, RobotMap.climbPistonBackwardPort);
 
   public static Ultrasonic ultrasonicLeft = new Ultrasonic(0, 0);
   public static Ultrasonic ultrasonicRight = new Ultrasonic(0, 0);
@@ -85,13 +86,13 @@ public class Climber extends Subsystem {
   }
 
   public void openAngle(){
-    climbLeftPiston.set(DoubleSolenoid.Value.kForward);
-    climbRightPiston.set(DoubleSolenoid.Value.kForward);
+    climbPiston.set(DoubleSolenoid.Value.kForward);
+    //climbRightPiston.set(DoubleSolenoid.Value.kForward);
   }
 
   public void closeAngle(){
-    climbLeftPiston.set(DoubleSolenoid.Value.kReverse);
-    climbRightPiston.set(DoubleSolenoid.Value.kReverse);
+    climbPiston.set(DoubleSolenoid.Value.kReverse);
+    //climbRightPiston.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void stopClimb(){

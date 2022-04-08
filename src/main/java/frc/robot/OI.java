@@ -25,6 +25,8 @@ public class OI {
 
     public static Button gyroReset = new JoystickButton(driveJoy2, 1);
 
+    public static Button retractLatchButton = new JoystickButton(operJoy, 2); //B
+
     public void bindButtons() {
         pistonInButton.whenPressed(new climbOpenAngle());
         pistonOutButton.whenPressed(new climbCloseAngle());
@@ -33,6 +35,8 @@ public class OI {
         climbRetractButton.whileHeld(new climbRetract());
 
         gyroReset.whenPressed(new ResetGyro());
+        
+        retractLatchButton.whenPressed(new RetractLatch());
     }
 
 }
