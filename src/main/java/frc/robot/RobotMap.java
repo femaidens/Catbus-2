@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DutyCycle;
+
 /** Add your docs here. */
 public class RobotMap {
     public static int driveJoy1Port = 0;
@@ -27,4 +29,11 @@ public class RobotMap {
 
     public static int climbLeftUltrasonicPort = 0;
     public static int climbRightUltrasonicPort = 0;
+
+    //shooter
+    public static int shooterMotorPort;
+    public static int dcEncoder;
+    public static int shooterPistonForwardPort;
+    public static int shooterPistonBackwardPort;
+    public static int shooterGBPistonBackwardPort;
 }
