@@ -23,7 +23,7 @@ public class OI {
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
     public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1); 
-    public static Button intakeReverseButton = new JoystickButton(driveJoy1, 6); //figure out port
+    public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
     public static Button intakeExtendButton = new JoystickButton(operJoy, 9); //LT
     public static Button intakeRetractButton = new JoystickButton(operJoy, 5); //LB
 
