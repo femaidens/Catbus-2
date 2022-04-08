@@ -7,7 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Scheduler;
+//import frc.robot.command.DriveTeleop;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,6 +24,8 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   public static OI m_OI;
+  public static Climber climber;
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,6 +40,7 @@ public class Robot extends TimedRobot {
     m_OI = new OI();
     m_OI.bindButtons();
 
+    climber = new Climber();
   }
 
   /**
