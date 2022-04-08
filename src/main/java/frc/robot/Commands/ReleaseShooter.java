@@ -34,7 +34,7 @@ public class ReleaseShooter extends Command { //shooting ball
   protected void end() {
     Robot.shooter.stopShooterMotor();
     Robot.shooter.retract(); //releases latch piston to shoot
-    Robot.shooter.extendGBPiston();
+    Robot.shooter.extendGBPiston(); //piston 2
   }
 
   // Called when another command which requires one or more of the same

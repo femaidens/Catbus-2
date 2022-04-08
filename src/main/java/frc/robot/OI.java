@@ -23,11 +23,11 @@ public class OI {
     public static Button intakeExtendButton = new JoystickButton(operJoy, 2);
     public static Button intakeRetractButton = new JoystickButton(operJoy, 3);
 
-    public static Button shooterButtonWind = new JoystickButton(operJoy, 7);
-    public static Button shooterButtonShoot = new JoystickButton(operJoy, 10);
-    public static Button shooterButtonAlign = new JoystickButton(operJoy, 6);
+    public static Button shooterButtonWind = new JoystickButton(operJoy, 7); //7 -- reload
+    public static Button shooterButtonShoot = new JoystickButton(operJoy, 10); //RT
+    public static Button shooterButtonAlign = new JoystickButton(operJoy, 6); //RB
 
-    public static Button pistonReloadButton = new JoystickButton(operJoy, 1);
+    //public static Button pistonReloadButton = new JoystickButton(operJoy, 1);
 
     public void bindButtons() {
         shooterButtonWind.whenPressed(new WindShooter());
