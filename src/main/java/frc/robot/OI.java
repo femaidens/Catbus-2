@@ -22,10 +22,10 @@ public class OI {
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
-    public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1);
-    public static Button intakeExtendButton = new JoystickButton(operJoy, 9);
-    public static Button intakeRetractButton = new JoystickButton(operJoy, 5);
-    public static Button intakeReverseButton = new JoystickButton(operJoy, 6);
+    public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1); 
+    public static Button intakeReverseButton = new JoystickButton(driveJoy1, 6); //figure out port
+    public static Button intakeExtendButton = new JoystickButton(operJoy, 9); //LT
+    public static Button intakeRetractButton = new JoystickButton(operJoy, 5); //LB
 
     public void bindButtons() {
         intakeMotorButton.whileHeld(new IntakeCargo());
