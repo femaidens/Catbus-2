@@ -32,7 +32,7 @@ public class DisengageGB extends Command {
     //if(Shooter.encoder.getPosition() <= 139 && Shooter.encoder.getPosition() >= 145){
     //  return true;
    // }
-      return false;
+      return true;
   }
 
   // Called once after isFinished returns true
