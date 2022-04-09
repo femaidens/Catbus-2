@@ -7,7 +7,8 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class IntakeReverse extends Command {
+//FAIL SAFE COMMAND!!! FOR WHEN INTAKING OPPONENT BALL
+public class IntakeReverse extends Command { 
   public IntakeReverse() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -27,7 +28,7 @@ public class IntakeReverse extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

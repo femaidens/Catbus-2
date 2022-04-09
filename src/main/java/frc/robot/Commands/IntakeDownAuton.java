@@ -15,7 +15,6 @@ public class IntakeDownAuton extends Command {
   public IntakeDownAuton() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.intake);
-
   }
 
   // Called just before this Command runs the first time

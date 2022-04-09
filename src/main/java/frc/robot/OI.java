@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.Commands.*;
 import frc.robot.Commands.IntakeCargo;
-import frc.robot.Commands.IntakeDown;
+//import frc.robot.Commands.IntakeDown;
 import frc.robot.Commands.RetractIntake;
 
 
@@ -60,7 +60,7 @@ public class OI {
         windShooter.whenPressed(new WindShooter());
 
         intakeMotorButton.whileHeld(new IntakeCargo());
-        intakeExtendButton.whileHeld(new IntakeDown());
+        //intakeExtendButton.whileHeld(new IntakeDown());
         //intakeRetractButton.whenPressed(new RetractIntake());
     }
 }
