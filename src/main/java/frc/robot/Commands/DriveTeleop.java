@@ -25,6 +25,7 @@ public class DriveTeleop extends Command {
   @Override
   protected void execute() {
     Drivetrain.driveTeleop();
+    System.out.println("gyro: " + Drivetrain.gyro.getAngle());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,6 +38,7 @@ public class DriveTeleop extends Command {
   @Override
   protected void end() {
       Drivetrain.mecanum.driveCartesian(0,0,0,0);
+      
   }
 
   // Called when another command which requires one or more of the same
