@@ -7,9 +7,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Climber;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 //import frc.robot.command.DriveTeleop;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -40,6 +42,8 @@ public class Robot extends TimedRobot {
   public static Compressor compressor;
   public static Drivetrain drivetrain;
   public static Intake intake;
+  public static Command autonCommand;
+  public static Timer timer;
 
 
   /**
@@ -57,8 +61,14 @@ public class Robot extends TimedRobot {
     shooter = new Shooter();
     compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     intake = new Intake();
+    
     m_OI = new OI();
     m_OI.bindButtons();
+    timer = new Timer();
+    timer.reset();
+    autonCommand = new Auton();
+
+    drivetrain.setDefaultCommand(new DriveTeleop());
   }
 
   /**
@@ -86,12 +96,18 @@ public class Robot extends TimedRobot {
     m_autoSelected = m_chooser.getSelected();
     // m_autoSelected = SmartDashboard.getString("Auto Selector", kDefaultAuto);
     System.out.println("Auto selected: " + m_autoSelected);
+
+    timer.start();
+
+    if(autonCommand != null){
+      autonCommand.start();
+    }
   }
 
   /** This function is called periodically during autonomous. */
   @Override
   public void autonomousPeriodic() {
-    switch (m_autoSelected) {
+    /*switch (m_autoSelected) {
       case kCustomAuto:
         // Put custom auto code here
         break;
@@ -100,11 +116,22 @@ public class Robot extends TimedRobot {
         // Put default auto code here
         break;
     }
+    */
+    Scheduler.getInstance().run();
+    if(timer.get() >= 15.0) {
+      autonCommand.cancel();
+      System.out.println("auton cancelled");
+    }
   }
 
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    if(autonCommand != null) {
+      autonCommand.cancel();
+    }
+    System.out.println("teleop enabled");
+  }
 
   /** This function is called periodically during operator control. */
   @Override
