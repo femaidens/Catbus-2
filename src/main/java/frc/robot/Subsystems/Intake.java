@@ -53,64 +53,17 @@ public class Intake extends Subsystem {
   static double adjust2 = 0;
   static double time2 = 0.1; // 0.1 seconds = 100 milliseconds*/
 
-	//retract piston
-	public void retract(){
-    double extendedDistance = intakeEncoder.getDistance();
-    while(intakeEncoder.getDistance() - extendedDistance < intakeDistance){
-      intakeExtendMotor.set(-0.3);
-    }
-    intakeExtendMotor.set(0.0);
-  }
-
   public void stopExtendMotor(){
     intakeExtendMotor.set(0.0);
   }
 
   public void downIntake(){
     intakeExtendMotor.set(0.5);
-    //stopIntake();
-    /*while(intakeEncoder.getDistance() < intakeDownDistance){
-      previous_error2 = current_error2;
-      current_error2 = intakeDownDistance - intakeEncoder.getDistance();
-      integral2 = (current_error2+previous_error2)/2*(time2);
-      derivative2 = (current_error2-previous_error2)/time2;
-      adjust2 = Kp2*current_error2 + Ki2*integral2 + Kd2*derivative2;
-
-      if (current_error2 > min_error2){
-        adjust2 += min_command2;
-      }
-      else if (current_error2 < -min_error2){
-        adjust2 -= min_command2;
-      }
-      
-      intakeExtendMotor.set(adjust2);
-
-    } */
   }
 
 	//intake
 	public void startIntake(){
-    //wait few milliseconds
-    //stopExtendMotor();
     intakeMotor.set(0.3);
-    /*while(intakeEncoder.getDistance() < intakeDistance){
-      previous_error1 = current_error1;
-      current_error1 = intakeDistance - intakeEncoder.getDistance();
-      integral1 = (current_error1+previous_error1)/2*(time1);
-      derivative1 = (current_error1-previous_error1)/time1;
-      adjust1 = Kp1*current_error1 + Ki1*integral1 + Kd1*derivative1;
-
-      if (current_error1 > min_error1){
-        adjust1 += min_command1;
-      }
-      else if (current_error1 < -min_error1){
-        adjust1 -= min_command1;
-      }
-      
-      intakeExtendMotor.set(adjust1);
-
-    } */
-		//intakeMotor.set(0.0);
   }
 
   public void stopIntake(){

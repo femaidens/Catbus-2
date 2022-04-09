@@ -12,15 +12,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Scheduler;
 //import frc.robot.command.DriveTeleop;
-<<<<<<< HEAD
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Subsystems.Drivetrain;
 import frc.robot.Subsystems.Shooter;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.Commands.DriveTeleop;
 import frc.robot.Subsystems.Drivetrain;
-=======
 import frc.robot.Subsystems.Intake;
->>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -40,6 +38,8 @@ public class Robot extends TimedRobot {
   public static Climber climber;
   public static Shooter shooter;
   public static Compressor compressor;
+  public static Drivetrain drivetrain;
+  public static Intake intake;
 
 
   /**
@@ -52,14 +52,11 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-<<<<<<< HEAD
     drivetrain = new Drivetrain();
     climber = new Climber();
     shooter = new Shooter();
     compressor = new Compressor(PneumaticsModuleType.CTREPCM);
-=======
     intake = new Intake();
->>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643
     m_OI = new OI();
     m_OI.bindButtons();
   }

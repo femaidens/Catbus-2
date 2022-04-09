@@ -6,31 +6,25 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Subsystems.Drivetrain;
 
-<<<<<<<< HEAD:src/main/java/frc/robot/Commands/AlignClimb.java
-public class AlignClimb extends Command {
-  public AlignClimb() {
-========
-public class IntakeReverse extends Command {
-  public IntakeReverse() {
->>>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643:src/main/java/frc/robot/Commands/IntakeReverse.java
+public class DriveTeleop extends Command {
+  public DriveTeleop() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.climber);
+    requires(Robot.drivetrain);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Robot.drivetrain.resetGyro();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-<<<<<<<< HEAD:src/main/java/frc/robot/Commands/AlignClimb.java
-    Robot.climber.alignClimb();
-========
-    Robot.intake.reverseIntake();
->>>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643:src/main/java/frc/robot/Commands/IntakeReverse.java
+    Drivetrain.driveTeleop();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,7 +35,9 @@ public class IntakeReverse extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+      Drivetrain.mecanum.driveCartesian(0,0,0,0);
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
