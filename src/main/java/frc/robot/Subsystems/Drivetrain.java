@@ -71,65 +71,12 @@ public class Drivetrain extends Subsystem {
     mecanum.driveCartesian(-OI.driveJoy1.getY(), OI.driveJoy1.getX(), OI.driveJoy2.getX(),0);
   }
 
-  public static void driveAuton(double xSpeed, double ySpeed, double zRotation, double angle){
-    //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle()); //probably needs to be fixed
+  public static void driveAuton(double ySpeed, double xSpeed, double zRotation, double angle){
+    mecanum.driveCartesian(ySpeed, xSpeed, zRotation, 0); //probably needs to be fixed
   }
 
   public static void resetGyro(){
     //gyro.reset();
-  }
-
-  public static void driveStraightDistance(double distance, double angle){ 
-    /*double rightDistance = rightEncoder.getPosition();
-    double leftDistance = leftEncoder.getPosition();
-
-    mecanum.driveCartesian(0.3, 0.3, angle, gyro.getAngle());
-
-    while(distance < rightDistance && distance < leftDistance){
-      driveStraight(angle);
-    }
-    //driveStop();*/
-  }
-
-  public static void driveStraight(double angle){
-    /*while(Limelight.getTX() != 0){
-      previous_error = current_error;
-      current_error = Limelight.getTX();
-      integral = (current_error+previous_error)/2*(time);
-      derivative = (current_error-previous_error)/time;
-      adjust = Kp*current_error + Ki*integral + Kd*derivative;
-
-      if (current_error > min_error){
-        adjust += min_command;
-      }
-      else if (current_error < -min_error){
-        adjust -= min_command;
-      }
-
-      if(Limelight.getTX() < 0){
-        mecanum.driveCartesian(0.3, 0.3, adjust);
-      }
-      else if(Limelight.getTX() > 0){
-        mecanum.driveCartesian(0.3, 0.3, -adjust);
-      }
-    } */ 
-  }
-
-  public static void turnDegrees(double angle){ //fix this! - use driveCartesian
-    /*if(angle > 180){
-      angle = -(360 - angle);
-    }
-
-    while(gyro.getAngle() != angle){
-      if(angle < 0){
-        mecanum.driveCartesian(0, 0, -0.3, gyro.getAngle());
-      }
-      else if(angle > 0){
-        mecanum.driveCartesian(0, 0, 0.3, gyro.getAngle());
-      }
-    }
-    driveStop();
-    */
   }
 
   public static void driveStop(){
