@@ -60,59 +60,6 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveTeleop() {
-    /*double xSpeed;
-    double ySpeed;
-    double zRotation;
-    if (OI.driveJoy1.getRawAxis(0) <= 0){ //strafe left and right
-      if(Math.abs(OI.driveJoy1.getRawAxis(0)) < deadzone){
-        xSpeed = 0.0;
-      }
-      else{
-        xSpeed = OI.driveJoy1.getRawAxis(0) + deadzone;
-      }
-    }
-    else{
-      if(Math.abs(OI.driveJoy1.getRawAxis(0)) < deadzone){
-        xSpeed = 0.0;
-      }
-      else{
-        xSpeed = OI.driveJoy1.getRawAxis(0) - deadzone;
-      }
-    }
-
-    if (OI.driveJoy1.getRawAxis(1) <= 0){ //forward and backward
-      if(Math.abs(OI.driveJoy1.getRawAxis(1)) < deadzone){
-        ySpeed = 0.0;
-      }
-      else{
-        ySpeed = OI.driveJoy1.getRawAxis(1) + deadzone;
-      }
-    }
-    else{
-      if(Math.abs(OI.driveJoy1.getRawAxis(1)) < deadzone){
-        ySpeed = 0.0;
-      }
-      else{
-        ySpeed = OI.driveJoy1.getRawAxis(1) - deadzone;
-      }
-    }
-
-    if (OI.driveJoy2.getRawAxis(0) <= 0){ //rotation
-      if(Math.abs(OI.driveJoy2.getRawAxis(0)) < deadzone){
-        zRotation = 0.0;
-      }
-      else{
-        zRotation = OI.driveJoy2.getRawAxis(0) + deadzone;
-      }
-    }
-    else{
-      if(Math.abs(OI.driveJoy2.getRawAxis(0)) < deadzone){
-        zRotation = 0.0;
-      }
-      else{
-        zRotation = OI.driveJoy2.getRawAxis(0) - deadzone;
-      }
-    }*/
     //mecanum.driveCartesian(ySpeed, xSpeed, zRotation, gyro.getAngle());
     //mecanum.driveCartesian(zRotation, xSpeed, ySpeed);
     //mecanum.driveCartesian(zRotation, xSpeed, ySpeed, 0);
