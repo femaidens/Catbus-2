@@ -77,8 +77,16 @@ public class Intake extends Subsystem {
   public void holdIntakeArm(){
     double distance = 6.0; //test for this value tomorrow with absolute encoder
     double margin = 1.4; //test for this value tmr
-    while(intakeEncoder.getAbsolutePosition() < distance + margin && intakeEncoder.getAbsolutePosition() > distance - margin){
-      intakeMotor.set(0.1);
+    while(intakeEncoder.getDistance() != distance){
+      if(intakeEncoder.getDistance() > distance + margin){
+        intakeMotor.set(0.0); //if arm is greater than 37 degrees let arm fall down
+      }
+      else if(intakeEncoder.getDistance() < distance - margin){
+        intakeMotor.set(0.4); //if arm is less than 37 degress let it move up
+      }
+      else{
+        intakeMotor.set(0.1); //if arm is between margin; let it stay there
+      }
     }
   }
 
