@@ -55,7 +55,7 @@ public class OI {
         disengageGB.whenPressed(new DisengageGB());
         engageGB.whenPressed(new EngageGB());
         
-        retractLatchButton.whenPressed(new RetractLatch());
+        retractLatchButton.whenPressed(new DisengageGB());
 
         windShooter.whenPressed(new WindShooter());
 
