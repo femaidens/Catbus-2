@@ -24,21 +24,9 @@ public class Climber extends Subsystem {
   //public static DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbLeftPistonForwardPort, RobotMap.climbLeftPistonBackwardPort);
   public static DoubleSolenoid climbPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonForwardPort, RobotMap.climbPistonBackwardPort);
 
-  //public static Ultrasonic ultrasonicLeft = new Ultrasonic(0, 0);
-  //public static Ultrasonic ultrasonicRight = new Ultrasonic(0, 0);
-
   public static double distance; //distance from the wall
   public static double climbDistance;
 
-  //drivetrain motors
-  /*public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
-  public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
-  public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
-  public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
-  public static MecanumDrive mecanum = new MecanumDrive(frontLeft, frontLeft, frontLeft, frontLeft);
-  public static RelativeEncoder rightEncoder = frontRight.getEncoder();
-  public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
-  */
   //PID
   public final static double KpLeft = 0.01;
   public final static double KiLeft = 0.0;
@@ -99,64 +87,6 @@ public class Climber extends Subsystem {
   public void stopClimb(){
     rightClimber.set(0);
     leftClimber.set(0);
-  }
-
-  public void alignClimb(){
-    /*double leftUltrasonicDistance = ultrasonicLeft.getRangeInches();
-    double rightUltrasonicDistance = ultrasonicRight.getRangeInches();
-
-    //not done
-    while(leftUltrasonicDistance != distance || rightUltrasonicDistance != distance){
-      previous_errorLeft = current_errorLeft;
-      current_errorLeft = distance - leftUltrasonicDistance;
-      integralLeft = (current_errorLeft+previous_errorLeft)/2*(timeLeft);
-      derivativeLeft = (current_errorLeft-previous_errorLeft)/timeLeft;
-      adjustLeft = KpLeft*current_errorLeft + KiLeft*integralLeft + KdLeft*derivativeLeft;
-
-      if (current_errorLeft > min_errorLeft){
-        adjustLeft += min_commandLeft;
-      }
-      else if (current_errorLeft < -min_errorLeft){
-        adjustLeft -= min_commandLeft;
-      }
-
-      if(current_errorLeft > 0){
-        frontLeft.set(0.3 + adjustLeft);
-        rearLeft.set(0.3 + adjustLeft);
-      }
-
-      else if(current_errorLeft < 0){
-        frontLeft.set(0.3 - adjustLeft);
-        rearLeft.set(0.3 - adjustLeft);
-      }
-
-
-      //Right
-      previous_errorRight = current_errorRight;
-      current_errorRight = distance - rightUltrasonicDistance;
-      integralRight = (current_errorRight+previous_errorRight)/2*(timeRight);
-      derivativeRight = (current_errorRight-previous_errorRight)/timeRight;
-      adjustRight = KpRight*current_errorRight + KiRight*integralRight + KdRight*derivativeRight;
-
-      if (current_errorRight > min_errorRight){
-        adjustRight += min_commandRight;
-      }
-      else if (current_errorRight < -min_errorRight){
-        adjustRight -= min_commandRight;
-      }
-
-      if(current_errorRight > 0){
-        frontRight.set(0.3 + adjustRight);
-        rearRight.set(0.3 + adjustRight);
-      }
-
-      else if(current_errorRight < 0){
-        frontRight.set(0.3 - adjustRight);
-        rearRight.set(0.3 - adjustRight);
-      }
-
-
-    }*/
   }
 
   @Override
