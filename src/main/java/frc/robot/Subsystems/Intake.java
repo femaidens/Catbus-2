@@ -74,6 +74,14 @@ public class Intake extends Subsystem {
     intakeMotor.set(-0.3);
   }
 
+  public void holdIntakeArm(){
+    double distance = 6.0; //test for this value tomorrow with absolute encoder
+    double margin = 1.4; //test for this value tmr
+    while(intakeEncoder.getAbsolutePosition() < distance + margin && intakeEncoder.getAbsolutePosition() > distance - margin){
+      intakeMotor.set(0.1);
+    }
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
