@@ -4,44 +4,46 @@
 
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-<<<<<<<< HEAD:src/main/java/frc/robot/Commands/AlignClimb.java
-public class AlignClimb extends Command {
-  public AlignClimb() {
-========
-public class IntakeReverse extends Command {
-  public IntakeReverse() {
->>>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643:src/main/java/frc/robot/Commands/IntakeReverse.java
+
+public class IntakeCargoAuton extends Command {
+  public static Timer timer = new Timer();
+  public static double intakeTime;
+
+  public IntakeCargoAuton() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.climber);
+    requires(Robot.intake);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    timer.start();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-<<<<<<<< HEAD:src/main/java/frc/robot/Commands/AlignClimb.java
-    Robot.climber.alignClimb();
-========
-    Robot.intake.reverseIntake();
->>>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643:src/main/java/frc/robot/Commands/IntakeReverse.java
+    Robot.intake.startIntake();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    if(timer.get() >= intakeTime){
+      return true;
+    }
     return false;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

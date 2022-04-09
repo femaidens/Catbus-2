@@ -21,6 +21,15 @@ public class RobotMap {
     public static int gyroPort = 2; //0
     public static int dcEncoder;
 
+    //intake
+    public static int intakeMotorPort = 1;
+    public static int intakeExtendPort = 2;
+
+    public static int intakeEncoderPort = 1; 
+    //public static int encoderPort1 = 3;
+    //public static int encoderPort2 = 4;
+
+
     //climb
     public static int rightClimbPort = 11;
     public static int leftClimbPort = 6;

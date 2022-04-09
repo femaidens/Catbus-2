@@ -4,10 +4,19 @@
 
 package frc.robot;
 
+import javax.print.attribute.standard.DialogOwner;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+<<<<<<< HEAD
 import frc.robot.Commands.*;
+=======
+import frc.robot.Commands.IntakeCargo;
+import frc.robot.Commands.IntakeDown;
+import frc.robot.Commands.RetractIntake;
+
+>>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643
 
 
 /** Add your docs here. */
@@ -17,6 +26,7 @@ public class OI {
     public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
+<<<<<<< HEAD
     public static Button pistonInButton = new JoystickButton(operJoy, 3); //X
     public static Button pistonOutButton = new JoystickButton(operJoy, 4); //Y
 
@@ -47,6 +57,17 @@ public class OI {
         retractLatchButton.whenPressed(new RetractLatch());
 
         windShooter.whenPressed(new WindShooter());
+=======
+    public static Button intakeMotorButton = new JoystickButton(driveJoy1, 1); 
+    public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
+    public static Button intakeExtendButton = new JoystickButton(operJoy, 5); //LB
+    //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); //LB
+
+    public void bindButtons() {
+        intakeMotorButton.whileHeld(new IntakeCargo());
+        intakeExtendButton.whileHeld(new IntakeDown());
+        //intakeRetractButton.whenPressed(new RetractIntake());
+>>>>>>> c5fd17f75e6a2135211c8f523938be1faa708643
     }
 
 }
