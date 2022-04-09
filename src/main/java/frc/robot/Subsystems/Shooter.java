@@ -7,6 +7,7 @@ package frc.robot.Subsystems;
 
 //import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -21,10 +22,11 @@ import frc.robot.RobotMap;
 public class Shooter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  //public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
+  	public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
 	//public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.dcEncoder);
+	public static RelativeEncoder encoder = shooterMotor.getEncoder();
 	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
-	//public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonBackwardPort, RobotMap.shooterGBPistonBackwardPort);
+	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterGBPistonForwardPort, RobotMap.shooterGBPistonBackwardPort);
 	public static double windDistance; // distance to wind string
 	public static double distance;
 	public static double lowerBound;
@@ -32,13 +34,13 @@ public class Shooter extends Subsystem {
 	//public static Limelight limelight;
 
 	//import from drivetrain
-	public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+	/*public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
 	public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
 	public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
 	public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
 	public static MecanumDrive mecanum = new MecanumDrive(frontLeft, rearLeft, frontRight, rearRight);
 	public static AnalogGyro gyro = new AnalogGyro(RobotMap.gyroPort);
-
+*/
 	/*
 	 //PID fields
 	 public final static double Kp1 = 0.01;
@@ -74,13 +76,18 @@ public class Shooter extends Subsystem {
 	}
 
 	public void windString(){ //for reload
-		/*double currentDistance = shooterEncoder.get();
-		while(currentDistance < windDistance){
+		//double currentDistance = shooterEncoder.get();
+		/*while(currentDistance < windDistance){
 			shooterMotor.set(-0.7);
-		}
-		shooterMotor.set(0);*/
+		}*/
+		shooterMotor.set(0.2); //CHNGE THIS TO POSITIV
 	}
-
+	public void unwindString(){
+		/*if(encoder.getPosition() <= 1.5 && encoder.getPosition() >= -1.5){
+			shooterMotor.set(0.0);
+		}*/
+		shooterMotor.set(-.2);
+	}
 	public void extend(){  //keeping string in place --> for reload
 		shooterPiston.set(DoubleSolenoid.Value.kForward);
 	}
@@ -90,15 +97,15 @@ public class Shooter extends Subsystem {
 	}
 
 	public void stopShooterMotor(){ //dc encoder motor
-		//shooterMotor.set(0.0);
+		shooterMotor.set(0.0);
 	}
 
 	public void extendGBPiston(){
-		//shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
+		shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
 	}
 	
 	public void retractGBPiston(){
-		//shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
+		shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
 	}
 /*
 	public void alignShooter(){

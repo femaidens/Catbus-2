@@ -6,10 +6,9 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.Subsystems.Shooter;
 
-public class RetractLatch extends Command {
-  public RetractLatch() {
+public class DisengageGB extends Command {
+  public DisengageGB() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.shooter);
@@ -22,25 +21,18 @@ public class RetractLatch extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.shooter.extend(); //disengage latch
-    //Robot.shooter.unwindString();
+    Robot.shooter.extendGBPiston();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //if(Shooter.encoder.getPosition() <= 139 && Shooter.encoder.getPosition() >= 145){
-    //  return true;
-   // }
-      return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-    //Robot.shooter.extendGBPiston(); //change name
-    //Robot.shooter.extend(); //disengage latch
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

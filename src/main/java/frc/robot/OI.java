@@ -21,11 +21,16 @@ public class OI {
     public static Button pistonOutButton = new JoystickButton(operJoy, 4); //Y
 
     public static Button climbExtendButton = new JoystickButton(operJoy, 8); //8
-    public static Button climbRetractButton = new JoystickButton(operJoy, 1); //A
+    public static Button climbRetractButton = new JoystickButton(operJoy, 1); //A 
 
     public static Button gyroReset = new JoystickButton(driveJoy2, 1);
 
     public static Button retractLatchButton = new JoystickButton(operJoy, 2); //B
+
+    public static Button windShooter = new JoystickButton(operJoy, 7); //small left button
+
+    public static Button disengageGB = new JoystickButton(operJoy, 10);
+    public static Button engageGB = new JoystickButton(operJoy, 9);
 
     public void bindButtons() {
         pistonInButton.whenPressed(new climbOpenAngle());
@@ -35,8 +40,13 @@ public class OI {
         climbRetractButton.whileHeld(new climbRetract());
 
         gyroReset.whenPressed(new ResetGyro());
+
+        disengageGB.whenPressed(new DisengageGB());
+        engageGB.whenPressed(new EngageGB());
         
         retractLatchButton.whenPressed(new RetractLatch());
+
+        windShooter.whenPressed(new WindShooter());
     }
 
 }

@@ -31,13 +31,14 @@ public class Climber extends Subsystem {
   public static double climbDistance;
 
   //drivetrain motors
-  public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
+  /*public static CANSparkMax frontRight = new CANSparkMax(RobotMap.frontRightPort, MotorType.kBrushless);
   public static CANSparkMax rearRight = new CANSparkMax(RobotMap.rearRightPort, MotorType.kBrushless);
   public static CANSparkMax frontLeft = new CANSparkMax(RobotMap.frontLeftPort, MotorType.kBrushless);
   public static CANSparkMax rearLeft = new CANSparkMax(RobotMap.rearLeftPort, MotorType.kBrushless);
   public static MecanumDrive mecanum = new MecanumDrive(frontLeft, frontLeft, frontLeft, frontLeft);
   public static RelativeEncoder rightEncoder = frontRight.getEncoder();
   public static RelativeEncoder leftEncoder = frontLeft.getEncoder();
+  */
   //PID
   public final static double KpLeft = 0.01;
   public final static double KiLeft = 0.0;
@@ -68,21 +69,21 @@ public class Climber extends Subsystem {
   }
 
   public void extendClimb(){
-    if(rightEncoder.getPosition() >= climbDistance){
+   /* if(rightEncoder.getPosition() >= climbDistance){
       rightClimber.set(0.0);
       leftClimber.set(0.0);
-    } //must spin in opp directions
-    rightClimber.set(0.7);
-    leftClimber.set(0.7);
+    } //must spin in opp directions */
+    rightClimber.set(-0.3);
+    leftClimber.set(0.3);
   }
 
   public void retractClimb(){
-    if(rightEncoder.getPosition() >= climbDistance){
+    /*if(rightEncoder.getPosition() >= climbDistance){
       rightClimber.set(0.0);
       leftClimber.set(0.0);
-    } //must spin in opp directions
-    rightClimber.set(0.7);
-    leftClimber.set(0.7);
+    } //must spin in opp directions */
+    rightClimber.set(0.3);
+    leftClimber.set(-0.3);
   }
 
   public void openAngle(){

@@ -50,12 +50,12 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     drivetrain = new Drivetrain();
-    m_OI = new OI();
-    m_OI.bindButtons();
-
     climber = new Climber();
     shooter = new Shooter();
     compressor = new Compressor(PneumaticsModuleType.CTREPCM);
+    m_OI = new OI();
+    m_OI.bindButtons();
+
     drivetrain.setDefaultCommand(new DriveTeleop());
   }
 
