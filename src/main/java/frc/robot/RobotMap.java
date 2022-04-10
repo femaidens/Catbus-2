@@ -18,14 +18,14 @@ public class RobotMap {
     public static int frontLeftPort = 1; //9
     public static int rearRightPort = 8; //11
     public static int rearLeftPort = 7; //3
-    public static int gyroPort = 2; //0
+    public static int gyroPort = 6; //0
     public static int dcEncoder;
 
     //intake
-    public static int intakeMotorPort = 1;
-    public static int intakeExtendPort = 2;
+    public static int intakeMotorPort = 2;
+    public static int intakeExtendPort = 3;
 
-    public static int intakeEncoderPort = 1; 
+    public static int intakeEncoderPort = 3; 
     //public static int encoderPort1 = 3;
     //public static int encoderPort2 = 4;
 
@@ -41,6 +41,7 @@ public class RobotMap {
 
     //shooter
     public static int shooterMotorPort = 5;
+    public static int shooterAbEncoderPort = 4;
     public static int shooterPistonForwardPort = 2;
     public static int shooterPistonBackwardPort = 3;
     public static int shooterGBPistonBackwardPort = 6;

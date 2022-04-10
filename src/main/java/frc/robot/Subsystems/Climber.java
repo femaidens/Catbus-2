@@ -61,8 +61,8 @@ public class Climber extends Subsystem {
       rightClimber.set(0.0);
       leftClimber.set(0.0);
     } //must spin in opp directions */
-    rightClimber.set(-0.3);
-    leftClimber.set(0.3);
+    rightClimber.set(-0.6);           
+    //leftClimber.set(0.6);
   }
 
   public void retractClimb(){
@@ -70,8 +70,8 @@ public class Climber extends Subsystem {
       rightClimber.set(0.0);
       leftClimber.set(0.0);
     } //must spin in opp directions */
-    rightClimber.set(0.3);
-    leftClimber.set(-0.3);
+    rightClimber.set(0.6);
+    //leftClimber.set(-0.6);
   }
 
   public void openAngle(){

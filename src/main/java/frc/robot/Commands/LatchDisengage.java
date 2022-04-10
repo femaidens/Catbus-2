@@ -7,11 +7,10 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class IntakeCargo extends Command {
-  public IntakeCargo() {
+public class LatchDisengage extends Command {
+  public LatchDisengage() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.intake);
+    requires(Robot.shooter);
   }
 
   // Called just before this Command runs the first time
@@ -21,7 +20,7 @@ public class IntakeCargo extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.startIntake();
+    Robot.shooter.extend();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -32,14 +31,10 @@ public class IntakeCargo extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
-    Robot.intake.stopIntake();
-  }
+  protected void end() {}
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {
-    Robot.intake.stopIntake();
-  }
+  protected void interrupted() {}
 }

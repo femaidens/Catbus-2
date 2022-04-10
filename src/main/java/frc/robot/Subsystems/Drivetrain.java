@@ -72,6 +72,8 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveAuton(double ySpeed, double xSpeed, double zRotation, double angle){
+    frontRight.setInverted(true);
+    rearRight.setInverted(true);
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, 0); //probably needs to be fixed
   }
 

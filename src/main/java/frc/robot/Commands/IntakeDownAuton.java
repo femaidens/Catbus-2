@@ -4,13 +4,16 @@
 
 package frc.robot.Commands;
 
+import com.revrobotics.CANSparkMax;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Subsystems.Intake;
 
 public class IntakeDownAuton extends Command {
   public static Timer timer = new Timer();
-  public static double intakeTime;
+  public static double intakeTime = .75;
   
   public IntakeDownAuton() {
     // Use requires() here to declare subsystem dependencies
@@ -21,6 +24,7 @@ public class IntakeDownAuton extends Command {
   @Override
   protected void initialize() {
     timer.start();
+    Intake.intakeExtendMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,7 +44,9 @@ public class IntakeDownAuton extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Intake.intakeExtendMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+;  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run

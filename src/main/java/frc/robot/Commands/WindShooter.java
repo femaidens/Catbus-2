@@ -32,7 +32,7 @@ public class WindShooter extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Shooter.encoder.getPosition() >= 69.5 && Shooter.encoder.getPosition() <= 72.5){
+    if(Shooter.encoder.getPosition() >= 69.5 && Shooter.encoder.getPosition() <= 73){
       return true;
     }
     return false;

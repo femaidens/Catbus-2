@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.Encoder;
+//import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -58,12 +58,12 @@ public class Intake extends Subsystem {
   }
 
   public void downIntake(){
-    intakeExtendMotor.set(0.5);
+    intakeExtendMotor.set(-0.1);
   }
 
 	//intake
 	public void startIntake(){
-    intakeMotor.set(0.3);
+    intakeMotor.set(0.7);
   }
 
   public void stopIntake(){
@@ -71,12 +71,15 @@ public class Intake extends Subsystem {
   }
 
   public void reverseIntake(){
-    intakeMotor.set(-0.3);
+    intakeMotor.set(-0.6);
+  }
+  public void stopIntakeExtend(){
+    intakeExtendMotor.set(0.0);
   }
 
   public void holdIntakeArm(){
-    double distance = 6.0; //test for this value tomorrow with absolute encoder
-    double margin = 1.4; //test for this value tmr
+    double distance = 0.40; //test for this value tomorrow with absolute encoder
+    double margin = 0.065; //test for this value tmr
     while(intakeEncoder.getDistance() != distance){
       if(intakeEncoder.getDistance() > distance + margin){
         intakeMotor.set(0.0); //if arm is greater than 37 degrees let arm fall down

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Shooter;
 
-public class DisengageGB extends Command {
+public class DisengageGB extends Command { //unwind string all the way in opposite direction, then disengage gb
   public DisengageGB() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,6 +22,7 @@ public class DisengageGB extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.shooter.extendGBPiston();
     //Robot.shooter.extend(); //disengage latch
     //Robot.shooter.unwindString();
   }
@@ -32,14 +33,15 @@ public class DisengageGB extends Command {
     //if(Shooter.encoder.getPosition() <= 139 && Shooter.encoder.getPosition() >= 145){
     //  return true;
    // }
+      //return true;
       return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.shooter.extendGBPiston(); //change name
-    //Robot.shooter.extend(); //disengage latch
+    //Robot.shooter.extendGBPiston(); //change name
+    
   }
 
   // Called when another command which requires one or more of the same

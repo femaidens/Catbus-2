@@ -26,10 +26,10 @@ public class OI {
     public static Button gyroReset = new JoystickButton(driveJoy2, 1);
 
     //climb
-    public static Button pistonInButton = new JoystickButton(operJoy, 3); //X
-    public static Button pistonOutButton = new JoystickButton(operJoy, 4); //Y
-    public static Button climbExtendButton = new JoystickButton(operJoy, 8); //8
-    public static Button climbRetractButton = new JoystickButton(operJoy, 1); //A 
+    public static Button pistonInButton = new JoystickButton(operJoy, 6); //RB
+    public static Button pistonOutButton = new JoystickButton(operJoy, 5); //LB
+    public static Button climbExtendButton = new JoystickButton(operJoy, 1); //A
+    public static Button climbRetractButton = new JoystickButton(operJoy, 8); //
 
     //shooter
     public static Button engageGB = new JoystickButton(operJoy, 9);
@@ -38,10 +38,13 @@ public class OI {
     public static Button retractLatchButton = new JoystickButton(operJoy, 2); //
 
     //intake
-    public static Button intakeMotorButton = new JoystickButton(driveJoy1, 6); //intake cargo; RB
+    public static Button intakeMotorButton = new JoystickButton(operJoy, 4); //intake cargo //Y
     public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
-    public static Button holdIntakeArmButton = new JoystickButton(operJoy, 5); //LB
+    public static Button holdIntakeArmButton = new JoystickButton(operJoy, 3); //X
     //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); 
+
+    public static Button latchDisengage = new JoystickButton(driveJoy2, 15);
+    public static Button latchEngage = new JoystickButton(driveJoy2, 16); //lower right corner of right side
     
     public void bindButtons() {
         //drivetrain
@@ -64,5 +67,8 @@ public class OI {
         intakeReverseButton.whileHeld(new IntakeReverse());
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
         //intakeRetractButton.whenPressed(new RetractIntake());
+
+        latchDisengage.whenPressed(new LatchDisengage());
+        latchEngage.whenPressed(new LatchEngage());
     }
 }

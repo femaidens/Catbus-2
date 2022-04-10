@@ -6,6 +6,7 @@ package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Subsystems.Intake;
 
 public class HoldIntakeArm extends Command {
   public HoldIntakeArm() {
@@ -21,19 +22,23 @@ public class HoldIntakeArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.holdIntakeArm();
+    //Robot.intake.holdIntakeArm();
+    Intake.intakeExtendMotor.set(0.5);
+    //System.out.println("execute");
+    //System.out.println(Intake.intakeEncoder.getDistance());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.stopIntake();
+    Robot.intake.stopIntakeExtend();
+    //System.out.println("end");
   }
 
   // Called when another command which requires one or more of the same
