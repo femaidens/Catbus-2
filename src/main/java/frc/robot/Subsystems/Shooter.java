@@ -38,16 +38,16 @@ public class Shooter extends Subsystem {
 	}
 
 	public void windString(){ //for reload
-		//double currentDistance = shooterEncoder.get();
-		/*while(currentDistance < windDistance){
+		double currentDistance = shooterEncoder.getDistance();
+		while(currentDistance < windDistance){
 			shooterMotor.set(-0.7);
-		}*/
-		shooterMotor.set(0.2); //CHNGE THIS TO POSITIV
+		}
+		//shooterMotor.set(0.2); 
 	}
 	public void unwindString(){
-		/*if(encoder.getPosition() <= 1.5 && encoder.getPosition() >= -1.5){
-			shooterMotor.set(0.0);
-		}*/
+		if(shooterEncoder.getDistance() <= 1.5 && shooterEncoder.getDistance() >= -1.5){
+			shooterMotor.set(0.0); 
+		}
 		shooterMotor.set(-.2);
 	}
 	public void extend(){  //keeping string in place --> for reload

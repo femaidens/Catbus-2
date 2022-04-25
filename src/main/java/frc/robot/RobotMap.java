@@ -41,7 +41,7 @@ public class RobotMap {
 
     //shooter
     public static int shooterMotorPort = 5;
-    public static int shooterAbEncoderPort = 4;
+    public static int shooterAbEncoderPort = 2;
     public static int shooterPistonForwardPort = 2;
     public static int shooterPistonBackwardPort = 3;
     public static int shooterGBPistonBackwardPort = 6;
