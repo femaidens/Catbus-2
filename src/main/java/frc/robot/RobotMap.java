@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.SPI;
 
-/** Add your docs here. */
 public class RobotMap {
 
     //public static int gyroPort = 1;

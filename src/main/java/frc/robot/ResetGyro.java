@@ -6,9 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GyroTestCommand extends Command {
-  public GyroTestCommand() {
-    requires(Robot.gyroTest);
+public class ResetGyro extends Command {
+  public ResetGyro() {
   }
 
   @Override
@@ -16,12 +15,12 @@ public class GyroTestCommand extends Command {
 
   @Override
   protected void execute() {
-    GyroTest.getAngle();
+    Robot.drivetrain.resetGyro(); //to be changed!!!!!!!!!
   }
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   @Override

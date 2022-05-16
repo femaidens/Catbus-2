@@ -9,21 +9,18 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/** Add your docs here. */
 public class GyroTest extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   public static AnalogGyro gyro = new AnalogGyro(0);
   //public static ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS1);
 
   public static void getAngle(){
-    System.out.println(gyro.getAngle());
+    System.out.println("Angle: " + gyro.getAngle());
+    System.out.println();
   }
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
     setDefaultCommand(new GyroTestCommand());
   }
 }
