@@ -55,8 +55,8 @@ public class Intake extends Subsystem {
 
 	//retract piston
 	public void retract(){
-    double extendedDistance = intakeEncoder.getDistance();
-    while(intakeEncoder.getDistance() - extendedDistance < intakeDistance){
+    double extendedDistance = intakeEncoder.getAbsolutePosition();
+    while(intakeEncoder.getAbsolutePosition() - extendedDistance < intakeDistance){
       intakeExtendMotor.set(-0.3);
     }
     intakeExtendMotor.set(0.0);
@@ -119,6 +119,21 @@ public class Intake extends Subsystem {
 
   public void reverseIntake(){
     intakeMotor.set(-0.3);
+  }
+  public void holdIntakeArm(){
+    double distance = 0.40; //test for this value tomorrow with absolute encoder
+    double margin = 0.065; //test for this value tmr
+    while(intakeEncoder.getAbsolutePosition() != distance){
+      if(intakeEncoder.getAbsolutePosition() > distance + margin){
+        intakeMotor.set(0.0); //if arm is greater than 37 degrees let arm fall down
+      }
+      else if(intakeEncoder.getAbsolutePosition() < distance - margin){
+        intakeMotor.set(0.4); //if arm is less than 37 degress let it move up
+      }
+      else{
+        intakeMotor.set(0.1); //if arm is between margin; let it stay there
+      }
+    }
   }
 
   @Override
