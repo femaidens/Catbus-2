@@ -13,14 +13,14 @@ import frc.robot.Commands.*;
 /** Add your docs here. */
 public class OI {
 
-    public static Joystick driveJoy1 = new Joystick(RobotMap.driveJoy1Port);
-    public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
+   // public static Joystick driveJoy1 = new Joystick(RobotMap.driveJoy1Port);
+    //public static Joystick driveJoy2 = new Joystick(RobotMap.driveJoy2Port);
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
     public static Button pistonInButton = new JoystickButton(operJoy, 3); //X
     public static Button pistonOutButton = new JoystickButton(operJoy, 4); //Y
 
-    public static Button climbExtendButton = new JoystickButton(operJoy, 8); //8
+    public static Button climbExtendButton = new JoystickButton(operJoy, 2); //B
     public static Button climbRetractButton = new JoystickButton(operJoy, 1); //A
 
     public void bindButtons() {

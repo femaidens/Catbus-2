@@ -36,11 +36,11 @@ public class Robot extends TimedRobot {
     m_chooser.setDefaultOption("Default Auto", kDefaultAuto);
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
-
+    climber = new Climber();
     m_OI = new OI();
     m_OI.bindButtons();
 
-    climber = new Climber();
+  
   }
 
   /**
