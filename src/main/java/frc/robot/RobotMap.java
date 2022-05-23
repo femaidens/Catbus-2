@@ -31,8 +31,8 @@ public class RobotMap {
 
 
     //climb
-    public static int rightClimbPort = 11;
-    public static int leftClimbPort = 6;
+    public static int rightClimbPort = 6;
+    public static int leftClimbPort = 5;
     public static int climbPistonForwardPort = 4;
     public static int climbPistonBackwardPort = 5;
 
@@ -40,7 +40,7 @@ public class RobotMap {
     //public static int climbRightUltrasonicPort = 0;
 
     //shooter
-    public static int shooterMotorPort = 5;
+    public static int shooterMotorPort = 16;//change port number
     public static int shooterAbEncoderPort = 2;
     public static int shooterPistonForwardPort = 2;
     public static int shooterPistonBackwardPort = 3;
