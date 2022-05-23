@@ -15,7 +15,7 @@ public class ResetGyro extends Command {
 
   @Override
   protected void execute() {
-    Robot.drivetrain.resetGyro(); //to be changed!!!!!!!!!
+    Robot.drivetrain.resetGyro(); //to be changed
   }
 
   @Override
