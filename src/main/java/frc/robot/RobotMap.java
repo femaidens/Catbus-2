@@ -20,6 +20,6 @@ public class RobotMap {
     //climb
     public static int rightClimbPort = 6;
     public static int leftClimbPort = 5;
-    public static int climbRightPistonForwardPort = 6;
-    public static int climbRightPistonBackwardPort = 7;
+    public static int climbRightPistonForwardPort = 7;
+    public static int climbRightPistonBackwardPort = 6;
 }

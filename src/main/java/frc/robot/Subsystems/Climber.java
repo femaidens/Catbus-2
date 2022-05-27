@@ -19,23 +19,22 @@ public class Climber extends Subsystem {
   public static CANSparkMax rightClimber = new CANSparkMax(RobotMap.rightClimbPort, MotorType.kBrushless);
   public static CANSparkMax leftClimber = new CANSparkMax(RobotMap.leftClimbPort, MotorType.kBrushless);
   public static DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbRightPistonForwardPort, RobotMap.climbRightPistonBackwardPort);
-  //public static DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbLeftPistonForwardPort, RobotMap.climbLeftPistonBackwardPort);
 
   public Climber(){}
 
   public void extendClimb(){
-    rightClimber.set(-0.7);
+    rightClimber.set(0.7); //was -
     leftClimber.set(0.7);
   }
 
   public void retractClimb(){
-    rightClimber.set(0.7);
+    rightClimber.set(-0.7); //was +
     leftClimber.set(-0.7);
   }
 
   public void openAngle(){
     //climbLeftPiston.set(DoubleSolenoid.Value.kForward);
-    climbRightPiston.set(DoubleSolenoid.Value.kForward);
+    climbRightPiston.set(DoubleSolenoid.Value.kForward); 
   }
 
   public void closeAngle(){
