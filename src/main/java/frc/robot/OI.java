@@ -4,10 +4,19 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.Commands.SpinForward;
+import frc.robot.Commands.SpinReverse;
 
 /** Add your docs here. */
 public class OI {
+    public static Joystick driveJoy = new Joystick(RobotMap.driveJoyPort);
+    public static JoystickButton spinForward = new JoystickButton(driveJoy, 1); //A
+    public static JoystickButton spinReverse = new JoystickButton(driveJoy, 2); //B
+
     public void bindButtons() {
-        
+        spinForward.whileHeld(new SpinForward());
+        spinReverse.whileHeld(new SpinReverse());
     }
 }
