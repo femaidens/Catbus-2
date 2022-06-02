@@ -56,6 +56,8 @@ public class OI {
         climbExtendButton.whileHeld(new climbExtend());
         climbRetractButton.whileHeld(new climbRetract());
 
+        //shooter
+
         //intake
         intakeMotorButton.whileHeld(new IntakeCargo());
         intakeReverseButton.whileHeld(new IntakeReverse());
