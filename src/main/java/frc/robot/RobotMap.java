@@ -4,11 +4,8 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.DutyCycle;
-
 /** Add your docs here. */
 public class RobotMap {
-
     public static int driveJoy1Port = 2; //controls lateral
     public static int driveJoy2Port = 1; //controls turning
     public static int operJoyPort = 0;

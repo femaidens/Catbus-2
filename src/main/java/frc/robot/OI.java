@@ -67,7 +67,5 @@ public class OI {
         intakeReverseButton.whileHeld(new IntakeReverse());
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
         //intakeRetractButton.whenPressed(new RetractIntake());
-
-
     }
 }
