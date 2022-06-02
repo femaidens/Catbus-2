@@ -23,19 +23,21 @@ public class OI {
     public static Joystick operJoy = new Joystick(RobotMap.operJoyPort);
 
     //drivetrain
-    public static Button gyroReset = new JoystickButton(driveJoy2, 1);
+    //public static Button gyroReset = new JoystickButton(driveJoy2, 1);
 
     //climb
     public static Button pistonInButton = new JoystickButton(operJoy, 6); //RB
     public static Button pistonOutButton = new JoystickButton(operJoy, 5); //LB
     public static Button climbExtendButton = new JoystickButton(operJoy, 1); //A
-    public static Button climbRetractButton = new JoystickButton(operJoy, 8); //
+    public static Button climbRetractButton = new JoystickButton(operJoy, 2); //B
 
     //shooter
+    /*
     public static Button engageGB = new JoystickButton(operJoy, 9);
     public static Button windShooter = new JoystickButton(operJoy, 7); //small left button
     public static Button disengageGB = new JoystickButton(operJoy, 10);
     public static Button retractLatchButton = new JoystickButton(operJoy, 2); //
+    */
 
     //intake
     public static Button intakeMotorButton = new JoystickButton(operJoy, 4); //intake cargo //Y
@@ -43,12 +45,12 @@ public class OI {
     public static Button holdIntakeArmButton = new JoystickButton(operJoy, 3); //X
     //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); 
 
-    public static Button latchDisengage = new JoystickButton(driveJoy2, 15);
-    public static Button latchEngage = new JoystickButton(driveJoy2, 16); //lower right corner of right side
+    //public static Button latchDisengage = new JoystickButton(driveJoy2, 15);
+    //public static Button latchEngage = new JoystickButton(driveJoy2, 16); //lower right corner of right side
     
     public void bindButtons() {
         //drivetrain
-        gyroReset.whenPressed(new ResetGyro());
+        //gyroReset.whenPressed(new ResetGyro());
 
         //climb
         pistonInButton.whenPressed(new climbOpenAngle());
@@ -57,8 +59,8 @@ public class OI {
         climbRetractButton.whileHeld(new climbRetract());
 
         //shooter
-        engageGB.whenPressed(new EngageGB());
-        disengageGB.whenPressed(new DisengageGB());
+        //engageGB.whenPressed(new EngageGB());
+        //disengageGB.whenPressed(new DisengageGB());
 
         //intake
         intakeMotorButton.whileHeld(new IntakeCargo());

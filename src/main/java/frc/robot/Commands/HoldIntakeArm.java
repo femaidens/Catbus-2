@@ -23,7 +23,7 @@ public class HoldIntakeArm extends Command {
   @Override
   protected void execute() {
     //Robot.intake.holdIntakeArm();
-    Intake.intakeExtendMotor.set(0.5);
+    Intake.intakeArmMotor.set(0.5);
     //System.out.println("execute");
     //System.out.println(Intake.intakeEncoder.getDistance());
   }

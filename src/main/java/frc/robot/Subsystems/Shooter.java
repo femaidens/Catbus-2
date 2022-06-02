@@ -23,14 +23,10 @@ import frc.robot.RobotMap;
 public class Shooter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  	public static CANSparkMax shooterMotor1 = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
-	public static CANSparkMax shooterMotor2 = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
-	public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.shooterAbEncoderPort);
-	//public static RelativeEncoder encoder = shooterMotor.getEncoder();
-	public static SparkMaxPIDController sMotor1PIDController = shooterMotor1.getPIDController();
-	public static SparkMaxPIDController sMotor2PIDController = shooterMotor2.getPIDController();
-	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
-	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterGBPistonForwardPort, RobotMap.shooterGBPistonBackwardPort);
+  	public static CANSparkMax shooterMotorTop = new CANSparkMax(RobotMap.shooterMotorTopPort, MotorType.kBrushless);
+	public static CANSparkMax shooterMotorBot = new CANSparkMax(RobotMap.shooterMotorBotPort, MotorType.kBrushless);
+	public static SparkMaxPIDController sMotorTopPIDController = shooterMotorTop.getPIDController();
+	public static SparkMaxPIDController sMotorBotPIDController = shooterMotorBot.getPIDController();
 	public static double windDistance; // distance to wind string
 	public static double distance;
 	public static double lowerBound;
@@ -38,58 +34,31 @@ public class Shooter extends Subsystem {
 	//public static Limelight limelight;
 
 	public Shooter(){
-		sMotor1PIDController.setP(1e-4);
-    	sMotor1PIDController.setI(1e-6);
-    	sMotor1PIDController.setD(1e-2);
-    	sMotor1PIDController.setIZone(0);
-    	sMotor1PIDController.setFF(0);
-    	sMotor1PIDController.setOutputRange(-1.0, 1.0); //changes actual spd 
+		sMotorTopPIDController.setP(1e-4);
+    	sMotorTopPIDController.setI(1e-6);
+    	sMotorTopPIDController.setD(1e-2);
+    	sMotorTopPIDController.setIZone(0);
+    	sMotorTopPIDController.setFF(0);
+    	sMotorTopPIDController.setOutputRange(-1.0, 1.0); //changes actual spd 
+
+		sMotorBotPIDController.setP(1e-4);
+    	sMotorBotPIDController.setI(1e-6);
+    	sMotorBotPIDController.setD(1e-2);
+    	sMotorBotPIDController.setIZone(0);
+    	sMotorBotPIDController.setFF(0);
+    	sMotorBotPIDController.setOutputRange(-1.0, 1.0); //changes actual spd 
 	}
 	
 	public void stopShooterMotor(){ 
-		shooterMotor1.set(0.0);
-		shooterMotor2.set(0.0);
+		shooterMotorTop.set(0.0);
+		shooterMotorBot.set(0.0);
 	}
 	
 	public void spinShooterMotor(){
-		shooterMotor1.set(0.5); //test for speed values
-		shooterMotor2.set(0.5);
+		shooterMotorTop.set(0.5); //test for speed values
+		shooterMotorBot.set(0.5);
 	}
 
-  	
-	
-	/*
-	public void windString(){ //for reload
-		double currentDistance = shooterEncoder.getDistance();
-		while(currentDistance < windDistance){
-			shooterMotor.set(-0.7);
-		}
-		//shooterMotor.set(0.2); 
-	}
-	public void unwindString(){
-		if(shooterEncoder.getDistance() <= 1.5 && shooterEncoder.getDistance() >= -1.5){
-			shooterMotor.set(0.0); 
-		}
-		shooterMotor.set(-.2);
-	}
-	public void extend(){  //keeping string in place --> for reload
-		shooterPiston.set(DoubleSolenoid.Value.kForward);
-	}
-
-	public void retract(){ //releases string --> shoots ball
-		shooterPiston.set(DoubleSolenoid.Value.kReverse);
-	}
-	*/
-	public void extendGBPiston(){
-		shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
-	}
-
-	
-	public void retractGBPiston(){
-		shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
-	}
-	
-	
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

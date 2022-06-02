@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Shooter;
 
-public class shootBall extends Command {
-  public shootBall() {
+public class ShootBall extends Command {
+  public ShootBall(){
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.shooter);
@@ -22,14 +22,13 @@ public class shootBall extends Command {
     SmartDashboard.putNumber("OutputRangeL", -1.0);
     SmartDashboard.putNumber("OutputRangeH", 1.0);
 
-    Shooter.sMotor1PIDController.setP(SmartDashboard.getNumber("P", 0.000700));
-    Shooter.sMotor1PIDController.setI(SmartDashboard.getNumber ("I", 0.000001));
-    Shooter.sMotor1PIDController.setD(SmartDashboard.getNumber("D", 0.010000));
+    Shooter.sMotorTopPIDController.setP(SmartDashboard.getNumber("P", 0.000700));
+    Shooter.sMotorTopPIDController.setI(SmartDashboard.getNumber ("I", 0.000001));
+    Shooter.sMotorTopPIDController.setD(SmartDashboard.getNumber("D", 0.010000));
 
-    Shooter.sMotor2PIDController.setP(SmartDashboard.getNumber("P", 0.000700));
-    Shooter.sMotor2PIDController.setI(SmartDashboard.getNumber ("I", 0.000001));
-    Shooter.sMotor2PIDController.setD(SmartDashboard.getNumber("D", 0.010000));
-
+    Shooter.sMotorBotPIDController.setP(SmartDashboard.getNumber("P", 0.000700));
+    Shooter.sMotorBotPIDController.setI(SmartDashboard.getNumber ("I", 0.000001));
+    Shooter.sMotorBotPIDController.setD(SmartDashboard.getNumber("D", 0.010000));
   }
 
   // Called just before this Command runs the first time
@@ -38,7 +37,9 @@ public class shootBall extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {}
+  protected void execute() {
+    Robot.shooter.spinShooterMotor();
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -48,10 +49,14 @@ public class shootBall extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {}
+  protected void end() {
+    Robot.shooter.stopShooterMotor();
+  }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() {}
+  protected void interrupted() {
+    end();
+  }
 }

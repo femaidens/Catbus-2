@@ -17,7 +17,7 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakeMotorPort, MotorType.kBrushless);
-  public static CANSparkMax intakeExtendMotor = new CANSparkMax(RobotMap.intakeExtendPort, MotorType.kBrushless);
+  public static CANSparkMax intakeArmMotor = new CANSparkMax(RobotMap.intakeArmPort, MotorType.kBrushless);
   //public static Encoder intakeEncoder = new Encoder(RobotMap.encoderPort1, RobotMap.encoderPort2);
   public static DutyCycleEncoder intakeEncoder = new DutyCycleEncoder(RobotMap.intakeEncoderPort);
   public static double intakeDistance;
@@ -54,11 +54,11 @@ public class Intake extends Subsystem {
   static double time2 = 0.1; // 0.1 seconds = 100 milliseconds*/
 
   public void stopExtendMotor(){
-    intakeExtendMotor.set(0.0);
+    intakeArmMotor.set(0.0);
   }
 
   public void downIntake(){
-    intakeExtendMotor.set(-0.1);
+    intakeArmMotor.set(-0.1);
   }
 
 	//intake
@@ -74,7 +74,7 @@ public class Intake extends Subsystem {
     intakeMotor.set(-0.6);
   }
   public void stopIntakeExtend(){
-    intakeExtendMotor.set(0.0);
+    intakeArmMotor.set(0.0);
   }
 
   public void holdIntakeArm(){

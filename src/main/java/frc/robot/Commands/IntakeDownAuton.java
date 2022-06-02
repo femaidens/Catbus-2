@@ -24,7 +24,7 @@ public class IntakeDownAuton extends Command {
   @Override
   protected void initialize() {
     timer.start();
-    Intake.intakeExtendMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    Intake.intakeArmMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -45,7 +45,7 @@ public class IntakeDownAuton extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Intake.intakeExtendMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    Intake.intakeArmMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
 ;  }
 
   // Called when another command which requires one or more of the same
