@@ -5,12 +5,10 @@
 package frc.robot.Subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -18,7 +16,7 @@ import frc.robot.RobotMap;
 public class Climber extends Subsystem {
   public static CANSparkMax rightClimber = new CANSparkMax(RobotMap.rightClimbPort, MotorType.kBrushless);
   public static CANSparkMax leftClimber = new CANSparkMax(RobotMap.leftClimbPort, MotorType.kBrushless);
-  public static DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbRightPistonForwardPort, RobotMap.climbRightPistonBackwardPort);
+  public static DoubleSolenoid climbSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbSolenoidForwardPort, RobotMap.climbSolenoidBackwardPort);
 
   public Climber(){}
 
@@ -34,12 +32,12 @@ public class Climber extends Subsystem {
 
   public void openAngle(){
     //climbLeftPiston.set(DoubleSolenoid.Value.kForward);
-    climbRightPiston.set(DoubleSolenoid.Value.kForward); 
+    climbSolenoid.set(DoubleSolenoid.Value.kForward); 
   }
 
   public void closeAngle(){
     //climbLeftPiston.set(DoubleSolenoid.Value.kReverse);
-    climbRightPiston.set(DoubleSolenoid.Value.kReverse);
+    climbSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void stopClimb(){
