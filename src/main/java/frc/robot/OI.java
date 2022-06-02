@@ -58,9 +58,7 @@ public class OI {
 
         //shooter
         engageGB.whenPressed(new EngageGB());
-        windShooter.whenPressed(new WindShooter());
         disengageGB.whenPressed(new DisengageGB());
-        retractLatchButton.whenPressed(new DisengageGB());
 
         //intake
         intakeMotorButton.whileHeld(new IntakeCargo());
@@ -68,7 +66,6 @@ public class OI {
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
         //intakeRetractButton.whenPressed(new RetractIntake());
 
-        latchDisengage.whenPressed(new LatchDisengage());
-        latchEngage.whenPressed(new LatchEngage());
+
     }
 }
