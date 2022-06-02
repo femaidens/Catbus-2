@@ -6,13 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Commands.DriveStraightDistance;
-import frc.robot.Commands.EngageGB;
 import frc.robot.Commands.HoldIntakeArm;
 import frc.robot.Commands.IntakeCargoAuton;
 import frc.robot.Commands.IntakeDownAuton;
 import frc.robot.Commands.IntakeReverse;
-import frc.robot.Commands.RetractLatch;
-import frc.robot.Commands.WindShooter;
 
 public class Auton extends CommandGroup {
   /** Add your docs here. */

@@ -56,19 +56,10 @@ public class OI {
         climbExtendButton.whileHeld(new climbExtend());
         climbRetractButton.whileHeld(new climbRetract());
 
-        //shooter
-        engageGB.whenPressed(new EngageGB());
-        windShooter.whenPressed(new WindShooter());
-        disengageGB.whenPressed(new DisengageGB());
-        retractLatchButton.whenPressed(new DisengageGB());
-
         //intake
         intakeMotorButton.whileHeld(new IntakeCargo());
         intakeReverseButton.whileHeld(new IntakeReverse());
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
         //intakeRetractButton.whenPressed(new RetractIntake());
-
-        latchDisengage.whenPressed(new LatchDisengage());
-        latchEngage.whenPressed(new LatchEngage());
     }
 }

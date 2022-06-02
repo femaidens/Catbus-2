@@ -22,7 +22,7 @@ public class Climber extends Subsystem {
   public static CANSparkMax leftClimber = new CANSparkMax(RobotMap.leftClimbPort, MotorType.kBrushless);
   //public static DoubleSolenoid climbRightPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbRightPistonForwardPort, RobotMap.climbRightPistonBackwardPort);
   //public static DoubleSolenoid climbLeftPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbLeftPistonForwardPort, RobotMap.climbLeftPistonBackwardPort);
-  public static DoubleSolenoid climbPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbPistonForwardPort, RobotMap.climbPistonBackwardPort);
+  public static DoubleSolenoid climbPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.climbSolenoidForwardPort, RobotMap.climbSolenoidBackwardPort);
 
   public static double distance; //distance from the wall
   public static double climbDistance;

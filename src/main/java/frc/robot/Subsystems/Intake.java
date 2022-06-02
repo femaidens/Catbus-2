@@ -16,7 +16,7 @@ import frc.robot.RobotMap;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakeMotorPort, MotorType.kBrushless);
+  public static CANSparkMax intakeMotor = new CANSparkMax(RobotMap.intakeMotor1Port, MotorType.kBrushless);
   public static CANSparkMax intakeExtendMotor = new CANSparkMax(RobotMap.intakeExtendPort, MotorType.kBrushless);
   //public static Encoder intakeEncoder = new Encoder(RobotMap.encoderPort1, RobotMap.encoderPort2);
   public static DutyCycleEncoder intakeEncoder = new DutyCycleEncoder(RobotMap.intakeEncoderPort);

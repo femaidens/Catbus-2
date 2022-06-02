@@ -22,21 +22,31 @@ import frc.robot.RobotMap;
 public class Shooter extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  	public static CANSparkMax shooterMotor = new CANSparkMax(RobotMap.shooterMotorPort, MotorType.kBrushless);
+  	public static CANSparkMax shooterMotor1 = new CANSparkMax(RobotMap.shooterMotor1Port, MotorType.kBrushless);
+	public static CANSparkMax shooterMotor2 = new CANSparkMax(RobotMap.shooterMotor2Port, MotorType.kBrushless);
 	public static DutyCycleEncoder shooterEncoder = new DutyCycleEncoder(RobotMap.shooterAbEncoderPort);
-	public static RelativeEncoder encoder = shooterMotor.getEncoder();
-	public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
-	public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterGBPistonForwardPort, RobotMap.shooterGBPistonBackwardPort);
+	//public static RelativeEncoder encoder = shooterMotor.getEncoder();
+	//public static DoubleSolenoid shooterPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterPistonForwardPort, RobotMap.shooterPistonBackwardPort);
+	///public static DoubleSolenoid shooterGBPiston = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, RobotMap.shooterGBPistonForwardPort, RobotMap.shooterGBPistonBackwardPort);
 	public static double windDistance; // distance to wind string
 	public static double distance;
 	public static double lowerBound;
 	public static double upperBound;
 	//public static Limelight limelight;
 
-  	public Shooter(){
-		
+  	public Shooter(){}
+
+	public void spinShooterMotors(){
+		shooterMotor1.set(0.5); //test for speed values
+		shooterMotor2.set(0.5);
 	}
 
+	public void stopShooterMotors(){
+		shooterMotor1.set(0.0);
+		shooterMotor2.set(0.0);
+	}
+
+	/*
 	public void windString(){ //for reload
 		double currentDistance = shooterEncoder.getDistance();
 		while(currentDistance < windDistance){
@@ -44,6 +54,7 @@ public class Shooter extends Subsystem {
 		}
 		//shooterMotor.set(0.2); 
 	}
+
 	public void unwindString(){
 		if(shooterEncoder.getDistance() <= 1.5 && shooterEncoder.getDistance() >= -1.5){
 			shooterMotor.set(0.0); 
@@ -58,10 +69,6 @@ public class Shooter extends Subsystem {
 		shooterPiston.set(DoubleSolenoid.Value.kReverse);
 	}
 
-	public void stopShooterMotor(){ //dc encoder motor
-		shooterMotor.set(0.0);
-	}
-
 	public void extendGBPiston(){
 		shooterGBPiston.set(DoubleSolenoid.Value.kForward); //extends gearbox piston to attach motor to shaft
 	}
@@ -69,6 +76,7 @@ public class Shooter extends Subsystem {
 	public void retractGBPiston(){
 		shooterGBPiston.set(DoubleSolenoid.Value.kReverse); //retract gearbox piston to remove motor from shaft
 	}
+	*/
 	
   @Override
   public void initDefaultCommand() {
