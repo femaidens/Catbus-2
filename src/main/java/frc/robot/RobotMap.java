@@ -25,7 +25,7 @@ public class RobotMap {
     //climb
     public static int rightClimbPort = 8;
     public static int leftClimbPort = 10;
-    public static int climbPistonForwardPort = 0;
+    public static int climbPistonForwardPort = 6;
     public static int climbPistonBackwardPort = 1;
 
     //shooter

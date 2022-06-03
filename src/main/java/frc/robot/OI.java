@@ -32,6 +32,7 @@ public class OI {
     public static Button climbRetractButton = new JoystickButton(operJoy, 2); //B
 
     //shooter
+    public static Button testShooter = new JoystickButton(operJoy, 1);
     /*
     public static Button engageGB = new JoystickButton(operJoy, 9);
     public static Button windShooter = new JoystickButton(operJoy, 7); //small left button
@@ -59,6 +60,7 @@ public class OI {
         climbRetractButton.whileHeld(new climbRetract());
 
         //shooter
+        testShooter.whenPressed(new ShootBall());
         //engageGB.whenPressed(new EngageGB());
         //disengageGB.whenPressed(new DisengageGB());
 
