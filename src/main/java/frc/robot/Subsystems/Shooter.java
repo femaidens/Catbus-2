@@ -49,14 +49,20 @@ public class Shooter extends Subsystem {
     	sMotorBotPIDController.setOutputRange(-1.0, 1.0); //changes actual spd 
 	}
 	
-	public void stopShooterMotor(){ 
+	public void stopTopMotor(){ 
 		shooterMotorTop.set(0.0);
+	}
+
+	public void stopBotMotor(){
 		shooterMotorBot.set(0.0);
 	}
 	
-	public void spinShooterMotor(){
-		shooterMotorTop.set(0.5); //test for speed values
-		shooterMotorBot.set(0.5);
+	public void spinTopMotor(){
+		shooterMotorTop.set(-1); 
+	}
+
+	public void spinBotMotor(){
+		shooterMotorBot.set(-0.2);//motor reversed
 	}
 
   @Override

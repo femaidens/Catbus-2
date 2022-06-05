@@ -7,35 +7,33 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class climbOpenAngle extends Command {
-  public climbOpenAngle() {
+public class DownIntakeArm extends Command {
+  public DownIntakeArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.climber);
+    requires(Robot.intake);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
-    Robot.intake.stopIntake(); //don't want wheels to move
-  }
+  protected void initialize() {}
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.openAngle();
+    Robot.intake.downIntakeArm();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.stopIntakeArm(); //don't want intake arm to be moving 
+    Robot.intake.stopIntakeArm();
   }
 
   // Called when another command which requires one or more of the same

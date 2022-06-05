@@ -8,7 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
+//import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -72,7 +72,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveAuton(double ySpeed, double xSpeed, double zRotation, double angle){
-    frontRight.setInverted(true);
+    frontRight.setInverted(true); //fixes parameter issue with driveCartesian
     rearRight.setInverted(true);
     mecanum.driveCartesian(ySpeed, xSpeed, zRotation, 0); //probably needs to be fixed
   }
@@ -82,7 +82,7 @@ public class Drivetrain extends Subsystem {
   }
 
   public static void driveStop(){
-    mecanum.driveCartesian(0,0,0,0);
+    mecanum.driveCartesian(0, 0, 0, 0);
   }
   
   @Override

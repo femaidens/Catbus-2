@@ -8,16 +8,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Commands.DriveStraightDistance;
 //import frc.robot.Commands.HoldIntakeArm;
 //import frc.robot.Commands.IntakeCargoAuton;
-//import frc.robot.Commands.IntakeDownAuton;
+import frc.robot.Commands.IntakeDownAuton;
 import frc.robot.Commands.IntakeReverse;
+import frc.robot.Commands.PowerShooterAuton;
+import frc.robot.Commands.ShootBall;
+import frc.robot.Commands.ShootBallAuton;
 
 public class Auton extends CommandGroup {
   /** Add your docs here. */
   public Auton() {
     // Add Commands here:
     //addSequential(new IntakeDownAuton());
-    addSequential(new IntakeReverse());
-    addSequential(new DriveStraightDistance(37.5, -0.2)); //change values based on testing - moving quarter of distance & opposite direction
+    //addSequential(new IntakeReverse());
+    addSequential(new DriveStraightDistance(40, 0.3)); //change values based on testing - moving quarter of distance & opposite direction
+    addSequential(new PowerShooterAuton());
+    addSequential(new ShootBallAuton());
+    //addSequential(new DriveStraightDistance(40, 0.3)); //change values based on testing - moving quarter of distance & opposite direction
+
     /*
     addParallel(new HoldIntakeArm());
     addSequential(new IntakeCargoAuton());

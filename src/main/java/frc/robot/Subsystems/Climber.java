@@ -36,17 +36,17 @@ public class Climber extends Subsystem {
       rightClimber.set(0.0);
       leftClimber.set(0.0);
     } //must spin in opp directions */
-    rightClimber.set(-0.6);           
-    //leftClimber.set(0.6);
+    rightClimber.set(-0.6); //test climb direction
+    leftClimber.set(0.6);
   }
 
   public void retractClimb(){
     /*if(rightEncoder.getPosition() >= climbDistance){
       rightClimber.set(0.0);
       leftClimber.set(0.0);
-    } //must spin in opp directions */
+    } //must spin in opp directions*/
     rightClimber.set(0.6);
-    //leftClimber.set(-0.6);
+    leftClimber.set(-0.6);
   }
 
   public void openAngle(){

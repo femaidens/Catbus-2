@@ -53,27 +53,29 @@ public class Intake extends Subsystem {
   static double adjust2 = 0;
   static double time2 = 0.1; // 0.1 seconds = 100 milliseconds*/
 
-  public void stopExtendMotor(){
-    intakeArmMotor.set(0.0);
+  //intake wheels
+	public void startIntake(){ //intaking ball
+    intakeMotor.set(-0.75);
   }
 
-  public void downIntake(){
-    intakeArmMotor.set(-0.1);
-  }
-
-	//intake
-	public void startIntake(){
-    intakeMotor.set(0.7);
+  public void reverseIntake(){
+    intakeMotor.set(0.6);
   }
 
   public void stopIntake(){
 	  intakeMotor.set(0.0);
   }
 
-  public void reverseIntake(){
-    intakeMotor.set(-0.6);
+	//intake arm
+  public void upIntakeArm(){
+    intakeArmMotor.set(-0.2);
   }
-  public void stopIntakeExtend(){
+
+  public void downIntakeArm(){
+    intakeArmMotor.set(0.2);
+  }
+
+  public void stopIntakeArm(){
     intakeArmMotor.set(0.0);
   }
 
@@ -82,13 +84,13 @@ public class Intake extends Subsystem {
     double margin = 0.065; //test for this value tmr
     while(intakeEncoder.getDistance() != distance){
       if(intakeEncoder.getDistance() > distance + margin){
-        intakeMotor.set(0.0); //if arm is greater than 37 degrees let arm fall down
+        intakeArmMotor.set(0.0); //if arm is greater than 37 degrees let arm fall down
       }
       else if(intakeEncoder.getDistance() < distance - margin){
-        intakeMotor.set(0.4); //if arm is less than 37 degress let it move up
+        intakeArmMotor.set(-0.5); //if arm is less than 37 degress let it move up
       }
       else{
-        intakeMotor.set(0.1); //if arm is between margin; let it stay there
+        intakeArmMotor.set(-0.1); //if arm is between margin; let it stay there
       }
     }
   }

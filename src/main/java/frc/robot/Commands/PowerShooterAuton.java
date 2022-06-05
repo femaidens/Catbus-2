@@ -4,38 +4,44 @@
 
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class climbOpenAngle extends Command {
-  public climbOpenAngle() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.climber);
+public class PowerShooterAuton extends Command {
+  public Timer timer = new Timer();
+  public static double powerShooterTime = 3;
+  
+  
+  public PowerShooterAuton() {
+    requires(Robot.shooter);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.intake.stopIntake(); //don't want wheels to move
+    timer.start();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.climber.openAngle();
+    Robot.shooter.spinTopMotor();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    if(timer.get() >= powerShooterTime){
+      return true;
+    }
+    return false;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.stopIntakeArm(); //don't want intake arm to be moving 
+    //Robot.shooter.stopTopMotor();
   }
 
   // Called when another command which requires one or more of the same

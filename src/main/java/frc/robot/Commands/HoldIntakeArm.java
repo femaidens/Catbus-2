@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Intake;
 
-public class HoldIntakeArm extends Command {
+public class HoldIntakeArm extends Command { //--> up intake arm adjustment
   public HoldIntakeArm() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -22,8 +22,9 @@ public class HoldIntakeArm extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.intake.upIntakeArm();
     //Robot.intake.holdIntakeArm();
-    Intake.intakeArmMotor.set(0.5);
+    //Intake.intakeArmMotor.set(0.5);
     //System.out.println("execute");
     //System.out.println(Intake.intakeEncoder.getDistance());
   }
@@ -37,7 +38,8 @@ public class HoldIntakeArm extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.stopIntakeExtend();
+    //Robot.intake.stopIntakeArm();
+    Robot.intake.downIntakeArm();
     //System.out.println("end");
   }
 

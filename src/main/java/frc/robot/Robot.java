@@ -118,10 +118,12 @@ public class Robot extends TimedRobot {
     }
     */
     Scheduler.getInstance().run();
+    /*
     if(timer.get() >= 15.0) {
       autonCommand.cancel();
       System.out.println("auton cancelled");
     }
+    */
   }
 
   /** This function is called once when teleop is enabled. */

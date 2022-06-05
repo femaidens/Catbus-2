@@ -4,13 +4,17 @@
 
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Shooter;
 
-public class ShootBall extends Command {
-  public ShootBall(){
+public class ShootBallAuton extends Command {
+  public Timer timer = new Timer();
+  public static double shootAutonTime = 0.75;
+
+  public ShootBallAuton(){
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.shooter);
@@ -33,17 +37,23 @@ public class ShootBall extends Command {
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    timer.start();
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter.spinTopMotor();
+    Robot.shooter.spinBotMotor();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  protected boolean isFinished(){
+    
+    if (timer.get() >= shootAutonTime){
+      return true;
+    }
     return false;
   }
 
@@ -51,6 +61,7 @@ public class ShootBall extends Command {
   @Override
   protected void end() {
     Robot.shooter.shooterMotorTop.set(0.0);
+    Robot.shooter.shooterMotorBot.set(0.0);
   }
 
   // Called when another command which requires one or more of the same

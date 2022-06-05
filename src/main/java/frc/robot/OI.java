@@ -3,8 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
-import javax.print.attribute.standard.DialogOwner;
+//import javax.print.attribute.standard.DialogOwner;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -32,7 +31,8 @@ public class OI {
     public static Button climbRetractButton = new JoystickButton(operJoy, 2); //B
 
     //shooter
-    public static Button testShooter = new JoystickButton(operJoy, 1);
+    public static Button shootBall = new JoystickButton(operJoy, 7); //small left buttton
+    public static Button prepShooter = new JoystickButton(operJoy, 8); //small right button
     /*
     public static Button engageGB = new JoystickButton(operJoy, 9);
     public static Button windShooter = new JoystickButton(operJoy, 7); //small left button
@@ -42,8 +42,9 @@ public class OI {
 
     //intake
     public static Button intakeMotorButton = new JoystickButton(operJoy, 4); //intake cargo //Y
-    public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
-    public static Button holdIntakeArmButton = new JoystickButton(operJoy, 3); //X
+    //public static Button intakeButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
+    public static Button holdIntakeArmButton = new JoystickButton(operJoy, 3); //X; up intake arm
+    public static Button downIntakeButton = new JoystickButton(operJoy, 10); //right axis button
     //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); 
 
     //public static Button latchDisengage = new JoystickButton(driveJoy2, 15);
@@ -60,13 +61,16 @@ public class OI {
         climbRetractButton.whileHeld(new climbRetract());
 
         //shooter
-        testShooter.whenPressed(new ShootBall());
+        //shootBall.whileHeld(new ShootBall()); //actually prep
+        shootBall.whenPressed(new ShootBall2()); //command group
+        prepShooter.whileHeld(new PrepShooter());  //shoot
         //engageGB.whenPressed(new EngageGB());
         //disengageGB.whenPressed(new DisengageGB());
 
         //intake
         intakeMotorButton.whileHeld(new IntakeCargo());
-        intakeReverseButton.whileHeld(new IntakeReverse());
+        //intakeReverseButton.whileHeld(new IntakeReverse());
+        downIntakeButton.whileHeld(new DownIntakeArm());
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
         //intakeRetractButton.whenPressed(new RetractIntake());
     }
