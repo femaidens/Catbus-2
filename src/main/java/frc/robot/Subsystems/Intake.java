@@ -71,7 +71,7 @@ public class Intake extends Subsystem {
     intakeArmMotor.set(-0.2);
   }
 
-  public void downIntakeArm(){
+  public void downIntakeArm(){ //arm will drop, but not always
     intakeArmMotor.set(0.2);
   }
 

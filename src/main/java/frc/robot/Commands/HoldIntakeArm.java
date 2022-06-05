@@ -4,6 +4,8 @@
 
 package frc.robot.Commands;
 
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Intake;
@@ -17,7 +19,9 @@ public class HoldIntakeArm extends Command { //--> up intake arm adjustment
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {}
+  protected void initialize() {
+    Intake.intakeArmMotor.setIdleMode(IdleMode.kCoast);
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override

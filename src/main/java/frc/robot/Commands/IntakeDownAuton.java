@@ -5,6 +5,7 @@
 package frc.robot.Commands;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -45,7 +46,7 @@ public class IntakeDownAuton extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Intake.intakeArmMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    Intake.intakeArmMotor.setIdleMode(IdleMode.kBrake);
 ;  }
 
   // Called when another command which requires one or more of the same

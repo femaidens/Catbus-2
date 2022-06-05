@@ -42,7 +42,7 @@ public class OI {
 
     //intake
     public static Button intakeMotorButton = new JoystickButton(operJoy, 4); //intake cargo //Y
-    //public static Button intakeButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button
+    public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button --> CHECK TO SEE IF THIS IS THE THIRD BUTTON ON DRIVEJOY 2
     public static Button holdIntakeArmButton = new JoystickButton(operJoy, 3); //X; up intake arm
     public static Button downIntakeButton = new JoystickButton(operJoy, 10); //right axis button
     //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); 
@@ -69,8 +69,8 @@ public class OI {
 
         //intake
         intakeMotorButton.whileHeld(new IntakeCargo());
-        //intakeReverseButton.whileHeld(new IntakeReverse());
-        downIntakeButton.whileHeld(new DownIntakeArm());
+        intakeReverseButton.whileHeld(new IntakeReverse());
+        //downIntakeButton.whileHeld(new DownIntakeArm());
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
         //intakeRetractButton.whenPressed(new RetractIntake());
     }

@@ -18,11 +18,11 @@ public class Auton extends CommandGroup {
   /** Add your docs here. */
   public Auton() {
     // Add Commands here:
-    //addSequential(new IntakeDownAuton());
     //addSequential(new IntakeReverse());
     addSequential(new DriveStraightDistance(40, 0.3)); //change values based on testing - moving quarter of distance & opposite direction
     addSequential(new PowerShooterAuton());
     addSequential(new ShootBallAuton());
+    addSequential(new IntakeDownAuton());
     //addSequential(new DriveStraightDistance(40, 0.3)); //change values based on testing - moving quarter of distance & opposite direction
 
     /*
