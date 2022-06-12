@@ -12,7 +12,7 @@ public class RobotMap {
 
     //drivetrain - might need to fix
     public static int frontRightPort = 2; 
-    public static int frontLeftPort = 7; 
+    public static int frontLeftPort = 3; 
     public static int rearRightPort = 9; 
     public static int rearLeftPort = 1; 
 
@@ -25,10 +25,10 @@ public class RobotMap {
     //climb
     public static int rightClimbPort = 8;
     public static int leftClimbPort = 10;
-    public static int climbPistonForwardPort = 6;
-    public static int climbPistonBackwardPort = 1;
+    public static int climbPistonForwardPort = 1;
+    public static int climbPistonBackwardPort = 0;
 
     //shooter
     public static int shooterMotorTopPort = 4;//change port number
-    public static int shooterMotorBotPort = 3; //change number 
+    public static int shooterMotorBotPort = 12; //change number 
 }

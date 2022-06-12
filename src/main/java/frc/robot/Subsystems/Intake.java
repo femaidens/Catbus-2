@@ -63,7 +63,7 @@ public class Intake extends Subsystem {
   }
 
   public void stopIntake(){
-	  intakeMotor.set(0.0);
+	 intakeMotor.set(0.0);
   }
 
 	//intake arm
@@ -72,7 +72,7 @@ public class Intake extends Subsystem {
   }
 
   public void downIntakeArm(){ //arm will drop, but not always
-    intakeArmMotor.set(0.2);
+    intakeArmMotor.set(0.15);
   }
 
   public void stopIntakeArm(){

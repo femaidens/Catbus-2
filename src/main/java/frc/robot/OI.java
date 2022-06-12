@@ -33,6 +33,7 @@ public class OI {
     //shooter
     public static Button shootBall = new JoystickButton(operJoy, 7); //small left buttton
     public static Button prepShooter = new JoystickButton(operJoy, 8); //small right button
+    public static Button shootBallTest = new JoystickButton(driveJoy1, 16); //single dot button on lateral
     /*
     public static Button engageGB = new JoystickButton(operJoy, 9);
     public static Button windShooter = new JoystickButton(operJoy, 7); //small left button
@@ -45,6 +46,7 @@ public class OI {
     public static Button intakeReverseButton = new JoystickButton(driveJoy2, 11); //right driveJoy, top right button --> CHECK TO SEE IF THIS IS THE THIRD BUTTON ON DRIVEJOY 2
     public static Button holdIntakeArmButton = new JoystickButton(operJoy, 3); //X; up intake arm
     public static Button downIntakeButton = new JoystickButton(operJoy, 10); //right axis button
+    public static Button intakeDownAutonButton = new JoystickButton(driveJoy2, 16);
     //public static Button intakeRetractButton = new JoystickButton(operJoy, 5); 
 
     //public static Button latchDisengage = new JoystickButton(driveJoy2, 15);
@@ -55,8 +57,8 @@ public class OI {
         //gyroReset.whenPressed(new ResetGyro());
 
         //climb
-        pistonInButton.whenPressed(new climbOpenAngle());
-        pistonOutButton.whenPressed(new climbCloseAngle());
+        pistonInButton.whenPressed(new climbCloseAngle());
+        pistonOutButton.whenPressed(new climbOpenAngle());
         climbExtendButton.whileHeld(new climbExtend());
         climbRetractButton.whileHeld(new climbRetract());
 
@@ -64,6 +66,7 @@ public class OI {
         //shootBall.whileHeld(new ShootBall()); //actually prep
         shootBall.whenPressed(new ShootBall2()); //command group
         prepShooter.whileHeld(new PrepShooter());  //shoot
+        shootBallTest.whileHeld(new ShootBall());
         //engageGB.whenPressed(new EngageGB());
         //disengageGB.whenPressed(new DisengageGB());
 
@@ -72,6 +75,7 @@ public class OI {
         intakeReverseButton.whileHeld(new IntakeReverse());
         //downIntakeButton.whileHeld(new DownIntakeArm());
         holdIntakeArmButton.whileHeld(new HoldIntakeArm());
+        intakeDownAutonButton.whenPressed(new IntakeDownAuton());
         //intakeRetractButton.whenPressed(new RetractIntake());
     }
 }

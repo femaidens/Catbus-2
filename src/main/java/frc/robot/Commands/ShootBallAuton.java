@@ -12,7 +12,7 @@ import frc.robot.Subsystems.Shooter;
 
 public class ShootBallAuton extends Command {
   public Timer timer = new Timer();
-  public static double shootAutonTime = 0.75;
+  public static double shootAutonTime = 3;
 
   public ShootBallAuton(){
     // Use requires() here to declare subsystem dependencies
@@ -44,13 +44,15 @@ public class ShootBallAuton extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shooter.spinBotMotor();
+    if (timer.get() >= 2.25){
+      Robot.shooter.spinBotMotor();
+    }
+    Robot.shooter.stopBotMotor();
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished(){
-    
     if (timer.get() >= shootAutonTime){
       return true;
     }

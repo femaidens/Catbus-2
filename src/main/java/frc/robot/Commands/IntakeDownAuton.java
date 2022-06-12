@@ -13,7 +13,7 @@ import frc.robot.Robot;
 import frc.robot.Subsystems.Intake;
 
 public class IntakeDownAuton extends Command {
-  public static Timer timer = new Timer();
+  public Timer timer = new Timer();
   public static double intakeTime = .75;
   
   public IntakeDownAuton() {
@@ -31,7 +31,7 @@ public class IntakeDownAuton extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.downIntakeArm();
+    Intake.intakeArmMotor.set(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +46,9 @@ public class IntakeDownAuton extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.intake.stopIntakeArm();
     Intake.intakeArmMotor.setIdleMode(IdleMode.kBrake);
+    timer.reset();
 ;  }
 
   // Called when another command which requires one or more of the same

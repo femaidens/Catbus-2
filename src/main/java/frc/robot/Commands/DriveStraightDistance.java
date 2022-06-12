@@ -4,6 +4,7 @@
 
 package frc.robot.Commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.Subsystems.Drivetrain;
@@ -11,7 +12,9 @@ import frc.robot.Subsystems.Drivetrain;
 public class DriveStraightDistance extends Command {
   public static double d;
   public static double s;
-
+  public Timer timer = new Timer();
+  public static int taxiTime = 10;
+  
   public DriveStraightDistance(double distance, double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -23,19 +26,24 @@ public class DriveStraightDistance extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.drivetrain.rightEncoder.setPosition(0.0);
+    timer.start();
+    Robot.drivetrain.leftEncoder.setPosition(0.0);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.driveAuton(s, 0, 0, 0);
+    //System.out.println("left encoder value:" + Drivetrain.leftEncoder.getPosition());
+    if(timer.get() >= 10){
+      //System.out.println("left encoder value:" + Drivetrain.leftEncoder.getPosition());
+      Robot.drivetrain.driveAuton(s, 0, 0, 0);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if(Drivetrain.rightEncoder.getPosition() >= d){
+    if(Drivetrain.leftEncoder.getPosition() >= d){
       return true;
     }
     return false;
