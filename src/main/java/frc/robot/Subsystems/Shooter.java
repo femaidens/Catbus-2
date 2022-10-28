@@ -65,6 +65,20 @@ public class Shooter extends Subsystem {
 		shooterMotorBot.set(-0.2);//motor reversed
 	}
 
+	public void currentLimit(){
+		int limit = 40; //limit in amps
+		frontRight.setSmartCurrentLimit(limit);
+		rearRight.setSmartCurrentLimit(limit);
+		frontLeft.setSmartCurrentLimit(limit);
+		rearLeft.setSmartCurrentLimit(limit);
+	}
+
+	public void voltRamp(){
+		double rate = 1.5;
+		shooterMotorTop.setClosedLoopRampRate(rate);
+		shooterMotorBot.setClosedLoopRampRate(rate);
+	}
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
