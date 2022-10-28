@@ -10,10 +10,15 @@ import frc.robot.Robot;
 import frc.robot.Subsystems.Shooter;
 
 public class ShootBall extends Command {
+  
+  // velocity limit fields
+  public static double rate;
+
   public ShootBall(){
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.shooter);
+
     SmartDashboard.putNumber("P", 0.000700);
     SmartDashboard.putNumber("I", 0.000001);
     SmartDashboard.putNumber("D", 0.01);
@@ -30,12 +35,14 @@ public class ShootBall extends Command {
     Shooter.sMotorBotPIDController.setI(SmartDashboard.getNumber ("I", 0.000001));
     Shooter.sMotorBotPIDController.setD(SmartDashboard.getNumber("D", 0.010000));
   }
-
+  
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     Robot.shooter.currentLimit();
-    Robot.shooter.setClosedLoopRampRate();
+    Shooter.shooterMotorTop.setClosedLoopRampRate(rate);
+      //initially Robot.shooter.setClosedLoopRampRate(); -> changed to shooterMotorTop for now
+      //does same rate need to apply to the bottom?
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -53,7 +60,7 @@ public class ShootBall extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.shooter.shooterMotorTop.set(0.0);
+    Robot.shooter.stopTopMotor();
   }
 
   // Called when another command which requires one or more of the same

@@ -9,7 +9,7 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 //import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.OI;
@@ -48,7 +48,7 @@ public class Drivetrain extends Subsystem {
   static double adjust = 0;
   static double time = 0.1;*/ // 0.1 seconds = 100 milliseconds 
 
-  public static Limelight limelight = new Limelight();
+  //public static Limelight limelight = new Limelight(); //commented out for now (what is it used for?)
 
   public static int currentLimit;
 

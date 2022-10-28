@@ -27,7 +27,7 @@ public class DriveStraightDistance extends Command {
   @Override
   protected void initialize() {
     timer.start();
-    Robot.drivetrain.leftEncoder.setPosition(0.0);
+    Drivetrain.leftEncoder.setPosition(0.0);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -36,7 +36,7 @@ public class DriveStraightDistance extends Command {
     //System.out.println("left encoder value:" + Drivetrain.leftEncoder.getPosition());
     if(timer.get() >= 10){
       //System.out.println("left encoder value:" + Drivetrain.leftEncoder.getPosition());
-      Robot.drivetrain.driveAuton(s, 0, 0, 0);
+      Drivetrain.driveAuton(s, 0, 0, 0);
     }
   }
 
@@ -52,7 +52,7 @@ public class DriveStraightDistance extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.drivetrain.driveAuton(0, 0, 0, 0);
+    Drivetrain.driveAuton(0, 0, 0, 0);
   }
 
   // Called when another command which requires one or more of the same

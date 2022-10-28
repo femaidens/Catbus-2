@@ -7,16 +7,16 @@ package frc.robot.Subsystems;
 
 //import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
+// import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DutyCycleEncoder;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
+// import edu.wpi.first.wpilibj.AnalogGyro;
+// import edu.wpi.first.wpilibj.DoubleSolenoid;
+// import edu.wpi.first.wpilibj.DutyCycleEncoder;
+// import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.MecanumDrive;
+// import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.RobotMap;
 
 /** Add your docs here. */
@@ -67,10 +67,10 @@ public class Shooter extends Subsystem {
 
 	public void currentLimit(){
 		int limit = 40; //limit in amps
-		frontRight.setSmartCurrentLimit(limit);
-		rearRight.setSmartCurrentLimit(limit);
-		frontLeft.setSmartCurrentLimit(limit);
-		rearLeft.setSmartCurrentLimit(limit);
+		Drivetrain.frontRight.setSmartCurrentLimit(limit);
+		Drivetrain.rearRight.setSmartCurrentLimit(limit);
+		Drivetrain.frontLeft.setSmartCurrentLimit(limit);
+		Drivetrain.rearLeft.setSmartCurrentLimit(limit);
 	}
 
 	public void voltRamp(){

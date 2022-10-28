@@ -12,6 +12,7 @@ import frc.robot.Subsystems.Shooter;
 public class PowerShooterAuton extends Command {
   public Timer timer = new Timer();
   public static double powerShooterTime = 3;
+  public static double rate;
   
   
   public PowerShooterAuton() {
@@ -23,7 +24,9 @@ public class PowerShooterAuton extends Command {
   protected void initialize() {
     timer.start();
     Robot.shooter.currentLimit();
-    Robot.shooter.setClosedLoopRampRate();
+    Shooter.shooterMotorTop.setClosedLoopRampRate(rate);
+      //initially Robot.shooter.setClosedLoopRampRate(); -> changed to shooterMotorTop for now
+      //does same rate need to apply to the bottom?
   }
 
   // Called repeatedly when this Command is scheduled to run

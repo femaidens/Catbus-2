@@ -5,7 +5,7 @@
 package frc.robot.Commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
+import frc.robot.Subsystems.Drivetrain;
 
 public class ResetGyro extends Command {
   public ResetGyro() {
@@ -20,7 +20,7 @@ public class ResetGyro extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.drivetrain.resetGyro();
+    Drivetrain.resetGyro();
   }
 
   // Make this return true when this Command no longer needs to run execute()
