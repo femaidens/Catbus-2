@@ -7,6 +7,7 @@ package frc.robot.Commands;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.Subsystems.Shooter;
 
 public class PowerShooterAuton extends Command {
   public Timer timer = new Timer();
@@ -21,6 +22,8 @@ public class PowerShooterAuton extends Command {
   @Override
   protected void initialize() {
     timer.start();
+    Robot.shooter.currentLimit();
+    Robot.shooter.setClosedLoopRampRate();
   }
 
   // Called repeatedly when this Command is scheduled to run

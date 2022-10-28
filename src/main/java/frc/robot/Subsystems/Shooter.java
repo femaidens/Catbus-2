@@ -74,7 +74,7 @@ public class Shooter extends Subsystem {
 	}
 
 	public void voltRamp(){
-		double rate = 1.5;
+		double rate = 3;
 		shooterMotorTop.setClosedLoopRampRate(rate);
 		shooterMotorBot.setClosedLoopRampRate(rate);
 	}
