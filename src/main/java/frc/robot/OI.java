@@ -25,11 +25,12 @@ public class OI {
     //public static Button gyroReset = new JoystickButton(driveJoy2, 1);
 
     //climb
+    /* 
     public static Button pistonInButton = new JoystickButton(operJoy, 6); //RB
     public static Button pistonOutButton = new JoystickButton(operJoy, 5); //LB
     public static Button climbExtendButton = new JoystickButton(operJoy, 1); //A
     public static Button climbRetractButton = new JoystickButton(operJoy, 2); //B
-
+*/
     //shooter
     public static Button shootBall = new JoystickButton(operJoy, 7); //small left buttton
     public static Button prepShooter = new JoystickButton(operJoy, 8); //small right button
@@ -57,11 +58,12 @@ public class OI {
         //gyroReset.whenPressed(new ResetGyro());
 
         //climb
+        /* 
         pistonInButton.whenPressed(new climbCloseAngle());
         pistonOutButton.whenPressed(new climbOpenAngle());
         climbExtendButton.whileHeld(new climbExtend());
         climbRetractButton.whileHeld(new climbRetract());
-
+*/
         //shooter
         //shootBall.whileHeld(new ShootBall()); //actually prep
         shootBall.whenPressed(new ShootBall2()); //command group

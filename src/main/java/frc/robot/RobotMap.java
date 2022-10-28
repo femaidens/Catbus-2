@@ -23,11 +23,12 @@ public class RobotMap {
     public static int intakeEncoderPort = 3; 
 
     //climb
+    /* 
     public static int rightClimbPort = 8;
     public static int leftClimbPort = 10;
     public static int climbPistonForwardPort = 1;
     public static int climbPistonBackwardPort = 0;
-
+*/
     //shooter
     public static int shooterMotorTopPort = 4;//change port number
     public static int shooterMotorBotPort = 12; //change number 

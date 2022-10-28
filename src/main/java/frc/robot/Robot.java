@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.Subsystems.Climber;
+//import frc.robot.Subsystems.Climber;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 //import frc.robot.command.DriveTeleop;
@@ -37,7 +37,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   public static OI m_OI;
-  public static Climber climber;
+  //public static Climber climber;
   public static Shooter shooter;
   public static Compressor compressor;
   public static Drivetrain drivetrain;
@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     drivetrain = new Drivetrain();
-    climber = new Climber();
+    //climber = new Climber();
     shooter = new Shooter();
     compressor = new Compressor(PneumaticsModuleType.CTREPCM);
     intake = new Intake();
