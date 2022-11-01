@@ -62,7 +62,7 @@ public class Shooter extends Subsystem {
 	}
 
 	public void spinBotMotor(){
-		shooterMotorBot.set(-0.2);//motor reversed
+		shooterMotorBot.set(-0.5);//motor reversed
 	}
 
   @Override

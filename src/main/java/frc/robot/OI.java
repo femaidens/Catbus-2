@@ -68,7 +68,7 @@ public class OI {
         //shootBall.whileHeld(new ShootBall()); //actually prep
         shootBall.whenPressed(new ShootBall2()); //command group
         prepShooter.whileHeld(new PrepShooter());  //shoot
-        shootBallTest.whileHeld(new ShootBall());
+        shootBallTest.whileHeld(new ShootBall()); //preps
         //engageGB.whenPressed(new EngageGB());
         //disengageGB.whenPressed(new DisengageGB());
 
