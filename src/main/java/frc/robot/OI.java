@@ -34,12 +34,14 @@ public class OI {
     public static Button shootBall = new JoystickButton(operJoy, 7); //small left buttton
     public static Button prepShooter = new JoystickButton(operJoy, 8); //small right button
     public static Button shootBallTest = new JoystickButton(driveJoy1, 16); //single dot button on lateral
+    
     /*
     public static Button engageGB = new JoystickButton(operJoy, 9);
     public static Button windShooter = new JoystickButton(operJoy, 7); //small left button
     public static Button disengageGB = new JoystickButton(operJoy, 10);
     public static Button retractLatchButton = new JoystickButton(operJoy, 2); //
     */
+    
 
     //intake
     public static Button intakeMotorButton = new JoystickButton(operJoy, 4); //intake cargo //Y

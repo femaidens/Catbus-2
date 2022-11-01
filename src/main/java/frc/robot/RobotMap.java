@@ -6,8 +6,8 @@ package frc.robot;
 
 /** Add your docs here. */
 public class RobotMap {
-    public static int driveJoy1Port = 2; //controls lateral
-    public static int driveJoy2Port = 1; //controls turning
+    public static int driveJoy1Port = 2; //controls lateral (left)
+    public static int driveJoy2Port = 1; //controls turning (right)
     public static int operJoyPort = 0;
 
     //drivetrain - might need to fix
@@ -23,12 +23,12 @@ public class RobotMap {
     public static int intakeEncoderPort = 3; 
 
     //climb
-    public static int rightClimbPort = 8;
-    public static int leftClimbPort = 10;
-    public static int climbPistonForwardPort = 1;
-    public static int climbPistonBackwardPort = 0;
+    public static int rightClimbPort = 8; //originally 8
+    public static int leftClimbPort = 10; //originally 10
+    public static int climbPistonForwardPort = 1; //originally 1
+    public static int climbPistonBackwardPort = 0; //originally 0
 
     //shooter
-    public static int shooterMotorTopPort = 4;//change port number
-    public static int shooterMotorBotPort = 12; //change number 
+    public static int shooterMotorTopPort = 4;//big wheel
+    public static int shooterMotorBotPort = 12; //green wheel
 }
