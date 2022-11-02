@@ -31,8 +31,8 @@ public class OI {
     public static Button climbRetractButton = new JoystickButton(operJoy, 2); //B
 
     //shooter
-    public static Button shootBall = new JoystickButton(operJoy, 7); //small left buttton
-    public static Button prepShooter = new JoystickButton(operJoy, 8); //small right button
+    public static Button prepShooter = new JoystickButton(operJoy, 7); //small right button
+    public static Button shootBall = new JoystickButton(operJoy, 8); //small left buttton
     public static Button shootBallTest = new JoystickButton(driveJoy1, 16); //single dot button on lateral
     
     /*
@@ -66,9 +66,9 @@ public class OI {
 
         //shooter
         //shootBall.whileHeld(new ShootBall()); //actually prep
-        shootBall.whenPressed(new ShootBall2()); //command group
-        prepShooter.whileHeld(new PrepShooter());  //shoot
-        shootBallTest.whileHeld(new ShootBall()); //preps
+        shootBallTest.whenPressed(new ShootBall2()); //command group
+        prepShooter.whileHeld(new ShootBall()); //preps
+        shootBall.whileHeld(new PrepShooter());  //shoot
         //engageGB.whenPressed(new EngageGB());
         //disengageGB.whenPressed(new DisengageGB());
 
